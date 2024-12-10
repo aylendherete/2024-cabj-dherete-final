@@ -1,10 +1,11 @@
 Class {
-	#name : #TurnManagerTest,
-	#superclass : #TestCase,
-	#category : #'IngSoft2-Tests'
+	#name : 'TurnManagerTest',
+	#superclass : 'TestCase',
+	#category : 'IngSoft2-Tests',
+	#package : 'IngSoft2-Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 TurnManagerTest >> test01OneSpaceshipsThenTurnOneReturnsSpaceshipOne [
 
 	| aTurnManager collectionOfSpaceships currentSpaceshipId |
@@ -19,7 +20,7 @@ TurnManagerTest >> test01OneSpaceshipsThenTurnOneReturnsSpaceshipOne [
 	self assert: currentSpaceshipId equals: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 TurnManagerTest >> test02TwoSpaceshipsThenTurnTwoReturnsSpaceshipTwo [
 
 	| aTurnManager collectionOfSpaceships currentSpaceshipId |
@@ -35,7 +36,7 @@ TurnManagerTest >> test02TwoSpaceshipsThenTurnTwoReturnsSpaceshipTwo [
 	self assert: currentSpaceshipId equals: 2
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 TurnManagerTest >> test03WhenRoundIsOverNextTurnIsTheFirstSpaceship [
 
 	| aTurnManager collectionOfSpaceships currentSpaceshipId |
@@ -53,7 +54,7 @@ TurnManagerTest >> test03WhenRoundIsOverNextTurnIsTheFirstSpaceship [
 	self assert: currentSpaceshipId equals: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 TurnManagerTest >> test04WhenSpaceshipOneLosesTurnsTheNextTurnIsSpaceshipTwo [
 
 	| aTurnManager collectionOfSpaceships currentSpaceshipId |
@@ -71,7 +72,7 @@ TurnManagerTest >> test04WhenSpaceshipOneLosesTurnsTheNextTurnIsSpaceshipTwo [
 	self assert: currentSpaceshipId equals: 2
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 TurnManagerTest >> test05WhenSpaceshipOneLosesTwoTurnsThenSpaceshipTwoPlaysThem [
 
 	| aTurnManager collectionOfSpaceships currentSpaceshipId |
@@ -93,7 +94,7 @@ TurnManagerTest >> test05WhenSpaceshipOneLosesTwoTurnsThenSpaceshipTwoPlaysThem 
 	self assert: currentSpaceshipId equals: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 TurnManagerTest >> test06WhenEverySpaceshipsLosesTheirTurnThenReturnAnAllShipsDisabledHandler [
 
 	| aTurnManager collectionOfSpaceships currentSpaceshipId |
@@ -110,7 +111,7 @@ TurnManagerTest >> test06WhenEverySpaceshipsLosesTheirTurnThenReturnAnAllShipsDi
 	self assert: currentSpaceshipId equals: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 TurnManagerTest >> test07WhenSpaceshipLostTwoTurnsIsCalledTwiceAndTwoTurnsPassThenSpaceshipRecoversTurn [
 
 	| aTurnManager collectionOfSpaceships currentSpaceshipId |
@@ -131,7 +132,7 @@ TurnManagerTest >> test07WhenSpaceshipLostTwoTurnsIsCalledTwiceAndTwoTurnsPassTh
 	self assert: currentSpaceshipId equals: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 TurnManagerTest >> test08OneSpaceshipLostOneTurnAndThenRecoversIt [
 
 	| aTurnManager collectionOfSpaceships currentSpaceshipId |

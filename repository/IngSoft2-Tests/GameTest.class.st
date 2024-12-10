@@ -1,6 +1,6 @@
 Class {
-	#name : #GameTest,
-	#superclass : #TestCase,
+	#name : 'GameTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'aLoadedDie',
 		'aWormholeCreator',
@@ -10,10 +10,11 @@ Class {
 		'aCollectionOfDice',
 		'gameDeck'
 	],
-	#category : #'IngSoft2-Tests'
+	#category : 'IngSoft2-Tests',
+	#package : 'IngSoft2-Tests'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 GameTest >> setUp [
 	
 	super setUp.
@@ -40,7 +41,7 @@ GameTest >> setUp [
 		            withProbabilitiesDistribution: #( 16 16 17 17 17 17 )
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 GameTest >> should: anErrorBlock raise: anErrorClass withMessage: anErrorMessage [
 
 	self
@@ -50,7 +51,7 @@ GameTest >> should: anErrorBlock raise: anErrorClass withMessage: anErrorMessage
 		self assert: error messageText equals: anErrorMessage ]
 ]
 
-{ #category : #spaceship }
+{ #category : 'spaceship' }
 GameTest >> testGameCreatedWithDieMovesSpaceshipInBetweenOneAndTheAmountOfFaces [
 
 	| aGame aDie |
@@ -73,7 +74,7 @@ GameTest >> testGameCreatedWithDieMovesSpaceshipInBetweenOneAndTheAmountOfFaces 
 		((aGame spaceships cellsOfSpaceships values at: 1) between: 2 and: 6)
 ]
 
-{ #category : #'game over' }
+{ #category : 'game over' }
 GameTest >> testSpaceshipOnesWinThenSpaceshipsTwoPlaysAndGameOver [
 
 	| aGame |
@@ -97,7 +98,7 @@ GameTest >> testSpaceshipOnesWinThenSpaceshipsTwoPlaysAndGameOver [
 		withMessage: 'The Game is Over'
 ]
 
-{ #category : #spaceship }
+{ #category : 'spaceship' }
 GameTest >> testTwoSpaceshipsFirstOneMovesTwiceWithDieOfSixThenMinTwoMaxTwelvePosition [
 
 	| aGame aDie |

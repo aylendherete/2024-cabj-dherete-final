@@ -1,10 +1,11 @@
 Class {
-	#name : #LoadedDiceTest,
-	#superclass : #TestCase,
-	#category : #'IngSoft2-Tests'
+	#name : 'LoadedDiceTest',
+	#superclass : 'TestCase',
+	#category : 'IngSoft2-Tests',
+	#package : 'IngSoft2-Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 LoadedDiceTest >> test001WhenCollectionOfTwoLoadedDiceThrowThenReturnsSumOfFaces [
 
 	| aCollectionOfLoadedDie dice|	
@@ -13,7 +14,7 @@ LoadedDiceTest >> test001WhenCollectionOfTwoLoadedDiceThrowThenReturnsSumOfFaces
 	self assert: aCollectionOfLoadedDie throw equals: 6
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LoadedDiceTest >> test002CollectionInitializeWithOneDieThrowThenReturnsDiesFaces [
 
 	| aCollectionOfLoadedDie dice |
@@ -22,7 +23,7 @@ LoadedDiceTest >> test002CollectionInitializeWithOneDieThrowThenReturnsDiesFaces
 	self assert: aCollectionOfLoadedDie throw equals: 3
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LoadedDiceTest >> test003WhenCollectionInitializeWithTwoDiceOfThreeThenAmountOfFacesEqualsSix [
 
 	| aCollectionOfLoadedDie dice|

@@ -1,10 +1,11 @@
 Class {
-	#name : #CardTest,
-	#superclass : #TestCase,
-	#category : #'IngSoft2-Tests'
+	#name : 'CardTest',
+	#superclass : 'TestCase',
+	#category : 'IngSoft2-Tests',
+	#package : 'IngSoft2-Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 CardTest >> test01ActiveDeckActivateOverLoadCardThenApplyEffectApplysEffectOfIt [
 	| aActiveDeck |
 	aActiveDeck := ActiveDeck startGame.
@@ -13,7 +14,7 @@ CardTest >> test01ActiveDeckActivateOverLoadCardThenApplyEffectApplysEffectOfIt 
 	self assert: (aActiveDeck applyEffectOn: 10 withCurrentSpaceship: 2) equals: 8
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CardTest >> test02ActiveDeckRemoveOverloadCardThenNoEffectOnThatId [
 	| aActiveDeck |
 	aActiveDeck := ActiveDeck startGame.

@@ -1,6 +1,6 @@
 Class {
-	#name : #UserInterfaceTest,
-	#superclass : #TestCase,
+	#name : 'UserInterfaceTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'aLoadedDie',
 		'aWormholeCreator',
@@ -10,10 +10,11 @@ Class {
 		'aConversor',
 		'values'
 	],
-	#category : #'IngSoft2-Tests'
+	#category : 'IngSoft2-Tests',
+	#package : 'IngSoft2-Tests'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 UserInterfaceTest >> setUp [
 
 	super setUp.
@@ -59,7 +60,7 @@ UserInterfaceTest >> setUp [
 		            withProbabilitiesDistribution: #( 16 16 17 17 17 17 )
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 UserInterfaceTest >> test01UserInterfaceMovesSpaceshipThenGetsFinalPositions [
 
 	| result aUserInterface |
@@ -83,7 +84,7 @@ UserInterfaceTest >> test01UserInterfaceMovesSpaceshipThenGetsFinalPositions [
 	self assert: aUserInterface finalPositionOfSpaceships equals: result
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 UserInterfaceTest >> test02UserInterfaceUsesBothPermanentAndInstantCardsThenGamePlaysNormally [
 
 	| aUserInterFace result |
@@ -129,7 +130,7 @@ UserInterfaceTest >> test02UserInterfaceUsesBothPermanentAndInstantCardsThenGame
 	self assert: aUserInterFace finalPositionOfSpaceships equals: result
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 UserInterfaceTest >> test03UserInterfaceReloadFuelThenGameFunctionsNormally [
 
 	| aUserInterFace result |
@@ -149,7 +150,7 @@ UserInterfaceTest >> test03UserInterfaceReloadFuelThenGameFunctionsNormally [
 	self assert: aUserInterFace finalPositionOfSpaceships equals: result
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 UserInterfaceTest >> test04UserInterfacesPlaysThenRankingOfSpaceshipsShowTheRanking [
 
 	| aUserInterFace rankingOfSpaceships idRanking |
@@ -182,7 +183,7 @@ UserInterfaceTest >> test04UserInterfacesPlaysThenRankingOfSpaceshipsShowTheRank
 	self assert: idRanking equals: rankingOfSpaceships
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 UserInterfaceTest >> test05UserInterfacePlaysThenGetsWinnerId [
 
 	| aUserInterFace |
@@ -196,7 +197,7 @@ UserInterfaceTest >> test05UserInterfacePlaysThenGetsWinnerId [
 	self assert: aUserInterFace winner equals: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 UserInterfaceTest >> test06UserInterfacePlaysThenGetsFinalLapsOfSpaceships [
 
 	| aUserInterFace resultOfLaps |
@@ -229,7 +230,7 @@ UserInterfaceTest >> test06UserInterfacePlaysThenGetsFinalLapsOfSpaceships [
 		equals: resultOfLaps
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 UserInterfaceTest >> test07userInterfacePlaysThenGetsFinalResultsOfSpaceships [
 
 	| aUserInterFace resultOfGame |

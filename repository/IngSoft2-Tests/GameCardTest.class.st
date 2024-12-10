@@ -1,6 +1,6 @@
 Class {
-	#name : #GameCardTest,
-	#superclass : #TestCase,
+	#name : 'GameCardTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'aLoadedDie',
 		'aWormholeCreator',
@@ -8,10 +8,11 @@ Class {
 		'collectionOfCells',
 		'gameDeck'
 	],
-	#category : #'IngSoft2-Tests'
+	#category : 'IngSoft2-Tests',
+	#package : 'IngSoft2-Tests'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 GameCardTest >> setUp [
 
 	super setUp.
@@ -36,7 +37,7 @@ GameCardTest >> setUp [
 			             with: CancellationCard)
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 GameCardTest >> should: anErrorBlock raise: anErrorClass withMessage: anErrorMessage [
 
 	self
@@ -46,7 +47,7 @@ GameCardTest >> should: anErrorBlock raise: anErrorClass withMessage: anErrorMes
 		self assert: error messageText equals: anErrorMessage ]
 ]
 
-{ #category : #acceleration }
+{ #category : 'acceleration' }
 GameCardTest >> test03WhenOneAccelerationCardIsActiveThenSpaceshipMovesOneMoreThanThrowResult [
 
 	| result aGame |
@@ -66,7 +67,7 @@ GameCardTest >> test03WhenOneAccelerationCardIsActiveThenSpaceshipMovesOneMoreTh
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
 
-{ #category : #overload }
+{ #category : 'overload' }
 GameCardTest >> test05SpaceshipOnePlaysOverloadToSpaceshipTwoThenTwoMovesLessTwo [
 
 	| result aGame |
@@ -87,7 +88,7 @@ GameCardTest >> test05SpaceshipOnePlaysOverloadToSpaceshipTwoThenTwoMovesLessTwo
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
 
-{ #category : #ally }
+{ #category : 'ally' }
 GameCardTest >> test06GameActivatesAllyCardThenSpaceshipOneCanUseFuelFromSpaceshipTwo [
 
 	| result aGame |
@@ -113,7 +114,7 @@ GameCardTest >> test06GameActivatesAllyCardThenSpaceshipOneCanUseFuelFromSpacesh
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
 
-{ #category : #ally }
+{ #category : 'ally' }
 GameCardTest >> test07BothAllysRunOutOfFuelThenBothLooseTwoTurns [
 
 	| result aGame |
@@ -138,7 +139,7 @@ GameCardTest >> test07BothAllysRunOutOfFuelThenBothLooseTwoTurns [
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
 
-{ #category : #cancellation }
+{ #category : 'cancellation' }
 GameCardTest >> test10SpaceshipThreeRemovesOverloadCardThenItMovesWithoutEffect [
 
 	| result aGame |
@@ -169,7 +170,7 @@ GameCardTest >> test10SpaceshipThreeRemovesOverloadCardThenItMovesWithoutEffect 
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
 
-{ #category : #cancellation }
+{ #category : 'cancellation' }
 GameCardTest >> test11CancelAllyCardThenBothSpaceshipsUseOnlyTheirFuelTank [
 
 	| result aGame |
@@ -195,7 +196,7 @@ GameCardTest >> test11CancelAllyCardThenBothSpaceshipsUseOnlyTheirFuelTank [
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
 
-{ #category : #'instant card' }
+{ #category : 'instant card' }
 GameCardTest >> test12InstancCardPlayedOnAnoterSpaceshipsTurnThenInstantCardCanDoTheEffect [
 
 	| result aGame |
@@ -222,7 +223,7 @@ GameCardTest >> test12InstancCardPlayedOnAnoterSpaceshipsTurnThenInstantCardCanD
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
 
-{ #category : #cancellation }
+{ #category : 'cancellation' }
 GameCardTest >> test13AccelerationCardPlayedAndCancelledThenSpaceshipMovesWithoutEffect [
 
 	| result aGame |
@@ -248,7 +249,7 @@ GameCardTest >> test13AccelerationCardPlayedAndCancelledThenSpaceshipMovesWithou
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
 
-{ #category : #'redo ' }
+{ #category : 'redo ' }
 GameCardTest >> test14TwoRedoCardsPlayedAfterAccelerationThenSpaceshipMovesThreeCellsMore [
 
 	| result aGame |
@@ -271,7 +272,7 @@ GameCardTest >> test14TwoRedoCardsPlayedAfterAccelerationThenSpaceshipMovesThree
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
 
-{ #category : #'redo ' }
+{ #category : 'redo ' }
 GameCardTest >> test15RedoCardPlayedAfterOverloadThenSpaceshipsAffectedHaveLessMovement [
 
 	| result aGame |
@@ -297,7 +298,7 @@ GameCardTest >> test15RedoCardPlayedAfterOverloadThenSpaceshipsAffectedHaveLessM
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
 
-{ #category : #'redo ' }
+{ #category : 'redo ' }
 GameCardTest >> test16RedoCardPlayedAfterAllyThenSpaceshipsThreeAndFourShareFuelBeacuseOfIt [
 
 	| result aGame |
@@ -328,7 +329,7 @@ GameCardTest >> test16RedoCardPlayedAfterAllyThenSpaceshipsThreeAndFourShareFuel
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
 
-{ #category : #'redo ' }
+{ #category : 'redo ' }
 GameCardTest >> test17TwoAccelerationCardsPlayThenACancellationAndARedoSoNoAccelerationEffectOccurs [
 
 	| aGame result |
@@ -359,7 +360,7 @@ GameCardTest >> test17TwoAccelerationCardsPlayThenACancellationAndARedoSoNoAccel
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
 
-{ #category : #repeat }
+{ #category : 'repeat' }
 GameCardTest >> test18SpaceshipOneEntersBlackHoleAndSpaceshipTwoRepeatsEffectThenSpaceshipOneIsInPositionOne [
 
 	| aGame result |
@@ -391,7 +392,7 @@ GameCardTest >> test18SpaceshipOneEntersBlackHoleAndSpaceshipTwoRepeatsEffectThe
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
 
-{ #category : #repeat }
+{ #category : 'repeat' }
 GameCardTest >> test19ReapeatCardRepeatsACellThenNothingChanges [
 
 	| aGame result |
@@ -413,7 +414,7 @@ GameCardTest >> test19ReapeatCardRepeatsACellThenNothingChanges [
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
 
-{ #category : #repeat }
+{ #category : 'repeat' }
 GameCardTest >> test20RepeatCardRepeatsMoonWalkThenSpaceshipOneMovesBackwards [
 
 	| aGame result |
@@ -444,7 +445,7 @@ GameCardTest >> test20RepeatCardRepeatsMoonWalkThenSpaceshipOneMovesBackwards [
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
 
-{ #category : #repeat }
+{ #category : 'repeat' }
 GameCardTest >> test21RepeatCardRepeatsAtomicBombThenEverySpaceshipIsOnCellOne [
 
 	| aGame result |
@@ -476,7 +477,7 @@ GameCardTest >> test21RepeatCardRepeatsAtomicBombThenEverySpaceshipIsOnCellOne [
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
 
-{ #category : #repeat }
+{ #category : 'repeat' }
 GameCardTest >> test22RepeatCardRepeatsHyperJumpThenBothSpaceshipsMoveSameParsecs [
 
 	| aGame result aConversor values |
@@ -517,7 +518,7 @@ GameCardTest >> test22RepeatCardRepeatsHyperJumpThenBothSpaceshipsMoveSameParsec
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
 
-{ #category : #repeat }
+{ #category : 'repeat' }
 GameCardTest >> test23RepeatCardRepeatsCardDispenserThenSpaceshipTwoCanPlayTwoAccelerationCards [
 
 	| aGame result |
@@ -558,7 +559,7 @@ GameCardTest >> test23RepeatCardRepeatsCardDispenserThenSpaceshipTwoCanPlayTwoAc
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
 
-{ #category : #repeat }
+{ #category : 'repeat' }
 GameCardTest >> test24RepeatCardRepeatsWormholeThenSpaceshipOneGoesToWormhole [
 
 	| aGame result |
@@ -581,7 +582,7 @@ GameCardTest >> test24RepeatCardRepeatsWormholeThenSpaceshipOneGoesToWormhole [
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
 
-{ #category : #'redo ' }
+{ #category : 'redo ' }
 GameCardTest >> test25RedoCardPlayedAfterRepeatCardThenCellEffectRepeatsTwice [
 
 	| aGame result |
@@ -616,7 +617,7 @@ GameCardTest >> test25RedoCardPlayedAfterRepeatCardThenCellEffectRepeatsTwice [
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
 
-{ #category : #repeat }
+{ #category : 'repeat' }
 GameCardTest >> test26RepeatCardRepeatsHyperGravityThenSpaceshipMovesWithoutImpediment [
 
 	| aGame result |
@@ -638,7 +639,7 @@ GameCardTest >> test26RepeatCardRepeatsHyperGravityThenSpaceshipMovesWithoutImpe
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
 
-{ #category : #spaceshipCardHand }
+{ #category : 'spaceshipCardHand' }
 GameCardTest >> test27WhenACardThatIsNotInHandTriesToActivateThenDoesNotDoTheEffectOfIt [
 
 	| result aGame |
@@ -668,7 +669,7 @@ GameCardTest >> test27WhenACardThatIsNotInHandTriesToActivateThenDoesNotDoTheEff
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
 
-{ #category : #cancellation }
+{ #category : 'cancellation' }
 GameCardTest >> test28CancellationCardCancelsOnlyTheCardThatIsExactlyTheSameAsTheOneItWantsToCancel [
 
 	| aGame result |
@@ -701,7 +702,7 @@ GameCardTest >> test28CancellationCardCancelsOnlyTheCardThatIsExactlyTheSameAsTh
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
 
-{ #category : #repeat }
+{ #category : 'repeat' }
 GameCardTest >> test29RepeatHyperGravityForSpaceshipTwoThenItCannotMoveBeacuseOfIt [
 
 	| aGame result |
@@ -737,7 +738,7 @@ GameCardTest >> test29RepeatHyperGravityForSpaceshipTwoThenItCannotMoveBeacuseOf
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
 
-{ #category : #repeat }
+{ #category : 'repeat' }
 GameCardTest >> test30RepeatHyperGravityForSpaceshipTwoThenItCanMoveBeacuseOfThrowGreaterThenValue [
 
 	| aGame result |
@@ -773,7 +774,7 @@ GameCardTest >> test30RepeatHyperGravityForSpaceshipTwoThenItCanMoveBeacuseOfThr
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
 
-{ #category : #ally }
+{ #category : 'ally' }
 GameCardTest >> test31SpaceshipThreeTriesToAllyWithTwoThenItThrowAnErrorBecauseTwoAlreadyHasAlly [
 
 	self
@@ -794,7 +795,7 @@ GameCardTest >> test31SpaceshipThreeTriesToAllyWithTwoThenItThrowAnErrorBecauseT
 		withMessage: 'Spaceship 2 already has an ally.'
 ]
 
-{ #category : #ally }
+{ #category : 'ally' }
 GameCardTest >> test32SpaceshipsTwoChangesCapacityAndOneAnTwoAreAllysThenAmountOfTotalFuelChanges [
 
 	| resultOne aGame resultTwo |
@@ -826,7 +827,7 @@ GameCardTest >> test32SpaceshipsTwoChangesCapacityAndOneAnTwoAreAllysThenAmountO
 			 aGame spaceships cellsOfSpaceships = resultTwo)
 ]
 
-{ #category : #spaceshipCardHand }
+{ #category : 'spaceshipCardHand' }
 GameCardTest >> test33GamePlaysWithDeckWithProbabilisticDistributionThenSpaceshipCardHandAlwaysInitializedWithTwoCards [
 
 	| result aGame |

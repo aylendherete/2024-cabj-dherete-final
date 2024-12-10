@@ -1,10 +1,11 @@
 Class {
-	#name : #DiceTest,
-	#superclass : #TestCase,
-	#category : #'IngSoft2-Tests'
+	#name : 'DiceTest',
+	#superclass : 'TestCase',
+	#category : 'IngSoft2-Tests',
+	#package : 'IngSoft2-Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 DiceTest >> test001WhenCollectionThrowThenResultIsBetweenMinAndMaxOfSumOfFaces [
 
 	| aCollectionOfDie  dice|
@@ -13,7 +14,7 @@ DiceTest >> test001WhenCollectionThrowThenResultIsBetweenMinAndMaxOfSumOfFaces [
 	self assert: (aCollectionOfDie throw between: 2 and: 6)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DiceTest >> test002WhenCollectionInitializeWithTwoDiceOfThreeFacesThenAmountOfFacesEqualsSix [
 
 	| aCollectionOfDie dice |

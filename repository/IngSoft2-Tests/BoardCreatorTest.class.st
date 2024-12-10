@@ -1,10 +1,11 @@
 Class {
-	#name : #BoardCreatorTest,
-	#superclass : #TestCase,
-	#category : #'IngSoft2-Tests'
+	#name : 'BoardCreatorTest',
+	#superclass : 'TestCase',
+	#category : 'IngSoft2-Tests',
+	#package : 'IngSoft2-Tests'
 }
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 BoardCreatorTest >> should: anErrorBlock raise: anErrorClass withMessage: anErrorMessage [
 
 	self
@@ -14,7 +15,7 @@ BoardCreatorTest >> should: anErrorBlock raise: anErrorClass withMessage: anErro
 		self assert: error messageText equals: anErrorMessage ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 BoardCreatorTest >> test01BoardCreatorInitializeThenCellsReturnsAmountOfCellsOnBoard [
 
 	| aBoardCreator aWormholeCreator collectionOfCells |
@@ -30,7 +31,7 @@ BoardCreatorTest >> test01BoardCreatorInitializeThenCellsReturnsAmountOfCellsOnB
 	self assert: aBoardCreator cells equals: 5
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 BoardCreatorTest >> test02BoardCreatorInitializeThenLapsReturnsAmountOfLaps [
 
 	| aBoardCreator aWormholeCreator collectionOfCells |
@@ -46,7 +47,7 @@ BoardCreatorTest >> test02BoardCreatorInitializeThenLapsReturnsAmountOfLaps [
 	self assert: aBoardCreator laps equals: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 BoardCreatorTest >> test03BoardCreatorCreatesBoardWithCollectionOfCellsThenBoardHasThatCollectionPlusWhormHole [
 
 	| board aBoardCreator aWormholeCreator collectionOfCells aConversor values |
@@ -91,7 +92,7 @@ BoardCreatorTest >> test03BoardCreatorCreatesBoardWithCollectionOfCellsThenBoard
 	self assert: ((board at: 9) isKindOf: HyperJumpCell)
 ]
 
-{ #category : #'error testing' }
+{ #category : 'error testing' }
 BoardCreatorTest >> test04BoardCreatorRecivesCollectionOfNotCellsThenErrorIsThrown [
 
 	| aBoardCreator aWormholeCreator collectionOfNotCells |

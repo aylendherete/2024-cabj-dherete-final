@@ -1,10 +1,11 @@
 Class {
-	#name : #CollectionOfSpaceshipTest,
-	#superclass : #TestCase,
-	#category : #'IngSoft2-Tests'
+	#name : 'CollectionOfSpaceshipTest',
+	#superclass : 'TestCase',
+	#category : 'IngSoft2-Tests',
+	#package : 'IngSoft2-Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 CollectionOfSpaceshipTest >> test01CollectionOfSpaceshipsInitializeThenCellsEqualsOne [
 
 	| aCollectionOfSpaceships result |
@@ -19,7 +20,7 @@ CollectionOfSpaceshipTest >> test01CollectionOfSpaceshipsInitializeThenCellsEqua
 	self assert: aCollectionOfSpaceships cellsOfSpaceships equals: result
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CollectionOfSpaceshipTest >> test02LapsOfSpaceshipsThenReturnsDictionaryWithLapOfEachSpaceship [
 
 	| aCollectionOfSpaceships result |
@@ -34,7 +35,7 @@ CollectionOfSpaceshipTest >> test02LapsOfSpaceshipsThenReturnsDictionaryWithLapO
 	self assert: aCollectionOfSpaceships lapsOfSpaceships equals: result
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CollectionOfSpaceshipTest >> test03PositionsOfSpaceshipsThenReturnEachPositionForEverySpaceship [
 
 	| aCollectionOfSpaceships result |

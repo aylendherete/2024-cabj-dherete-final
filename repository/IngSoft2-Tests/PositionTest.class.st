@@ -1,10 +1,11 @@
 Class {
-	#name : #PositionTest,
-	#superclass : #TestCase,
-	#category : #'IngSoft2-Tests'
+	#name : 'PositionTest',
+	#superclass : 'TestCase',
+	#category : 'IngSoft2-Tests',
+	#package : 'IngSoft2-Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PositionTest >> test01PositioninitializeThenCellEqualsOne [
 
 	| aPosition |
@@ -13,7 +14,7 @@ PositionTest >> test01PositioninitializeThenCellEqualsOne [
 	self assert: aPosition cell equals: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PositionTest >> test02PositioninitializeThenLapEqualsOne [
 
 	| aPosition |
@@ -22,7 +23,7 @@ PositionTest >> test02PositioninitializeThenLapEqualsOne [
 	self assert: aPosition lap equals: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PositionTest >> test03PositioninitializeSetCellTwoThenCellEqualsTwo [
 
 	| aPosition |
@@ -32,7 +33,7 @@ PositionTest >> test03PositioninitializeSetCellTwoThenCellEqualsTwo [
 	self assert: aPosition cell equals: 2
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PositionTest >> test04PositioninitializeSetLapTwoThenLapEqualsTwo [
 
 	| aPosition |
@@ -42,7 +43,7 @@ PositionTest >> test04PositioninitializeSetLapTwoThenLapEqualsTwo [
 	self assert: aPosition lap equals: 2
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PositionTest >> test05PositionEqualsAnotherPosition [
 
 	| aPosition position |
@@ -52,7 +53,7 @@ PositionTest >> test05PositionEqualsAnotherPosition [
 	self assert: aPosition = position
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PositionTest >> test06PositionIsNotEqualToAnotherPosition [
 
 	| aPosition position |
@@ -62,7 +63,7 @@ PositionTest >> test06PositionIsNotEqualToAnotherPosition [
 	self deny: aPosition = position
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PositionTest >> test08PositionInitializeThenIsInLapOne [
 
 	| aPosition |

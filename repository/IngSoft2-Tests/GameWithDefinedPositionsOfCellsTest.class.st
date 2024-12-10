@@ -1,6 +1,6 @@
 Class {
-	#name : #GameWithDefinedPositionsOfCellsTest,
-	#superclass : #TestCase,
+	#name : 'GameWithDefinedPositionsOfCellsTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'aLoadedDie',
 		'aWormholeCreator',
@@ -10,10 +10,11 @@ Class {
 		'aConversor',
 		'values'
 	],
-	#category : #'IngSoft2-Tests'
+	#category : 'IngSoft2-Tests',
+	#package : 'IngSoft2-Tests'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 GameWithDefinedPositionsOfCellsTest >> setUp [
 
 	super setUp.
@@ -59,7 +60,7 @@ GameWithDefinedPositionsOfCellsTest >> setUp [
 		            withProbabilitiesDistribution: #( 16 16 17 17 17 17 )
 ]
 
-{ #category : #'atomic bomb' }
+{ #category : 'atomic bomb' }
 GameWithDefinedPositionsOfCellsTest >> test01GameMovesSpaceshipWhichEntersAtomicBombThenEveryoneGoesBackToCellOne [
 
 	| result aGame |
@@ -83,7 +84,7 @@ GameWithDefinedPositionsOfCellsTest >> test01GameMovesSpaceshipWhichEntersAtomic
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
 
-{ #category : #'hyper jump' }
+{ #category : 'hyper jump' }
 GameWithDefinedPositionsOfCellsTest >> test02GameMovesSpaceshipEntersHyperJumpThenReturnsNewPositionAdjustedByParsecs [
 
 	| result aGame |
@@ -107,7 +108,7 @@ GameWithDefinedPositionsOfCellsTest >> test02GameMovesSpaceshipEntersHyperJumpTh
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
 
-{ #category : #'moon walk' }
+{ #category : 'moon walk' }
 GameWithDefinedPositionsOfCellsTest >> test03SpaceshipThreeEntersMoonWalkThenEveryOtherSpaceshipGoesBackAValue [
 
 	| result aGame |
@@ -131,7 +132,7 @@ GameWithDefinedPositionsOfCellsTest >> test03SpaceshipThreeEntersMoonWalkThenEve
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
 
-{ #category : #'black hole' }
+{ #category : 'black hole' }
 GameWithDefinedPositionsOfCellsTest >> test04GameMovesSpaceshipsOneEntersBlackHoleThenPositionIsMinusFour [
 
 	| result aGame |
@@ -155,7 +156,7 @@ GameWithDefinedPositionsOfCellsTest >> test04GameMovesSpaceshipsOneEntersBlackHo
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
 
-{ #category : #'hyper gravity' }
+{ #category : 'hyper gravity' }
 GameWithDefinedPositionsOfCellsTest >> test05SpaceshipOneEntersHyperGravityAndRollsLessThanMinuminValueThenStaysThere [
 
 	| result aGame |
@@ -178,7 +179,7 @@ GameWithDefinedPositionsOfCellsTest >> test05SpaceshipOneEntersHyperGravityAndRo
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
 
-{ #category : #'hyper gravity' }
+{ #category : 'hyper gravity' }
 GameWithDefinedPositionsOfCellsTest >> test06SpaceshipEntersHyperGravityAndRollsValueThenSpaceshipCanMove [
 
 	| result aGame |
@@ -201,7 +202,7 @@ GameWithDefinedPositionsOfCellsTest >> test06SpaceshipEntersHyperGravityAndRolls
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
 
-{ #category : #'hyper jump' }
+{ #category : 'hyper jump' }
 GameWithDefinedPositionsOfCellsTest >> test07SecondSpaceshipAndThirdSpaceshipEnterHyperJumpThenThirdMovesLessParsecsThanSecond [
 
 	| result aGame |
@@ -225,7 +226,7 @@ GameWithDefinedPositionsOfCellsTest >> test07SecondSpaceshipAndThirdSpaceshipEnt
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
 
-{ #category : #'card dispenser' }
+{ #category : 'card dispenser' }
 GameWithDefinedPositionsOfCellsTest >> test08SpaceshipEntersCardDispenserThenItCanUseTwoAccelerationCards [
 
 	| aGame result |
@@ -260,7 +261,7 @@ GameWithDefinedPositionsOfCellsTest >> test08SpaceshipEntersCardDispenserThenItC
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
 
-{ #category : #'black hole' }
+{ #category : 'black hole' }
 GameWithDefinedPositionsOfCellsTest >> test09SpaceshipFallsOnBlackHoleThenGoesBackOnlyTheAllowedMovements [
 
 	| result aGame |
@@ -302,7 +303,7 @@ GameWithDefinedPositionsOfCellsTest >> test09SpaceshipFallsOnBlackHoleThenGoesBa
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
 
-{ #category : #'black hole' }
+{ #category : 'black hole' }
 GameWithDefinedPositionsOfCellsTest >> test10SpaceshipFallsOnBlackHoleThenGoesBackALap [
 
 	| result aGame |
