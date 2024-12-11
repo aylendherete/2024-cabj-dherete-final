@@ -1,19 +1,20 @@
 Class {
-	#name : #RedoCard,
-	#superclass : #Card,
+	#name : 'RedoCard',
+	#superclass : 'Card',
 	#instVars : [
 		'idOrCardToRedo'
 	],
-	#category : #'IngSoft2-Model'
+	#category : 'IngSoft2-Model',
+	#package : 'IngSoft2-Model'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 RedoCard class >> toDoEffectFor: anIdOrCard [
 
 	^ self new initializeToDoEffectFor: anIdOrCard
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RedoCard >> activateEffectOn: aGame forSpaceship: anId [
 
 	| cardToRedo |
@@ -21,7 +22,7 @@ RedoCard >> activateEffectOn: aGame forSpaceship: anId [
 	cardToRedo activateEffectOn: aGame forSpaceship: anId.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RedoCard >> initializeToDoEffectFor: anIdOrCard [
 
 	idOrCardToRedo := anIdOrCard

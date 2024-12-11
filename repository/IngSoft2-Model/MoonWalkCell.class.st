@@ -1,19 +1,20 @@
 Class {
-	#name : #MoonWalkCell,
-	#superclass : #Cell,
+	#name : 'MoonWalkCell',
+	#superclass : 'Cell',
 	#instVars : [
 		'value'
 	],
-	#category : #'IngSoft2-Model'
+	#category : 'IngSoft2-Model',
+	#package : 'IngSoft2-Model'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MoonWalkCell class >> withValueToMove: aValue [
 
 	^ self new initializeWithValueToMove: aValue
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 MoonWalkCell >> applyEffectTo: aSpaceship on:aGame [
 
 	aGame
@@ -21,7 +22,7 @@ MoonWalkCell >> applyEffectTo: aSpaceship on:aGame [
 		withValueToMove: value negated.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 MoonWalkCell >> initializeWithValueToMove: aValue [
 
 	value := aValue.

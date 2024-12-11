@@ -1,15 +1,16 @@
 Class {
-	#name : #BoardCreator,
-	#superclass : #Object,
+	#name : 'BoardCreator',
+	#superclass : 'Object',
 	#instVars : [
 		'wormholeCreator',
 		'board',
 		'laps'
 	],
-	#category : #'IngSoft2-Model'
+	#category : 'IngSoft2-Model',
+	#package : 'IngSoft2-Model'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 BoardCreator class >> with: collectionOfCells ofLaps: numberOfLaps withWormholeCreator: aWormholeCreator [
 
 	(collectionOfCells anySatisfy: [ :cell |
@@ -23,13 +24,13 @@ BoardCreator class >> with: collectionOfCells ofLaps: numberOfLaps withWormholeC
 		  withWormholeCreator: aWormholeCreator
 ]
 
-{ #category : #'set and get' }
+{ #category : 'set and get' }
 BoardCreator >> cells [
 
 	^ board size
 ]
 
-{ #category : #creation }
+{ #category : 'creation' }
 BoardCreator >> createBoard [
 
 	self createWormhole.
@@ -37,7 +38,7 @@ BoardCreator >> createBoard [
 	^ board
 ]
 
-{ #category : #'set and get' }
+{ #category : 'set and get' }
 BoardCreator >> createWormhole [
 
 	board
@@ -46,7 +47,7 @@ BoardCreator >> createWormhole [
 	board at: wormholeCreator ending cell put: wormholeCreator ending
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 BoardCreator >> initializeWith: collectionOfCells ofLaps: numberOfLaps withWormholeCreator: aWormholeCreator [
 
 	laps := numberOfLaps.
@@ -54,7 +55,7 @@ BoardCreator >> initializeWith: collectionOfCells ofLaps: numberOfLaps withWormh
 	board := collectionOfCells.
 ]
 
-{ #category : #'set and get' }
+{ #category : 'set and get' }
 BoardCreator >> laps [
 
 	^ laps

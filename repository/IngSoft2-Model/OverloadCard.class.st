@@ -1,10 +1,11 @@
 Class {
-	#name : #OverloadCard,
-	#superclass : #Card,
-	#category : #'IngSoft2-Model'
+	#name : 'OverloadCard',
+	#superclass : 'Card',
+	#category : 'IngSoft2-Model',
+	#package : 'IngSoft2-Model'
 }
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 OverloadCard >> = aCard [
 
 	| compareResult |
@@ -13,14 +14,14 @@ OverloadCard >> = aCard [
 	^ compareResult
 ]
 
-{ #category : #effect }
+{ #category : 'effect' }
 OverloadCard >> applyEffectOn: throwResult for: aSpaceshipId [
 
 	spaceshipAffected = aSpaceshipId ifTrue: [ ^ throwResult - 2 ].
 	^ throwResult
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OverloadCard >> id [
 
 	^ spaceshipAffected 

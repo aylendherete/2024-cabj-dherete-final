@@ -1,14 +1,15 @@
 Class {
-	#name : #AllyCard,
-	#superclass : #Card,
+	#name : 'AllyCard',
+	#superclass : 'Card',
 	#instVars : [
 		'game',
 		'spaceshipId'
 	],
-	#category : #'IngSoft2-Model'
+	#category : 'IngSoft2-Model',
+	#package : 'IngSoft2-Model'
 }
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 AllyCard >> = aCard [
 
 	| compareResult |
@@ -17,7 +18,7 @@ AllyCard >> = aCard [
 	^ compareResult
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AllyCard >> activateEffectOn: aGame forSpaceship: anId [
 
 	game := aGame.
@@ -26,13 +27,13 @@ AllyCard >> activateEffectOn: aGame forSpaceship: anId [
 	aGame ally: anId with: spaceshipAffected
 ]
 
-{ #category : #'set and get' }
+{ #category : 'set and get' }
 AllyCard >> ally [
 
 	^ spaceshipAffected 
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 AllyCard >> deactivate [
 
 	game stopAlly: spaceshipId.

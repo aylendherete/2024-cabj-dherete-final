@@ -1,16 +1,17 @@
 Class {
-	#name : #RepeatCard,
-	#superclass : #Card,
-	#category : #'IngSoft2-Model'
+	#name : 'RepeatCard',
+	#superclass : 'Card',
+	#category : 'IngSoft2-Model',
+	#package : 'IngSoft2-Model'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 RepeatCard class >> toDoEffectFor: aSpaceshipId [
 
 	^ self new initializeToDoEffectFor: aSpaceshipId
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RepeatCard >> activateEffectOn: aGame forSpaceship: anId [
 
 	| spaceshipToApplyEffect cellToEnter cellOfSpaceship |
@@ -23,7 +24,7 @@ RepeatCard >> activateEffectOn: aGame forSpaceship: anId [
 		                   spaceshipToApplyEffect on: aGame.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RepeatCard >> initializeToDoEffectFor: aSpaceshipId [
 
 	spaceshipAffected := aSpaceshipId

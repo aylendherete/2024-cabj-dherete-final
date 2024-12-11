@@ -1,6 +1,6 @@
 Class {
-	#name : #Game,
-	#superclass : #Object,
+	#name : 'Game',
+	#superclass : 'Object',
 	#instVars : [
 		'turnManager',
 		'finishLine',
@@ -11,12 +11,14 @@ Class {
 		'spaceships',
 		'cellToEnter',
 		'spaceshipsWithHyperGravity',
-		'anAllyTankManager'
+		'anAllyTankManager',
+		'aHyperGravityManager'
 	],
-	#category : #'IngSoft2-Model'
+	#category : 'IngSoft2-Model',
+	#package : 'IngSoft2-Model'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 Game class >> numberOfSpaceships: anAmount with: aBoardCreator playWith: aCollectionOfDice andGameDeck: anEffectManager [
 
 	^ self new
@@ -26,13 +28,13 @@ Game class >> numberOfSpaceships: anAmount with: aBoardCreator playWith: aCollec
 		  andGameDeck: anEffectManager
 ]
 
-{ #category : #activation }
+{ #category : 'activation' }
 Game >> activateCard: aCard [
 
 	aActiveDeck activate: aCard
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Game >> ally: spaceshipIdOne with: spaceshipIdTwo [
 	
 	| spaceshipOne spaceshipTwo |
@@ -42,16 +44,15 @@ Game >> ally: spaceshipIdOne with: spaceshipIdTwo [
 	anAllyTankManager ally: spaceshipOne with: spaceshipTwo
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 Game >> applyHyperGravityOn: aSpaceship withValue: value [
 	
-	spaceshipsWithHyperGravity at: aSpaceship put: value
-
+	aHyperGravityManager applyHyperGravityOn: aSpaceship withValue: value
 	
 	
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 Game >> checkAndHandleFuelDepletion: aSpaceship [
 
 	| spaceshipsWithoutFuel |
@@ -63,19 +64,16 @@ Game >> checkAndHandleFuelDepletion: aSpaceship [
 		spaceship loadFuel ]
 ]
 
-{ #category : #checking }
+{ #category : 'checking' }
 Game >> checkMoveIsPossible: throwResult for: aSpaceship [
 
 	| positionOfSpaceship aNumberOfMovements |
 	aNumberOfMovements := throwResult.
 	positionOfSpaceship := aSpaceship position.
 
-	(spaceshipsWithHyperGravity includesKey: aSpaceship) ifTrue: [
-		throwResult < (spaceshipsWithHyperGravity at: aSpaceship)
-			ifTrue: [
-				aNumberOfMovements := 0.
-				^ aNumberOfMovements ]
-			ifFalse: [ spaceshipsWithHyperGravity removeKey: aSpaceship ] ].
+
+	aNumberOfMovements:= aHyperGravityManager handleMovementOf:aSpaceship with:throwResult and: aNumberOfMovements .
+	
 
 	aNumberOfMovements := positionOfSpaceship
 		                      adjustMovementFor: aNumberOfMovements
@@ -84,13 +82,13 @@ Game >> checkMoveIsPossible: throwResult for: aSpaceship [
 	^ aNumberOfMovements
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 Game >> giveOneCardTo: aSpaceship [
 
 	(spaceshipsCardHands at: aSpaceship id) gainACard
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 Game >> initializeNumberOfSpaceships: anAmount with: aBoardCreator playWith: aCollectionOfDice andGameDeck: anEffectManager [
 
 	aActiveDeck := ActiveDeck startGame.
@@ -113,24 +111,24 @@ Game >> initializeNumberOfSpaceships: anAmount with: aBoardCreator playWith: aCo
 
 	turnManager := TurnManager manage: spaceships.
 
-	spaceshipsWithHyperGravity := Dictionary new.
+	aHyperGravityManager := HyperGravityManager manage.
 
 	board := aBoardCreator createBoard
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Game >> lastCardPlayed [
 
 	^ aActiveDeck lastCardPlayed
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Game >> lastCellEffect [
 
 	^ cellToEnter
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 Game >> move: spaceship a: numberOfMovements [
 
 	| positionOfSpaceship aNumberOfMovements |
@@ -151,7 +149,7 @@ Game >> move: spaceship a: numberOfMovements [
 	self checkAndHandleFuelDepletion: spaceship
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 Game >> moveAllTheSpaceshipsExcept: aSpaceship withValueToMove: aNumberOfMovements [
 
 	spaceships
@@ -159,7 +157,7 @@ Game >> moveAllTheSpaceshipsExcept: aSpaceship withValueToMove: aNumberOfMovemen
 		but: aSpaceship
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 Game >> moveSpaceship [
 
 	| positionOfSpaceship throwResult currentSpaceship |
@@ -179,7 +177,7 @@ Game >> moveSpaceship [
 	turnManager nextTurn
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 Game >> reloadSpaceship [
 
 	| currentSpaceship |
@@ -188,20 +186,20 @@ Game >> reloadSpaceship [
 	currentSpaceship := turnManager nextTurn
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 Game >> removeTheCard: aCardToCancel andSaveTheLastInstantCardPlayed: aCancellationCard [
 
 	aActiveDeck activate: aCancellationCard .
 	aActiveDeck removeACard: aCardToCancel
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 Game >> resetSpaceshipsToCellOne [
 
 	spaceships each: [ :spaceship | spaceship resetToOne ]
 ]
 
-{ #category : #activation }
+{ #category : 'activation' }
 Game >> spaceshipId: anId useInstantCard: aCard toDoEffectFor: anObject [
 
 	| spaceshipCardHand cardInitialized |
@@ -211,13 +209,13 @@ Game >> spaceshipId: anId useInstantCard: aCard toDoEffectFor: anObject [
 		cardInitialized activateEffectOn: self forSpaceship: anId ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Game >> spaceships [
 
 	^ spaceships 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Game >> stopAlly: aSpaceshipId [
 
 	| spaceshipOne |
@@ -225,7 +223,7 @@ Game >> stopAlly: aSpaceshipId [
 	anAllyTankManager stopAlly: spaceshipOne
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 Game >> throwDiceAndCheckEffects [
 
 	| throwResult maxThrow randomValue currentSpaceship |
@@ -245,7 +243,7 @@ Game >> throwDiceAndCheckEffects [
 	^ throwResult
 ]
 
-{ #category : #activation }
+{ #category : 'activation' }
 Game >> usePermanentCard: aCard toDoEffectFor: anId [
 
 	| currentSpaceshipCardHand cardInitialized currentSpaceship |
@@ -259,7 +257,7 @@ Game >> usePermanentCard: aCard toDoEffectFor: anId [
 		forSpaceship: currentSpaceship id
 ]
 
-{ #category : #results }
+{ #category : 'results' }
 Game >> winner [
 
 	^ (spaceships ranking at: 1) id

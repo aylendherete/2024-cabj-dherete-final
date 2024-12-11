@@ -1,57 +1,58 @@
 Class {
-	#name : #FuelTank,
-	#superclass : #Object,
+	#name : 'FuelTank',
+	#superclass : 'Object',
 	#instVars : [
 		'fuel',
 		'capacity'
 	],
-	#category : #'IngSoft2-Model'
+	#category : 'IngSoft2-Model',
+	#package : 'IngSoft2-Model'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 FuelTank class >> fullWith: anAmountOfFuel [
 
 	^ self new initializeFullWith: anAmountOfFuel
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 FuelTank >> changeCapacity: aNumber [
 
 	capacity := capacity + aNumber
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 FuelTank >> initializeFullWith: anAmountOfFuel [
 
 	fuel := anAmountOfFuel.
 	capacity := anAmountOfFuel.
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 FuelTank >> isEmpty [
 
 	^ fuel <= 0
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 FuelTank >> loadFuel: anAmountOfFuel [
 
 	fuel := fuel + anAmountOfFuel
 ]
 
-{ #category : #'set and get' }
+{ #category : 'set and get' }
 FuelTank >> loadedWith [
 
 	^ fuel
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 FuelTank >> reloadToCapacity [
 
 	fuel := capacity
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 FuelTank >> useFuel: anAmountOfFuel [
 
 	fuel := fuel - anAmountOfFuel.

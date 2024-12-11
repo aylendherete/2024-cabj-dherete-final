@@ -1,32 +1,33 @@
 Class {
-	#name : #CancellationCard,
-	#superclass : #Card,
+	#name : 'CancellationCard',
+	#superclass : 'Card',
 	#instVars : [
 		'cardToCancel'
 	],
-	#category : #'IngSoft2-Model'
+	#category : 'IngSoft2-Model',
+	#package : 'IngSoft2-Model'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 CancellationCard class >> toDoEffectFor: aCard [
 
 	^ self new initializeToDoEffectFor: aCard
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 CancellationCard >> = aCard [
 
 	^ self class == aCard class
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CancellationCard >> activateEffectOn: aGame forSpaceship: anId [
 	
 	aGame removeTheCard: cardToCancel andSaveTheLastInstantCardPlayed: self.
 	
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CancellationCard >> initializeToDoEffectFor: aCard [
 
 	cardToCancel := aCard

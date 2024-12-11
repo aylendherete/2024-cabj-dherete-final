@@ -1,22 +1,23 @@
 Class {
-	#name : #HyperJumpCell,
-	#superclass : #Cell,
+	#name : 'HyperJumpCell',
+	#superclass : 'Cell',
 	#instVars : [
 		'collectionOfValues',
 		'currentValue',
 		'conversor',
 		'previousValue'
 	],
-	#category : #'IngSoft2-Model'
+	#category : 'IngSoft2-Model',
+	#package : 'IngSoft2-Model'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 HyperJumpCell class >> withConversor: aConversor andValues: aCollection [
 
 	^ self new initializeWithConversor: aConversor andValues: aCollection
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 HyperJumpCell >> applyEffectTo: aSpaceship on: aGame [
 
 	| convertionOfNextValue |
@@ -26,7 +27,7 @@ HyperJumpCell >> applyEffectTo: aSpaceship on: aGame [
 	aGame move: aSpaceship a: convertionOfNextValue
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 HyperJumpCell >> initializeWithConversor: aConversor andValues: aCollection [
 
 	conversor := aConversor.
@@ -34,7 +35,7 @@ HyperJumpCell >> initializeWithConversor: aConversor andValues: aCollection [
 	currentValue := collectionOfValues at: 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 HyperJumpCell >> nextValue [
 
 	| currentIndex nextIndex |

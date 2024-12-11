@@ -1,32 +1,33 @@
 Class {
-	#name : #Position,
-	#superclass : #Object,
+	#name : 'Position',
+	#superclass : 'Object',
 	#instVars : [
 		'cell',
 		'lap'
 	],
-	#category : #'IngSoft2-Model'
+	#category : 'IngSoft2-Model',
+	#package : 'IngSoft2-Model'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 Position class >> startGame [
 
 	^ self new initializeStartGameWithCell: 1 andLap: 1
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 Position class >> startGameWithCell: aNumber andLap: anotherNumber [
 
 	^ self new initializeStartGameWithCell: aNumber andLap: anotherNumber
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Position >> = aPosition [
 
 	^ self cell = aPosition cell and: self lap = aPosition lap
 ]
 
-{ #category : #checking }
+{ #category : 'checking' }
 Position >> adjustMovementFor: aNumberOfMovements withLimits: aFinishLine [
 
 	| aux cellXLapsOfFinishLine amountOfCells cellXLapsOfPosition |
@@ -46,7 +47,7 @@ Position >> adjustMovementFor: aNumberOfMovements withLimits: aFinishLine [
 	^ aux
 ]
 
-{ #category : #checking }
+{ #category : 'checking' }
 Position >> adjustPositionWith: aFinishLine [
 
 	| amountOfCells completedLaps nextCell |
@@ -66,32 +67,32 @@ Position >> adjustPositionWith: aFinishLine [
 	^ self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Position >> cell [
 
 	^ cell
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 Position >> initializeStartGameWithCell: aNumber andLap: anotherNumber [
 
 	cell := aNumber.
 	lap := anotherNumber
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Position >> lap [
 
 	^ lap
 ]
 
-{ #category : #'set and get' }
+{ #category : 'set and get' }
 Position >> updateCell: aNumber [
 
 	cell := cell + aNumber
 ]
 
-{ #category : #'set and get' }
+{ #category : 'set and get' }
 Position >> updateLap: aNumber [
 
 	lap := lap + aNumber

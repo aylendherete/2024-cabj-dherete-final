@@ -1,14 +1,15 @@
 Class {
-	#name : #CollectionOfSpaceships,
-	#superclass : #Object,
+	#name : 'CollectionOfSpaceships',
+	#superclass : 'Object',
 	#instVars : [
 		'fuel',
 		'spaceships'
 	],
-	#category : #'IngSoft2-Model'
+	#category : 'IngSoft2-Model',
+	#package : 'IngSoft2-Model'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 CollectionOfSpaceships class >> numberOfSpaceships: anAmountOfSpaceships withAmountOfFuel: anAmountOfFuel [
 
 	^ self new
@@ -16,7 +17,7 @@ CollectionOfSpaceships class >> numberOfSpaceships: anAmountOfSpaceships withAmo
 		  withAmountOfFuel: anAmountOfFuel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CollectionOfSpaceships >> cellsOfSpaceships [
 
 	| dictionaryOfCellPositions |
@@ -29,13 +30,13 @@ CollectionOfSpaceships >> cellsOfSpaceships [
 	^ dictionaryOfCellPositions
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 CollectionOfSpaceships >> collect: aBlock [
 
 	^ spaceships collect: aBlock
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CollectionOfSpaceships >> collectSpaceships: anAmountOfSpaceships [
 
 	| aSpaceship |
@@ -46,20 +47,20 @@ CollectionOfSpaceships >> collectSpaceships: anAmountOfSpaceships [
 	Spaceship initialize
 ]
 
-{ #category : #collection }
+{ #category : 'collection' }
 CollectionOfSpaceships >> detectSpaceshipWithId: aSpaceshipId [
 
 	^ spaceships detect: [ :spaceship | spaceship id = aSpaceshipId ]
 ]
 
-{ #category : #collection }
+{ #category : 'collection' }
 CollectionOfSpaceships >> each: aBlock [
 
 	spaceships do: [ :spaceship |
 			aBlock value: spaceship ]
 ]
 
-{ #category : #collection }
+{ #category : 'collection' }
 CollectionOfSpaceships >> each: aBlock but: aSpaceshipToSkip [
 
 	spaceships do: [ :spaceship |
@@ -67,14 +68,14 @@ CollectionOfSpaceships >> each: aBlock but: aSpaceshipToSkip [
 			aBlock value: spaceship ] ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CollectionOfSpaceships >> initializeNumberOfSpaceships: anAmountOfSpaceships withAmountOfFuel: anAmountOfFuel [
 
 	fuel := anAmountOfFuel.
 	self collectSpaceships: anAmountOfSpaceships
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CollectionOfSpaceships >> lapsOfSpaceships [
 
 	| dictionaryOfCellPositions |
@@ -87,7 +88,7 @@ CollectionOfSpaceships >> lapsOfSpaceships [
 	^ dictionaryOfCellPositions
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CollectionOfSpaceships >> positionsOfSpaceships [
 
 	| dictionaryOfCellPositions |
@@ -100,7 +101,7 @@ CollectionOfSpaceships >> positionsOfSpaceships [
 	^ dictionaryOfCellPositions
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CollectionOfSpaceships >> ranking [
 
 	| sortedSpaceships |

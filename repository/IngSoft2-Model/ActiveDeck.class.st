@@ -1,27 +1,28 @@
 Class {
-	#name : #ActiveDeck,
-	#superclass : #Object,
+	#name : 'ActiveDeck',
+	#superclass : 'Object',
 	#instVars : [
 		'cards',
 		'lastCardPlayed'
 	],
-	#category : #'IngSoft2-Model'
+	#category : 'IngSoft2-Model',
+	#package : 'IngSoft2-Model'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 ActiveDeck class >> startGame [
 
 	^ self new initializeStartGame
 ]
 
-{ #category : #convenience }
+{ #category : 'convenience' }
 ActiveDeck >> activate: aCard [
 
 	cards add: aCard .
 	lastCardPlayed := aCard class
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 ActiveDeck >> applyEffectOn: throwResult withCurrentSpaceship: spaceshipId [
 
 	| auxNumber |
@@ -32,26 +33,26 @@ ActiveDeck >> applyEffectOn: throwResult withCurrentSpaceship: spaceshipId [
 	^ auxNumber
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 ActiveDeck >> each: aBlock [
 
 	cards do: [ :card |
 			aBlock value: card ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 ActiveDeck >> initializeStartGame [
 
 	cards := OrderedCollection new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ActiveDeck >> lastCardPlayed [
 
 	^ lastCardPlayed
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 ActiveDeck >> removeACard: cardToCancel [
 
 	| anIndex indexToRemove |
