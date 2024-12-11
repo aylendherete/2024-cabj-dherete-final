@@ -10,3 +10,8 @@ BlackHoleCell >> applyEffectTo: aSpaceship on: aGame [
 
 	aGame move: aSpaceship a: -4
 ]
+
+{ #category : 'as yet unclassified' }
+BlackHoleCell >> applyReverseEffectTo: aSpaceship on: aGame [ 
+	aGame move: aSpaceship a: 4.
+]

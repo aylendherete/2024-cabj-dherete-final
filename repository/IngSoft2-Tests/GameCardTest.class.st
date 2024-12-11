@@ -851,3 +851,45 @@ GameCardTest >> test33GamePlaysWithDeckWithProbabilisticDistributionThenSpaceshi
 
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
+
+{ #category : 'spaceshipCardHand' }
+GameCardTest >> test34WhenASpaceshipFallsInABlackHoleCellAndPlaysTheReverseCardThenItMovesFourCellsForward [
+	| result aGame  |
+
+
+	aWormholeCreator := WormholeCreator withBeginning: 8 andEnd: 9.
+	collectionOfCells := OrderedCollection new.
+
+	20 timesRepeat: [ collectionOfCells add: Cell new ].
+
+	collectionOfCells at: 2 put: BlackHoleCell new.
+	collectionOfCells at: 6 put: BlackHoleCell new.
+	
+
+	aBoardCreator := BoardCreator
+		                 with: collectionOfCells
+		                 ofLaps: 1
+		                 withWormholeCreator: aWormholeCreator.
+
+
+	gameDeck := EffectManager
+		            manage: (OrderedCollection with: ReverseCard)
+		            withProbabilitiesDistribution: #( 100 ).
+		
+	aLoadedDie := LoadedDie of: #( 5 20 ).
+	aGame := Game
+		         numberOfSpaceships: 1
+		         with: aBoardCreator
+		         playWith: aLoadedDie
+		         andGameDeck: gameDeck.
+		
+	aGame moveSpaceship.
+
+	aGame usePermanentCard: ReverseCard toDoEffectFor: 1.
+
+
+	result := Dictionary new.
+	result at: 1 put: 6.
+
+	self assert: aGame spaceships cellsOfSpaceships equals: result
+]
