@@ -23,8 +23,7 @@ AllyCard >> activateEffectOn: aGame forSpaceship: anId [
 
 	game := aGame.
 	spaceshipId := anId.
-	aGame activateCard: self.
-	aGame ally: anId with: spaceshipAffected
+	aGame ally: anId with: spaceshipAffected ofCard:self.
 ]
 
 { #category : 'set and get' }

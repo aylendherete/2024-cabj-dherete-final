@@ -34,20 +34,23 @@ Game >> activateCard: aCard [
 	aActiveDeck activate: aCard
 ]
 
-{ #category : 'accessing' }
-Game >> ally: spaceshipIdOne with: spaceshipIdTwo [
+{ #category : 'action' }
+Game >> ally: spaceshipIdOne with: spaceshipIdTwo ofCard: anAllyCard [ 
+	| spaceshipOne spaceshipTwo|
 	
-	| spaceshipOne spaceshipTwo |
+	self activateCard: anAllyCard.
 	
 	spaceshipOne := spaceships detectSpaceshipWithId: spaceshipIdOne.
+	
 	spaceshipTwo := spaceships detectSpaceshipWithId: spaceshipIdTwo.
+	
 	anAllyTankManager ally: spaceshipOne with: spaceshipTwo
 ]
 
 { #category : 'action' }
 Game >> applyHyperGravityOn: aSpaceship withValue: value [
 	
-	aHyperGravityManager applyHyperGravityOn: aSpaceship withValue: value
+	aHyperGravityManager handleHyperGravityOn: aSpaceship withValue: value
 	
 	
 ]

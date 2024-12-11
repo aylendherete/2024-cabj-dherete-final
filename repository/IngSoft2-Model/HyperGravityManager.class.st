@@ -14,20 +14,21 @@ HyperGravityManager class >> manage [
 ]
 
 { #category : 'action' }
-HyperGravityManager >> applyHyperGravityOn: aSpaceship withValue: value [
+HyperGravityManager >> handleHyperGravityOn: aSpaceship withValue: value [
 	
 	spaceships at: aSpaceship put: value
 
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'action handling' }
 HyperGravityManager >> handleMovementOf:aSpaceship with:throwResult and: aNumberOfMovements [ 
 
-	(spaceships includesKey: aSpaceship) ifTrue: [
+		(spaceships includesKey: aSpaceship) ifTrue: [
 		throwResult < (spaceships at: aSpaceship)
-			ifTrue: [
-				^ 0.]
-			ifFalse: [ spaceships removeKey: aSpaceship ] ].
+			ifTrue: [^ 0.]
+			ifFalse:[spaceships removeKey: aSpaceship.]
+			].
+		
 		
 	^aNumberOfMovements .
 ]
