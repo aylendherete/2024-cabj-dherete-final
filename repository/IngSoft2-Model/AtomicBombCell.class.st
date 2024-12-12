@@ -10,3 +10,8 @@ AtomicBombCell >> applyEffectTo: aSpaceship on:aGame [
 
 	aGame resetSpaceshipsToCellOne.
 ]
+
+{ #category : 'as yet unclassified' }
+AtomicBombCell >> applyReverseEffectTo: aSpaceship on: aGame [ 
+	
+]
