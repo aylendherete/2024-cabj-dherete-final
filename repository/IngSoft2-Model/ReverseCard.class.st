@@ -21,7 +21,7 @@ ReverseCard >> activateEffectOn: aGame forSpaceship: anId [
 	aGame activateCard: self.
 	spaceshipToApplyEffect := aGame spaceships detectSpaceshipWithId: spaceshipAffected.
 
-	cellToEnter := aGame lastCellEffect.
+	cellToEnter := aGame cellOfSpaceship: spaceshipToApplyEffect.
 
 	cellOfSpaceship := cellToEnter applyReverseEffectTo:
 		                   spaceshipToApplyEffect on: aGame.

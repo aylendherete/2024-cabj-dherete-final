@@ -55,6 +55,16 @@ Game >> applyHyperGravityOn: aSpaceship withValue: value [
 	
 ]
 
+{ #category : 'as yet unclassified' }
+Game >> cellOfSpaceship: aSpaceship [
+
+	| positionOfSpaceship  |
+
+	positionOfSpaceship := aSpaceship position.
+
+	^ board at: positionOfSpaceship cell.
+]
+
 { #category : 'action' }
 Game >> checkAndHandleFuelDepletion: aSpaceship [
 
