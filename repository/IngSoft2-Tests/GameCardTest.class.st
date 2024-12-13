@@ -938,7 +938,7 @@ GameCardTest >> test35WhenAReverseCardIsActivatedInTheAtomicBombThenWhenASpacesh
 GameCardTest >> test36WhenAReverseCardIsActivatedOnAMoonWalkCellAndAfterTheSpaceshipOneFallsInThatOneThemTheOtherSpaceshipsMoveForwardInsteadBackwards [
 
 	| result aGame |
-	aLoadedDie := LoadedDie of: #( 5 5 10 ).
+	aLoadedDie := LoadedDie of: #( 5 5 10 30).
 
 	aWormholeCreator := WormholeCreator withBeginning: 8 andEnd: 9.
 	collectionOfCells := OrderedCollection new.
