@@ -8,6 +8,11 @@ Class {
 	#package : 'IngSoft2-Model'
 }
 
+{ #category : 'instance creation' }
+ReverseCard class >> toDoEffectFor: aSpaceshipId [
+^ self new initializeToDoEffectFor: aSpaceshipId
+]
+
 { #category : 'accessing' }
 ReverseCard >> activateEffectOn: aGame forSpaceship: anId [
 
