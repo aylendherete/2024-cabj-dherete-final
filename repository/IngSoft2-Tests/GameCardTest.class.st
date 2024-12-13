@@ -933,3 +933,44 @@ GameCardTest >> test35WhenAReverseCardIsActivatedInTheAtomicBombThenWhenASpacesh
 
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
+
+{ #category : 'spaceshipCardHand' }
+GameCardTest >> test36WhenAReverseCardIsActivatedOnAMoonWalkCellAndAfterTheSpaceshipOneFallsInThatOneThemTheOtherSpaceshipsMoveForwardInsteadBackwards [
+
+	| result aGame |
+	aLoadedDie := LoadedDie of: #( 5 5 10 ).
+
+	aWormholeCreator := WormholeCreator withBeginning: 8 andEnd: 9.
+	collectionOfCells := OrderedCollection new.
+
+	10 timesRepeat: [ collectionOfCells add: Cell new ].
+	collectionOfCells at: 2 put: (MoonWalkCell withValueToMove: 5).
+	collectionOfCells at: 6 put: BlackHoleCell new.
+
+	aBoardCreator := BoardCreator
+		                 with: collectionOfCells
+		                 ofLaps: 2
+		                 withWormholeCreator: aWormholeCreator.
+
+	gameDeck := EffectManager
+		            manage: (OrderedCollection with: ReverseCard)
+		            withProbabilitiesDistribution: #( 100 ).
+
+	aGame := Game
+		         numberOfSpaceships: 2
+		         with: aBoardCreator
+		         playWith: aLoadedDie
+		         andGameDeck: gameDeck.
+
+	aGame moveSpaceship.
+	aGame moveSpaceship.
+	aGame usePermanentCard: ReverseCard toDoEffectFor: nil.
+	aGame moveSpaceship.
+
+
+	result := Dictionary new.
+	result at: 1 put: 2.
+	result at: 2 put: 7.
+
+	self assert: aGame spaceships cellsOfSpaceships equals: result
+]

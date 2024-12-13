@@ -15,11 +15,12 @@ MoonWalkCell class >> withValueToMove: aValue [
 ]
 
 { #category : 'action' }
-MoonWalkCell >> applyEffectTo: aSpaceship on:aGame [
-
-	aGame
+MoonWalkCell >> applyEffectTo: aSpaceship on: aGame [
+	applyReverse ifTrue: [ 	aGame
 		moveAllTheSpaceshipsExcept: aSpaceship
-		withValueToMove: value negated.
+		withValueToMove: value  ] ifFalse: [  aGame
+		moveAllTheSpaceshipsExcept: aSpaceship
+		withValueToMove: value negated].
 ]
 
 { #category : 'initialization' }
