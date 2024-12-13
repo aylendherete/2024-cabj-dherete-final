@@ -8,5 +8,5 @@ Class {
 { #category : 'action' }
 BlackHoleCell >> applyEffectTo: aSpaceship on: aGame [
 
-	aGame move: aSpaceship a: -4
+	applyReverse ifTrue:[ aGame move: aSpaceship a: 4] ifFalse: [ aGame move: aSpaceship a: -4 ].
 ]
