@@ -856,9 +856,9 @@ GameCardTest >> test33GamePlaysWithDeckWithProbabilisticDistributionThenSpaceshi
 GameCardTest >> test34WhenTheSpaceshipOneFallsOnABlackHoleCellAndActivatesAReverseCardThenWhenTheSpaceshipTwoFallsInThatCellThenMovesFourStepsForward [
 
 	| result aGame |
-	aLoadedDie := LoadedDie of: #( 5 5 14 ).
+	aLoadedDie := LoadedDie of: #( 5 5 10 30).
 
-	aWormholeCreator := WormholeCreator withBeginning: 2 andEnd: 3.
+	aWormholeCreator := WormholeCreator withBeginning: 8 andEnd: 9.
 	collectionOfCells := OrderedCollection new.
 
 	10 timesRepeat: [ collectionOfCells add: Cell new ].
@@ -867,7 +867,7 @@ GameCardTest >> test34WhenTheSpaceshipOneFallsOnABlackHoleCellAndActivatesARever
 
 	aBoardCreator := BoardCreator
 		                 with: collectionOfCells
-		                 ofLaps: 1
+		                 ofLaps: 2
 		                 withWormholeCreator: aWormholeCreator.
 
 	gameDeck := EffectManager
@@ -884,10 +884,51 @@ GameCardTest >> test34WhenTheSpaceshipOneFallsOnABlackHoleCellAndActivatesARever
 	aGame moveSpaceship.
 	aGame usePermanentCard: ReverseCard toDoEffectFor: nil.
 	aGame moveSpaceship.
-	
+
 
 	result := Dictionary new.
-	result at: 1 put: 10.
+	result at: 1 put: 6.
+	result at: 2 put: 2.
+
+	self assert: aGame spaceships cellsOfSpaceships equals: result
+]
+
+{ #category : 'spaceshipCardHand' }
+GameCardTest >> test35WhenAReverseCardIsActivatedInTheAtomicBombThenWhenASpaceshipFallsInThatCellThenDoesntResetTheCells [
+
+	| result aGame |
+	aLoadedDie := LoadedDie of: #( 5 5 10 ).
+
+	aWormholeCreator := WormholeCreator withBeginning: 8 andEnd: 9.
+	collectionOfCells := OrderedCollection new.
+
+	10 timesRepeat: [ collectionOfCells add: Cell new ].
+	collectionOfCells at: 2 put: AtomicBombCell new.
+	collectionOfCells at: 6 put: BlackHoleCell new.
+
+	aBoardCreator := BoardCreator
+		                 with: collectionOfCells
+		                 ofLaps: 2
+		                 withWormholeCreator: aWormholeCreator.
+
+	gameDeck := EffectManager
+		            manage: (OrderedCollection with: ReverseCard)
+		            withProbabilitiesDistribution: #( 100 ).
+
+	aGame := Game
+		         numberOfSpaceships: 2
+		         with: aBoardCreator
+		         playWith: aLoadedDie
+		         andGameDeck: gameDeck.
+
+	aGame moveSpaceship.
+	aGame moveSpaceship.
+	aGame usePermanentCard: ReverseCard toDoEffectFor: nil.
+	aGame moveSpaceship.
+
+
+	result := Dictionary new.
+	result at: 1 put: 2.
 	result at: 2 put: 2.
 
 	self assert: aGame spaceships cellsOfSpaceships equals: result

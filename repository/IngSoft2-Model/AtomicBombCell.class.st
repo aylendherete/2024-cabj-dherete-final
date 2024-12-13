@@ -6,7 +6,7 @@ Class {
 }
 
 { #category : 'action' }
-AtomicBombCell >> applyEffectTo: aSpaceship on:aGame [
-
-	aGame resetSpaceshipsToCellOne.
+AtomicBombCell >> applyEffectTo: aSpaceship on: aGame [
+	applyReverse ifTrue: [  ] ifFalse:[
+	aGame resetSpaceshipsToCellOne]
 ]
