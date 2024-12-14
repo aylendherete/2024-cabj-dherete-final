@@ -1026,3 +1026,45 @@ GameCardTest >> test37WhenAReverseCardIsActivatedOnACardDispenserCellThenItTakes
 
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
+
+{ #category : 'spaceshipCardHand' }
+GameCardTest >> test38WhenASpaceshipFallsInTheEndOfTheWormholeAndActivatesTheReverseCardThenWhenFallsAgainGoesToTheBeginningOfTheWormholeOnTheNextLap [
+
+	| aGame result |
+	aLoadedDie := LoadedDie of: #( 3 20 40 ).
+
+	aWormholeCreator := WormholeCreator withBeginning: 4 andEnd: 10.
+	collectionOfCells := OrderedCollection new.
+
+	20 timesRepeat: [ collectionOfCells add: Cell new ].
+
+	aBoardCreator := BoardCreator
+		                 with: collectionOfCells
+		                 ofLaps: 3
+		                 withWormholeCreator: aWormholeCreator.
+
+	gameDeck := EffectManager
+		            manage: (OrderedCollection with: ReverseCard)
+		            withProbabilitiesDistribution: #( 100 ).
+
+	aGame := Game
+		         numberOfSpaceships: 1
+		         with: aBoardCreator
+		         playWith: aLoadedDie
+		         andGameDeck: gameDeck.
+
+	aGame moveSpaceship. "1 -> 4 ->10"
+	aGame usePermanentCard: ReverseCard toDoEffectFor: nil.
+	aGame moveSpaceship. "1->10 lap 2"
+
+
+
+	result := Dictionary new.
+	result at: 1 put: (Position startGameWithCell: 4 andLap: 3).
+
+
+
+	self
+		assert: aGame spaceships positionsOfSpaceships
+		equals: result
+]

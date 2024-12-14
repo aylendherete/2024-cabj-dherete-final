@@ -17,11 +17,13 @@ Wormhole class >> in: aPosition to: anotherPosition [
 
 { #category : 'action' }
 Wormhole >> applyEffectTo: aSpaceship on: aGame [
-	
+
 	| numberOfMovements cellOfSpaceship |
 	cellOfSpaceship := aSpaceship position cell.
 	numberOfMovements := positionToGoTo - cellOfSpaceship.
-	aSpaceship move: numberOfMovements
+	applyReverse
+		ifTrue: [ aGame move:aSpaceship a: numberOfMovements + 20 ]
+		ifFalse: [aGame move: aSpaceship a: numberOfMovements ]
 ]
 
 { #category : 'accessing' }
