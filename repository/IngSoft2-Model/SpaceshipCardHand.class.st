@@ -28,6 +28,16 @@ SpaceshipCardHand >> initializeStartGameWith: gameDeck [
 	collectionOfCards := gameDeck createCollectionSize: 2
 ]
 
+{ #category : 'removing' }
+SpaceshipCardHand >> removeACard [
+
+	| randomIndex |
+	randomIndex:= (collectionOfCards size) atRandom.
+	
+	collectionOfCards removeAt: randomIndex.
+	
+]
+
 { #category : 'action' }
 SpaceshipCardHand >> use: aCard [
 

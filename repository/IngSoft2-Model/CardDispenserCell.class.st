@@ -8,5 +8,5 @@ Class {
 { #category : 'action' }
 CardDispenserCell >> applyEffectTo: aSpaceship on: aGame [
 
-	aGame giveOneCardTo: aSpaceship
+	applyReverse ifTrue:[aGame takeOutOneRandomCardTo: aSpaceship ] ifFalse:[aGame giveOneCardTo: aSpaceship].
 ]

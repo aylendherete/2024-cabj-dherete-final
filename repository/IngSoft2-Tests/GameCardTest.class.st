@@ -897,7 +897,7 @@ GameCardTest >> test34WhenTheSpaceshipOneFallsOnABlackHoleCellAndActivatesARever
 GameCardTest >> test35WhenAReverseCardIsActivatedInTheAtomicBombThenWhenASpaceshipFallsInThatCellThenDoesntResetTheCells [
 
 	| result aGame |
-	aLoadedDie := LoadedDie of: #( 5 5 10 ).
+	aLoadedDie := LoadedDie of: #( 5 5 10 40 ).
 
 	aWormholeCreator := WormholeCreator withBeginning: 8 andEnd: 9.
 	collectionOfCells := OrderedCollection new.
@@ -971,6 +971,58 @@ GameCardTest >> test36WhenAReverseCardIsActivatedOnAMoonWalkCellAndAfterTheSpace
 	result := Dictionary new.
 	result at: 1 put: 2.
 	result at: 2 put: 7.
+
+	self assert: aGame spaceships cellsOfSpaceships equals: result
+]
+
+{ #category : 'spaceshipCardHand' }
+GameCardTest >> test37WhenAReverseCardIsActivatedOnACardDispenserCellThenItTakesOutOneCardAndTheSpaceshipCantDoTheEffectOfTheCardTaken [
+
+	| result aGame |
+	aLoadedDie := LoadedDie of: #( 5 18 3 11 3 13 3 3 16 40 ).
+
+	aWormholeCreator := WormholeCreator withBeginning: 2 andEnd: 3.
+	collectionOfCells := OrderedCollection new.
+
+	20 timesRepeat: [ collectionOfCells add: Cell new ].
+	collectionOfCells at: 6 put: CardDispenserCell new.
+	collectionOfCells at: 15 put: BlackHoleCell new.
+	collectionOfCells at: 19 put: BlackHoleCell new.
+
+
+	aBoardCreator := BoardCreator
+		                 with: collectionOfCells
+		                 ofLaps: 4
+		                 withWormholeCreator: aWormholeCreator.
+
+	gameDeck := EffectManager
+		            manage: (OrderedCollection with: ReverseCard)
+		            withProbabilitiesDistribution: #( 100 ).
+
+	aGame := Game
+		         numberOfSpaceships: 2
+		         with: aBoardCreator
+		         playWith: aLoadedDie
+		         andGameDeck: gameDeck.
+
+	aGame moveSpaceship. "1 -> 5"
+	aGame moveSpaceship. "2 ->19->15"
+	aGame usePermanentCard: ReverseCard toDoEffectFor: nil. "1"
+	aGame moveSpaceship. "1->8"
+	aGame usePermanentCard: ReverseCard toDoEffectFor: nil. "2 en 15 reverse blackhole"
+	aGame moveSpaceship. "2 ->6 lap 2 takes the other card"
+	aGame moveSpaceship. "1 -> 12 "
+	aGame moveSpaceship. "2 ->19 -> 15"
+	aGame moveSpaceship. "1 ->15 ->19"
+	aGame usePermanentCard: ReverseCard toDoEffectFor: nil. "doesnt do the reverse of reverse because is not a card in hand"
+	aGame moveSpaceship. "2 -> 18"
+	aGame moveSpaceship. "1-> 15 that will go to 19 because is not activated the reverse of reverse"
+
+
+
+	result := Dictionary new.
+	result at: 1 put: 19.
+	result at: 2 put: 18.
 
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]

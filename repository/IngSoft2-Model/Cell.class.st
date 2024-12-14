@@ -11,7 +11,7 @@ Class {
 { #category : 'as yet unclassified' }
 Cell >> activateReverseEffect [
 
-	applyReverse:=true
+	applyReverse := applyReverse not.
 ]
 
 { #category : 'action' }

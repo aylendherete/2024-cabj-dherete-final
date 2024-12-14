@@ -231,6 +231,12 @@ Game >> stopAlly: aSpaceshipId [
 	anAllyTankManager stopAlly: spaceshipOne
 ]
 
+{ #category : 'as yet unclassified' }
+Game >> takeOutOneRandomCardTo:aSpaceship [
+
+	(spaceshipsCardHands at: aSpaceship id) removeACard
+]
+
 { #category : 'action' }
 Game >> throwDiceAndCheckEffects [
 
