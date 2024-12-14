@@ -91,9 +91,15 @@ Game >> checkMoveIsPossible: throwResult for: aSpaceship [
 ]
 
 { #category : 'as yet unclassified' }
-Game >> doReverseEffectWormholeOf: aSpaceship with: aNumberOfMovements [
+Game >> doReverseEffectWormholeBackwardOf: aSpaceship with: aNumberOfMovements [
 
-	self move: aSpaceship a: aNumberOfMovements + board size.
+	self move: aSpaceship a: aNumberOfMovements + board size
+]
+
+{ #category : 'as yet unclassified' }
+Game >> doReverseEffectWormholeForwardOf: aSpaceship with: aNumberOfMovements [
+
+	self move: aSpaceship a: aNumberOfMovements - board size
 ]
 
 { #category : 'action' }

@@ -1068,3 +1068,43 @@ GameCardTest >> test38WhenASpaceshipFallsInTheEndOfTheWormholeAndActivatesTheRev
 		assert: aGame spaceships positionsOfSpaceships
 		equals: result
 ]
+
+{ #category : 'spaceshipCardHand' }
+GameCardTest >> test39WhenASpaceshipFallsInTheBeginningOfTheWormholeAndActivatesTheReverseCardThenWhenFallsAgainGoesToTheEndOfTheWormholeOnThePreviousLap [
+
+	| aGame result |
+	aLoadedDie := LoadedDie of: #( 9 20 40 ).
+
+	aWormholeCreator := WormholeCreator withBeginning: 4 andEnd: 10.
+	collectionOfCells := OrderedCollection new.
+
+	20 timesRepeat: [ collectionOfCells add: Cell new ].
+
+	aBoardCreator := BoardCreator
+		                 with: collectionOfCells
+		                 ofLaps: 3
+		                 withWormholeCreator: aWormholeCreator.
+
+	gameDeck := EffectManager
+		            manage: (OrderedCollection with: ReverseCard)
+		            withProbabilitiesDistribution: #( 100 ).
+
+	aGame := Game
+		         numberOfSpaceships: 1
+		         with: aBoardCreator
+		         playWith: aLoadedDie
+		         andGameDeck: gameDeck.
+
+	aGame moveSpaceship. "1 -> 10->4 "
+	aGame usePermanentCard: ReverseCard toDoEffectFor: nil.
+	aGame moveSpaceship. "1->4 lap 2->10 lap 1"
+
+
+
+	result := Dictionary new.
+	result at: 1 put: (Position startGameWithCell: 10 andLap: 1).
+
+
+
+	self assert: aGame spaceships positionsOfSpaceships equals: result
+]
