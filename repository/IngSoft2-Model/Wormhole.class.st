@@ -22,8 +22,8 @@ Wormhole >> applyEffectTo: aSpaceship on: aGame [
 	cellOfSpaceship := aSpaceship position cell.
 	numberOfMovements := positionToGoTo - cellOfSpaceship.
 	applyReverse
-		ifTrue: [ aGame move:aSpaceship a: numberOfMovements + 20 ]
-		ifFalse: [aGame move: aSpaceship a: numberOfMovements ]
+		ifTrue: [ aGame doReverseEffectWormholeOf: aSpaceship with:numberOfMovements ]
+		ifFalse: [ aGame move: aSpaceship a: numberOfMovements ]
 ]
 
 { #category : 'accessing' }

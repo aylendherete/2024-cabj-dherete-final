@@ -90,6 +90,12 @@ Game >> checkMoveIsPossible: throwResult for: aSpaceship [
 	^ aNumberOfMovements
 ]
 
+{ #category : 'as yet unclassified' }
+Game >> doReverseEffectWormholeOf: aSpaceship with: aNumberOfMovements [
+
+	self move: aSpaceship a: aNumberOfMovements + board size.
+]
+
 { #category : 'action' }
 Game >> giveOneCardTo: aSpaceship [
 
