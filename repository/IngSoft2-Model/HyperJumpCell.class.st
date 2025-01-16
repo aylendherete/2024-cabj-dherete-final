@@ -24,7 +24,8 @@ HyperJumpCell >> applyEffectTo: aSpaceship on: aGame [
 	convertionOfNextValue := conversor convert: currentValue.
 	previousValue := currentValue.
 	self nextValue.
-	aGame move: aSpaceship a: convertionOfNextValue
+	applyReverse 
+	ifTrue:  [  aGame move: aSpaceship a: convertionOfNextValue negated] ifFalse: [ aGame move: aSpaceship a: convertionOfNextValue ].
 ]
 
 { #category : 'initialization' }

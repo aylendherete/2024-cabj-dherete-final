@@ -1235,3 +1235,108 @@ GameCardTest >> test42WhenASpaceshipFallsInHyperGravityCellAndActivatesTheRevers
 
 	self assert: aGame spaceships positionsOfSpaceships equals: result.
 ]
+
+{ #category : 'spaceshipCardHand' }
+GameCardTest >> test43test42WhenASpaceshipFallsInHyperJumpCellAndActivatesTheReverseCardThenWhenFallsAgainMovesBackwardWithTheConvertedValue [
+
+	| aGame result aConversor values |
+	aLoadedDie := LoadedDie of: #( 12 20 50).
+
+	aWormholeCreator := WormholeCreator withBeginning: 7 andEnd: 10.
+	collectionOfCells := OrderedCollection new.
+
+	20 timesRepeat: [ collectionOfCells add: Cell new ].
+
+	aConversor := Conversor totalCells: 4 convertionValue: 8.
+	values := OrderedCollection
+		          with: (Parsecs ofValue: 10)
+		          with: (LightYear ofValue: 24)
+		          with: (Parsecs ofValue: 6)
+		          with: (Parsecs ofValue: 4).
+
+	collectionOfCells
+		at: 9
+		put: (HyperJumpCell withConversor: aConversor andValues: values).
+
+	collectionOfCells at: 13 put: BlackHoleCell new.
+
+	aBoardCreator := BoardCreator
+		                 with: collectionOfCells
+		                 ofLaps: 3
+		                 withWormholeCreator: aWormholeCreator.
+
+	gameDeck := EffectManager
+		            manage: (OrderedCollection with: ReverseCard)
+		            withProbabilitiesDistribution: #( 100 ).
+
+	aGame := Game
+		         numberOfSpaceships: 1
+		         with: aBoardCreator
+		         playWith: aLoadedDie
+		         andGameDeck: gameDeck.
+
+	aGame moveSpaceship. "1 -> 13...9 "
+	aGame usePermanentCard: ReverseCard toDoEffectFor: nil. "now the HyperJump cell moves backwards the spaceship with the parsec converter"
+	aGame moveSpaceship. "1 ->9 lap 2-> 4 lap 2"
+
+
+	result := Dictionary new.
+	result at: 1 put: (Position startGameWithCell: 4 andLap: 2).
+
+	self assert: aGame spaceships positionsOfSpaceships equals: result
+]
+
+{ #category : 'spaceshipCardHand' }
+GameCardTest >> test44FirstSpaceshipActivatesReverseCardOnHyperJumpCellAndBothSpaceshipsFallsOnHyperJumpCellThenFirstMovesLessParsecsThanSecond [
+
+	| aGame result aConversor values |
+	aLoadedDie := LoadedDie of: #( 12 4 20 4 50 ).
+
+	aWormholeCreator := WormholeCreator withBeginning: 7 andEnd: 10.
+	collectionOfCells := OrderedCollection new.
+
+	20 timesRepeat: [ collectionOfCells add: Cell new ].
+
+	aConversor := Conversor totalCells: 4 convertionValue: 8.
+	values := OrderedCollection
+		          with: (Parsecs ofValue: 10)
+		          with: (LightYear ofValue: 24)
+		          with: (Parsecs ofValue: 6)
+		          with: (Parsecs ofValue: 4).
+
+	collectionOfCells
+		at: 9
+		put: (HyperJumpCell withConversor: aConversor andValues: values).
+
+	collectionOfCells at: 13 put: BlackHoleCell new.
+
+	aBoardCreator := BoardCreator
+		                 with: collectionOfCells
+		                 ofLaps: 3
+		                 withWormholeCreator: aWormholeCreator.
+
+	gameDeck := EffectManager
+		            manage: (OrderedCollection with: ReverseCard)
+		            withProbabilitiesDistribution: #( 100 ).
+
+	aGame := Game
+		         numberOfSpaceships: 2
+		         with: aBoardCreator
+		         playWith: aLoadedDie
+		         andGameDeck: gameDeck.
+
+	aGame moveSpaceship. "1 -> 13...9 "
+	aGame moveSpaceship. "2 -> 5"
+	aGame usePermanentCard: ReverseCard toDoEffectFor: nil. "now the HyperJump cell moves backwards the spaceship with the parsec converter"
+	aGame moveSpaceship. "1 ->9 lap 2-> 4 lap 2"
+	aGame moveSpaceship. "2->9   5 lap 1"
+
+
+	result := Dictionary new.
+	result at: 1 put: (Position startGameWithCell: 4 andLap: 2).
+	result at: 2 put: (Position startGameWithCell: 5 andLap: 1).
+
+	self assert: aGame spaceships positionsOfSpaceships equals: result
+	
+	
+]
