@@ -22,14 +22,22 @@ HyperGravityManager >> handleHyperGravityOn: aSpaceship withValue: value [
 ]
 
 { #category : 'action handling' }
+HyperGravityManager >> handleLowerValueOf: aSpaceship with: aNumberOfMovements [
+
+	applyReverse
+		ifTrue: [
+			spaceships removeKey: aSpaceship.
+			^ aNumberOfMovements negated ]
+		ifFalse: [ ^ 0 ]
+]
+
+{ #category : 'action handling' }
 HyperGravityManager >> handleMovementOf: aSpaceship with: throwResult and: aNumberOfMovements [
 
 	(spaceships includesKey: aSpaceship) ifTrue: [
 		throwResult < (spaceships at: aSpaceship)
 			ifTrue: [
-				applyReverse
-					ifTrue: [ spaceships removeKey: aSpaceship. ^ aNumberOfMovements negated ]
-					ifFalse: [ ^ 0 ] ]
+			 ^ self handleLowerValueOf: aSpaceship with: aNumberOfMovements ]
 			ifFalse: [ spaceships removeKey: aSpaceship ] ].
 
 
