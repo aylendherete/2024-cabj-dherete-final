@@ -2,7 +2,8 @@ Class {
 	#name : 'HyperGravityManager',
 	#superclass : 'Object',
 	#instVars : [
-		'spaceships'
+		'spaceships',
+		'applyReverse'
 	],
 	#category : 'IngSoft2-Model',
 	#package : 'IngSoft2-Model'
@@ -21,16 +22,31 @@ HyperGravityManager >> handleHyperGravityOn: aSpaceship withValue: value [
 ]
 
 { #category : 'action handling' }
-HyperGravityManager >> handleMovementOf:aSpaceship with:throwResult and: aNumberOfMovements [ 
+HyperGravityManager >> handleMovementOf: aSpaceship with: throwResult and: aNumberOfMovements [
 
-		(spaceships includesKey: aSpaceship) ifTrue: [
+	(spaceships includesKey: aSpaceship) ifTrue: [
 		throwResult < (spaceships at: aSpaceship)
-			ifTrue: [^ 0.]
-			ifFalse:[spaceships removeKey: aSpaceship.]
-			].
-		
-		
-	^aNumberOfMovements .
+			ifTrue: [
+				applyReverse
+					ifTrue: [ spaceships removeKey: aSpaceship. ^ aNumberOfMovements negated ]
+					ifFalse: [ ^ 0 ] ]
+			ifFalse: [ spaceships removeKey: aSpaceship ] ].
+
+
+	^ aNumberOfMovements
+]
+
+{ #category : 'as yet unclassified' }
+HyperGravityManager >> handleReverseHyperGravityOn: aSpaceship withValue: value [
+	
+	spaceships at: aSpaceship put: value.
+	applyReverse := applyReverse not
+]
+
+{ #category : 'initialization' }
+HyperGravityManager >> initialize [
+
+	applyReverse := false
 ]
 
 { #category : 'initialization' }

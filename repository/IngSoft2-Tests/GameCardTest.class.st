@@ -1108,3 +1108,130 @@ GameCardTest >> test39WhenASpaceshipFallsInTheBeginningOfTheWormholeAndActivates
 
 	self assert: aGame spaceships positionsOfSpaceships equals: result
 ]
+
+{ #category : 'spaceshipCardHand' }
+GameCardTest >> test40WhenASpaceshipFallsInTheBeginningOfTheWormholeAndActivatesTheReverseCardThenWhenFallsAgainGoesToTheStartBecauseSpaceshipWasInLapNumberOne [
+
+	| aGame result |
+	aLoadedDie := LoadedDie of: #( 9 3 4 3 40 ).
+
+	aWormholeCreator := WormholeCreator withBeginning: 7 andEnd: 10.
+	collectionOfCells := OrderedCollection new.
+
+	20 timesRepeat: [ collectionOfCells add: Cell new ].
+
+	aBoardCreator := BoardCreator
+		                 with: collectionOfCells
+		                 ofLaps: 3
+		                 withWormholeCreator: aWormholeCreator.
+
+	gameDeck := EffectManager
+		            manage: (OrderedCollection with: ReverseCard)
+		            withProbabilitiesDistribution: #( 100 ).
+
+	aGame := Game
+		         numberOfSpaceships: 2
+		         with: aBoardCreator
+		         playWith: aLoadedDie
+		         andGameDeck: gameDeck.
+
+	aGame moveSpaceship. "1 -> 10->7 "
+	aGame moveSpaceship. "2 ->4" 
+	aGame usePermanentCard: ReverseCard toDoEffectFor: nil. "1 now 7 goes to 10 of the previous lap "
+	aGame moveSpaceship. "1 ->11"
+	aGame moveSpaceship. "1->7 lap 1->1 lap 1"
+
+
+
+	result := Dictionary new.
+	result at: 1 put: (Position startGameWithCell: 11 andLap: 1).
+	result at: 2 put: (Position startGameWithCell: 1 andLap: 1).
+
+
+
+	self assert: aGame spaceships positionsOfSpaceships equals: result
+]
+
+{ #category : 'spaceshipCardHand' }
+GameCardTest >> test41WhenASpaceshipFallsInHyperGravityCellAndActivatesTheReverseCardAndThrowsAValueLessThanTheHyperGravityThenMovesBackward [
+
+	| aGame result |
+	aLoadedDie := LoadedDie of: #( 7 10 10 3 40 ).
+
+	aWormholeCreator := WormholeCreator withBeginning: 7 andEnd: 10.
+	collectionOfCells := OrderedCollection new.
+
+	20 timesRepeat: [ collectionOfCells add: Cell new ].
+
+	collectionOfCells at: 8 put: (HyperGravityCell withValueToMove: 4).
+
+	aBoardCreator := BoardCreator
+		                 with: collectionOfCells
+		                 ofLaps: 3
+		                 withWormholeCreator: aWormholeCreator.
+
+	gameDeck := EffectManager
+		            manage: (OrderedCollection with: ReverseCard)
+		            withProbabilitiesDistribution: #( 100 ).
+
+	aGame := Game
+		         numberOfSpaceships: 1
+		         with: aBoardCreator
+		         playWith: aLoadedDie
+		         andGameDeck: gameDeck.
+
+	aGame moveSpaceship. "1 -> 8 "
+	aGame usePermanentCard: ReverseCard toDoEffectFor: nil. "now the HyperGravity cell moves backwards the spaceship if its lower than the value"
+	aGame moveSpaceship. "1 ->18"
+	aGame moveSpaceship. "1 ->8 lap 2"
+	aGame moveSpaceship. "lower than te value goes backwards (4 lap 2)"
+
+
+
+	result := Dictionary new.
+	result at: 1 put: (Position startGameWithCell: 5 andLap: 2).
+
+	self assert: aGame spaceships positionsOfSpaceships equals: result
+]
+
+{ #category : 'spaceshipCardHand' }
+GameCardTest >> test42WhenASpaceshipFallsInHyperGravityCellAndActivatesTheReverseCardAndThrowsAValueGreaterThanTheHyperGravityThenMovesForward [
+
+	| aGame result |
+	aLoadedDie := LoadedDie of: #( 7 10 10 5 40 ).
+
+	aWormholeCreator := WormholeCreator withBeginning: 7 andEnd: 10.
+	collectionOfCells := OrderedCollection new.
+
+	20 timesRepeat: [ collectionOfCells add: Cell new ].
+
+	collectionOfCells at: 8 put: (HyperGravityCell withValueToMove: 4).
+
+	aBoardCreator := BoardCreator
+		                 with: collectionOfCells
+		                 ofLaps: 3
+		                 withWormholeCreator: aWormholeCreator.
+
+	gameDeck := EffectManager
+		            manage: (OrderedCollection with: ReverseCard)
+		            withProbabilitiesDistribution: #( 100 ).
+
+	aGame := Game
+		         numberOfSpaceships: 1
+		         with: aBoardCreator
+		         playWith: aLoadedDie
+		         andGameDeck: gameDeck.
+
+	aGame moveSpaceship. "1 -> 8 "
+	aGame usePermanentCard: ReverseCard toDoEffectFor: nil. "now the HyperGravity cell moves backwards the spaceship if its lower than the value"
+	aGame moveSpaceship. "1 ->18"
+	aGame moveSpaceship. "1 ->8 lap 2"
+	aGame moveSpaceship. "greater than the value goes forward (13 lap 2)"
+
+
+
+	result := Dictionary new.
+	result at: 1 put: (Position startGameWithCell: 13 andLap: 2).
+
+	self assert: aGame spaceships positionsOfSpaceships equals: result.
+]

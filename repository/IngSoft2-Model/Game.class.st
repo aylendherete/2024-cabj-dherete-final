@@ -55,6 +55,14 @@ Game >> applyHyperGravityOn: aSpaceship withValue: value [
 	
 ]
 
+{ #category : 'action' }
+Game >> applyReverseHyperGravityOn:aSpaceship withValue:value [ 
+
+	aHyperGravityManager
+		handleReverseHyperGravityOn: aSpaceship
+		withValue: value
+]
+
 { #category : 'as yet unclassified' }
 Game >> cellOfSpaceship: aSpaceship [ 
 	^board at: (aSpaceship position) cell.
@@ -91,15 +99,12 @@ Game >> checkMoveIsPossible: throwResult for: aSpaceship [
 ]
 
 { #category : 'as yet unclassified' }
-Game >> doReverseEffectWormholeBackwardOf: aSpaceship with: aNumberOfMovements [
-
-	self move: aSpaceship a: aNumberOfMovements + board size
-]
-
-{ #category : 'as yet unclassified' }
-Game >> doReverseEffectWormholeForwardOf: aSpaceship with: aNumberOfMovements [
-
-	self move: aSpaceship a: aNumberOfMovements - board size
+Game >> doReverseEffectWormholeOf: aSpaceship with: aNumberOfMovements [
+	aNumberOfMovements < 0
+				ifTrue: [
+					self move: aSpaceship a: aNumberOfMovements + board size ]
+				ifFalse: [
+					self move: aSpaceship a: aNumberOfMovements - board size]
 ]
 
 { #category : 'action' }
