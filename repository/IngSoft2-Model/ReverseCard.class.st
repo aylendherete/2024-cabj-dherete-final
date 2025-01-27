@@ -29,12 +29,6 @@ ReverseCard >> activateEffectOn: aGame forSpaceship: anId [
 	aGame activateCard: self
 ]
 
-{ #category : 'accessing' }
-ReverseCard >> cell [
-
-	^ cellAffected 
-]
-
 { #category : 'action' }
 ReverseCard >> deactivate [
 
