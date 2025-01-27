@@ -15,6 +15,7 @@ Class {
 { #category : 'running' }
 GameCardTest >> setUp [
 
+	| array |
 	super setUp.
 	aLoadedDie := LoadedDie of: #( 6 ).
 
@@ -27,14 +28,17 @@ GameCardTest >> setUp [
 		                 with: collectionOfCells
 		                 ofLaps: 1
 		                 withWormholeCreator: aWormholeCreator.
+	array := OrderedCollection new.
+	array addAll: {
+			AccelerationCard.
+			AllyCard.
+			OverloadCard.
+			RedoCard.
+			RepeatCard.
+			ReverseCard.
+			CancellationCard. }.
 
-	gameDeck := LoadedEffectManager manage: (OrderedCollection
-			             with: AccelerationCard
-			             with: AllyCard
-			             with: OverloadCard
-			             with: RedoCard
-			             with: RepeatCard
-			             with: CancellationCard)
+	gameDeck := LoadedEffectManager manage: array
 ]
 
 { #category : 'running' }
@@ -1339,4 +1343,48 @@ GameCardTest >> test44FirstSpaceshipActivatesReverseCardOnHyperJumpCellAndBothSp
 	self assert: aGame spaceships positionsOfSpaceships equals: result
 	
 	
+]
+
+{ #category : 'spaceshipCardHand' }
+GameCardTest >> test45WhenASpaceshipCancellsTheReverseCardThenTheCellHasTheOriginalEffect [
+
+	| aGame result |
+	aLoadedDie := LoadedDie of: #( 8 4 20 50 ).
+
+	aWormholeCreator := WormholeCreator withBeginning: 7 andEnd: 10.
+	collectionOfCells := OrderedCollection new.
+
+	20 timesRepeat: [ collectionOfCells add: Cell new ].
+
+	collectionOfCells at: 5 put: BlackHoleCell new.
+	collectionOfCells at: 9 put: BlackHoleCell new.
+
+
+	aBoardCreator := BoardCreator
+		                 with: collectionOfCells
+		                 ofLaps: 3
+		                 withWormholeCreator: aWormholeCreator.
+
+	aGame := Game
+		         numberOfSpaceships: 2
+		         with: aBoardCreator
+		         playWith: aLoadedDie
+		         andGameDeck: gameDeck.
+
+	aGame moveSpaceship. "1 -> 9...5 "
+	aGame moveSpaceship. "2 -> 5...1"
+	aGame usePermanentCard: ReverseCard toDoEffectFor: nil.
+
+	aGame
+		spaceshipId: 2
+		useInstantCard: CancellationCard
+		toDoEffectFor: (ReverseCard toDoEffectFor: nil).
+	aGame moveSpaceship. "1 ->5 lap 2-> 1 lap 2"
+
+
+	result := Dictionary new.
+	result at: 1 put: (Position startGameWithCell: 1 andLap: 2).
+	result at: 2 put: (Position startGameWithCell: 1 andLap: 1).
+
+	self assert: aGame spaceships positionsOfSpaceships equals: result
 ]

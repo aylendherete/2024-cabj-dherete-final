@@ -1,8 +1,8 @@
 Class {
 	#name : 'ReverseCard',
-	#superclass : 'Object',
+	#superclass : 'Card',
 	#instVars : [
-		'spaceshipAffected'
+		'cellAffected'
 	],
 	#category : 'IngSoft2-Model',
 	#package : 'IngSoft2-Model'
@@ -22,11 +22,22 @@ ReverseCard >> activateEffectOn: aGame forSpaceship: anId [
 
 	cellToEnter := aGame cellOfSpaceship: spaceshipToApplyEffect.
 
-	cellToEnter activateReverseEffect.
+	cellAffected := cellToEnter.
+
+	cellAffected activateReverseEffect.
+
+	aGame activateCard: self
 ]
 
-{ #category : 'initialization' }
-ReverseCard >> initializeToDoEffectFor: aSpaceshipId [
+{ #category : 'accessing' }
+ReverseCard >> cell [
 
-	spaceshipAffected := aSpaceshipId.
+	^ cellAffected 
+]
+
+{ #category : 'action' }
+ReverseCard >> deactivate [
+
+	^ cellAffected activateReverseEffect.
+	
 ]
