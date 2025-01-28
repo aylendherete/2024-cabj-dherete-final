@@ -860,7 +860,7 @@ GameCardTest >> test33GamePlaysWithDeckWithProbabilisticDistributionThenSpaceshi
 GameCardTest >> test34WhenTheSpaceshipOneFallsOnABlackHoleCellAndActivatesAReverseCardThenWhenTheSpaceshipTwoFallsInThatCellThenMovesFourStepsForward [
 
 	| result aGame |
-	aLoadedDie := LoadedDie of: #( 5 5 10 30).
+	aLoadedDie := LoadedDie of: #( 5 5 10 30 ).
 
 	aWormholeCreator := WormholeCreator withBeginning: 8 andEnd: 9.
 	collectionOfCells := OrderedCollection new.
@@ -886,7 +886,7 @@ GameCardTest >> test34WhenTheSpaceshipOneFallsOnABlackHoleCellAndActivatesARever
 
 	aGame moveSpaceship.
 	aGame moveSpaceship.
-	aGame usePermanentCard: ReverseCard toDoEffectFor: nil.
+	aGame usePermanentCard: ReverseCard toDoEffectFor:( collectionOfCells at:2).
 	aGame moveSpaceship.
 
 
@@ -927,7 +927,7 @@ GameCardTest >> test35WhenAReverseCardIsActivatedInTheAtomicBombThenWhenASpacesh
 
 	aGame moveSpaceship.
 	aGame moveSpaceship.
-	aGame usePermanentCard: ReverseCard toDoEffectFor: nil.
+	aGame usePermanentCard: ReverseCard toDoEffectFor: (collectionOfCells at:2).
 	aGame moveSpaceship.
 
 
@@ -942,7 +942,7 @@ GameCardTest >> test35WhenAReverseCardIsActivatedInTheAtomicBombThenWhenASpacesh
 GameCardTest >> test36WhenAReverseCardIsActivatedOnAMoonWalkCellAndAfterTheSpaceshipOneFallsInThatOneThemTheOtherSpaceshipsMoveForwardInsteadBackwards [
 
 	| result aGame |
-	aLoadedDie := LoadedDie of: #( 5 5 10 30).
+	aLoadedDie := LoadedDie of: #( 5 5 10 30 ).
 
 	aWormholeCreator := WormholeCreator withBeginning: 8 andEnd: 9.
 	collectionOfCells := OrderedCollection new.
@@ -968,7 +968,7 @@ GameCardTest >> test36WhenAReverseCardIsActivatedOnAMoonWalkCellAndAfterTheSpace
 
 	aGame moveSpaceship.
 	aGame moveSpaceship.
-	aGame usePermanentCard: ReverseCard toDoEffectFor: nil.
+	aGame usePermanentCard: ReverseCard toDoEffectFor: (collectionOfCells at:2).
 	aGame moveSpaceship.
 
 
@@ -1011,14 +1011,14 @@ GameCardTest >> test37WhenAReverseCardIsActivatedOnACardDispenserCellThenItTakes
 
 	aGame moveSpaceship. "1 -> 5"
 	aGame moveSpaceship. "2 ->19->15"
-	aGame usePermanentCard: ReverseCard toDoEffectFor: nil. "1"
+	aGame usePermanentCard: ReverseCard toDoEffectFor: (collectionOfCells at: 6). "1"
 	aGame moveSpaceship. "1->8"
-	aGame usePermanentCard: ReverseCard toDoEffectFor: nil. "2 en 15 reverse blackhole"
+	aGame usePermanentCard: ReverseCard toDoEffectFor: (collectionOfCells at:15). "2 en 15 reverse blackhole"
 	aGame moveSpaceship. "2 ->6 lap 2 takes the other card"
 	aGame moveSpaceship. "1 -> 12 "
 	aGame moveSpaceship. "2 ->19 -> 15"
 	aGame moveSpaceship. "1 ->15 ->19"
-	aGame usePermanentCard: ReverseCard toDoEffectFor: nil. "doesnt do the reverse of reverse because is not a card in hand"
+	aGame usePermanentCard: ReverseCard toDoEffectFor:( collectionOfCells at:15). "doesnt do the reverse of reverse because is not a card in hand"
 	aGame moveSpaceship. "2 -> 18"
 	aGame moveSpaceship. "1-> 15 that will go to 19 because is not activated the reverse of reverse"
 
@@ -1058,7 +1058,7 @@ GameCardTest >> test38WhenASpaceshipFallsInTheEndOfTheWormholeAndActivatesTheRev
 		         andGameDeck: gameDeck.
 
 	aGame moveSpaceship. "1 -> 4 ->10"
-	aGame usePermanentCard: ReverseCard toDoEffectFor: nil.
+	aGame usePermanentCard: ReverseCard toDoEffectFor: (collectionOfCells at:10).
 	aGame moveSpaceship. "1->10 lap 2"
 
 
@@ -1068,9 +1068,7 @@ GameCardTest >> test38WhenASpaceshipFallsInTheEndOfTheWormholeAndActivatesTheRev
 
 
 
-	self
-		assert: aGame spaceships positionsOfSpaceships
-		equals: result
+	self assert: aGame spaceships positionsOfSpaceships equals: result
 ]
 
 { #category : 'spaceshipCardHand' }
@@ -1100,7 +1098,9 @@ GameCardTest >> test39WhenASpaceshipFallsInTheBeginningOfTheWormholeAndActivates
 		         andGameDeck: gameDeck.
 
 	aGame moveSpaceship. "1 -> 10->4 "
-	aGame usePermanentCard: ReverseCard toDoEffectFor: nil.
+	aGame
+		usePermanentCard: ReverseCard
+		toDoEffectFor: (collectionOfCells at: 4).
 	aGame moveSpaceship. "1->4 lap 2->10 lap 1"
 
 
@@ -1140,8 +1140,8 @@ GameCardTest >> test40WhenASpaceshipFallsInTheBeginningOfTheWormholeAndActivates
 		         andGameDeck: gameDeck.
 
 	aGame moveSpaceship. "1 -> 10->7 "
-	aGame moveSpaceship. "2 ->4" 
-	aGame usePermanentCard: ReverseCard toDoEffectFor: nil. "1 now 7 goes to 10 of the previous lap "
+	aGame moveSpaceship. "2 ->4"
+	aGame usePermanentCard: ReverseCard toDoEffectFor: (collectionOfCells at:7). "1 now 7 goes to 10 of the previous lap "
 	aGame moveSpaceship. "1 ->11"
 	aGame moveSpaceship. "1->7 lap 1->1 lap 1"
 
@@ -1185,7 +1185,7 @@ GameCardTest >> test41WhenASpaceshipFallsInHyperGravityCellAndActivatesTheRevers
 		         andGameDeck: gameDeck.
 
 	aGame moveSpaceship. "1 -> 8 "
-	aGame usePermanentCard: ReverseCard toDoEffectFor: nil. "now the HyperGravity cell moves backwards the spaceship if its lower than the value"
+	aGame usePermanentCard: ReverseCard toDoEffectFor: (collectionOfCells at:8). "now the HyperGravity cell moves backwards the spaceship if its lower than the value"
 	aGame moveSpaceship. "1 ->18"
 	aGame moveSpaceship. "1 ->8 lap 2"
 	aGame moveSpaceship. "lower than te value goes backwards (4 lap 2)"
@@ -1227,7 +1227,7 @@ GameCardTest >> test42WhenASpaceshipFallsInHyperGravityCellAndActivatesTheRevers
 		         andGameDeck: gameDeck.
 
 	aGame moveSpaceship. "1 -> 8 "
-	aGame usePermanentCard: ReverseCard toDoEffectFor: nil. "now the HyperGravity cell moves backwards the spaceship if its lower than the value"
+	aGame usePermanentCard: ReverseCard toDoEffectFor:( collectionOfCells at:8) . "now the HyperGravity cell moves backwards the spaceship if its lower than the value"
 	aGame moveSpaceship. "1 ->18"
 	aGame moveSpaceship. "1 ->8 lap 2"
 	aGame moveSpaceship. "greater than the value goes forward (13 lap 2)"
@@ -1237,14 +1237,14 @@ GameCardTest >> test42WhenASpaceshipFallsInHyperGravityCellAndActivatesTheRevers
 	result := Dictionary new.
 	result at: 1 put: (Position startGameWithCell: 13 andLap: 2).
 
-	self assert: aGame spaceships positionsOfSpaceships equals: result.
+	self assert: aGame spaceships positionsOfSpaceships equals: result
 ]
 
 { #category : 'spaceshipCardHand' }
 GameCardTest >> test43test42WhenASpaceshipFallsInHyperJumpCellAndActivatesTheReverseCardThenWhenFallsAgainMovesBackwardWithTheConvertedValue [
 
 	| aGame result aConversor values |
-	aLoadedDie := LoadedDie of: #( 12 20 50).
+	aLoadedDie := LoadedDie of: #( 12 20 50 ).
 
 	aWormholeCreator := WormholeCreator withBeginning: 7 andEnd: 10.
 	collectionOfCells := OrderedCollection new.
@@ -1280,7 +1280,7 @@ GameCardTest >> test43test42WhenASpaceshipFallsInHyperJumpCellAndActivatesTheRev
 		         andGameDeck: gameDeck.
 
 	aGame moveSpaceship. "1 -> 13...9 "
-	aGame usePermanentCard: ReverseCard toDoEffectFor: nil. "now the HyperJump cell moves backwards the spaceship with the parsec converter"
+	aGame usePermanentCard: ReverseCard toDoEffectFor: (collectionOfCells at:9). "now the HyperJump cell moves backwards the spaceship with the parsec converter"
 	aGame moveSpaceship. "1 ->9 lap 2-> 4 lap 2"
 
 
@@ -1331,7 +1331,7 @@ GameCardTest >> test44FirstSpaceshipActivatesReverseCardOnHyperJumpCellAndBothSp
 
 	aGame moveSpaceship. "1 -> 13...9 "
 	aGame moveSpaceship. "2 -> 5"
-	aGame usePermanentCard: ReverseCard toDoEffectFor: nil. "now the HyperJump cell moves backwards the spaceship with the parsec converter"
+	aGame usePermanentCard: ReverseCard toDoEffectFor: (collectionOfCells at:9). "now the HyperJump cell moves backwards the spaceship with the parsec converter"
 	aGame moveSpaceship. "1 ->9 lap 2-> 4 lap 2"
 	aGame moveSpaceship. "2->9   5 lap 1"
 
@@ -1341,8 +1341,6 @@ GameCardTest >> test44FirstSpaceshipActivatesReverseCardOnHyperJumpCellAndBothSp
 	result at: 2 put: (Position startGameWithCell: 5 andLap: 1).
 
 	self assert: aGame spaceships positionsOfSpaceships equals: result
-	
-	
 ]
 
 { #category : 'spaceshipCardHand' }
@@ -1373,18 +1371,69 @@ GameCardTest >> test45WhenASpaceshipCancellsTheReverseCardThenTheCellHasTheOrigi
 
 	aGame moveSpaceship. "1 -> 9...5 "
 	aGame moveSpaceship. "2 -> 5...1"
-	aGame usePermanentCard: ReverseCard toDoEffectFor: nil.
+	aGame usePermanentCard: ReverseCard toDoEffectFor: (collectionOfCells at:5).
 
 	aGame
 		spaceshipId: 2
 		useInstantCard: CancellationCard
-		toDoEffectFor: (ReverseCard toDoEffectFor: nil).
+		toDoEffectFor: (ReverseCard toDoEffectFor: (collectionOfCells at:5)).
 	aGame moveSpaceship. "1 ->5 lap 2-> 1 lap 2"
 
 
 	result := Dictionary new.
 	result at: 1 put: (Position startGameWithCell: 1 andLap: 2).
 	result at: 2 put: (Position startGameWithCell: 1 andLap: 1).
+
+	self assert: aGame spaceships positionsOfSpaceships equals: result
+]
+
+{ #category : 'spaceshipCardHand' }
+GameCardTest >> test46WhenAReverseCardIsCancelledThenItHasToCancellTheExactlyCardOfTheExactCell [
+
+	| aGame result |
+	aLoadedDie := LoadedDie of: #( 8 12 20 16 50 ).
+
+	aWormholeCreator := WormholeCreator withBeginning: 7 andEnd: 10.
+	collectionOfCells := OrderedCollection new.
+
+	20 timesRepeat: [ collectionOfCells add: Cell new ].
+
+	collectionOfCells at: 5 put: BlackHoleCell new.
+	collectionOfCells at: 9 put: BlackHoleCell new.
+	collectionOfCells at: 13 put: BlackHoleCell new.
+
+	aBoardCreator := BoardCreator
+		                 with: collectionOfCells
+		                 ofLaps: 3
+		                 withWormholeCreator: aWormholeCreator.
+
+	aGame := Game
+		         numberOfSpaceships: 2
+		         with: aBoardCreator
+		         playWith: aLoadedDie
+		         andGameDeck: gameDeck.
+
+	aGame moveSpaceship. "1 -> 9...5 "
+	aGame moveSpaceship. "2 -> 13...9"
+	aGame
+		usePermanentCard: ReverseCard
+		toDoEffectFor: ( collectionOfCells at: 5 ).
+	aGame moveSpaceship. "1 ->5 lap 2-> 9 lap 2"
+	aGame
+		usePermanentCard: ReverseCard
+		toDoEffectFor: ( collectionOfCells at: 9 ).
+	aGame
+		spaceshipId: 1
+		useInstantCard: CancellationCard
+		toDoEffectFor:
+		(ReverseCard toDoEffectFor: ( collectionOfCells at: 5 )).
+	aGame moveSpaceship. "2 -> 9 lap 1-> 5 lap 2 ... 1 lap 2"
+
+
+
+	result := Dictionary new.
+	result at: 1 put: (Position startGameWithCell: 9 andLap: 2).
+	result at: 2 put: (Position startGameWithCell: 1 andLap: 2).
 
 	self assert: aGame spaceships positionsOfSpaceships equals: result
 ]

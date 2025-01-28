@@ -9,24 +9,32 @@ Class {
 }
 
 { #category : 'instance creation' }
-ReverseCard class >> toDoEffectFor: aSpaceshipId [
-^ self new initializeToDoEffectFor: aSpaceshipId
+ReverseCard class >> toDoEffectFor: aCellAffected [
+
+	^ self new initializeToDoEffectFor: aCellAffected 
+]
+
+{ #category : 'comparing' }
+ReverseCard >> = aCard [
+
+	| compareResult |
+	compareResult := self class == aCard class.
+	compareResult ifTrue: [ ^ cellAffected = aCard cell ].
+	^ compareResult
 ]
 
 { #category : 'accessing' }
 ReverseCard >> activateEffectOn: aGame forSpaceship: anId [
 
-	| spaceshipToApplyEffect cellToEnter |
-	spaceshipToApplyEffect := aGame spaceships detectSpaceshipWithId:
-		                          anId.
-
-	cellToEnter := aGame cellOfSpaceship: spaceshipToApplyEffect.
-
-	cellAffected := cellToEnter.
 
 	cellAffected activateReverseEffect.
 
 	aGame activateCard: self
+]
+
+{ #category : 'accessing' }
+ReverseCard >> cell [ 
+^cellAffected 
 ]
 
 { #category : 'action' }
@@ -34,4 +42,10 @@ ReverseCard >> deactivate [
 
 	^ cellAffected activateReverseEffect.
 	
+]
+
+{ #category : 'initialization' }
+ReverseCard >> initializeToDoEffectFor: aCellAffected [ 
+
+	cellAffected := aCellAffected .
 ]
