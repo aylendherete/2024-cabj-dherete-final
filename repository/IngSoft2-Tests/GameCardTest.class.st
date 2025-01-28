@@ -1437,3 +1437,88 @@ GameCardTest >> test46WhenAReverseCardIsCancelledThenItHasToCancellTheExactlyCar
 
 	self assert: aGame spaceships positionsOfSpaceships equals: result
 ]
+
+{ #category : 'spaceshipCardHand' }
+GameCardTest >> test47WhenAReverseCardIsPlayedOnABlackHoleCellAndThenAARedoCardIsPlayedOnTheSameCellThenTheCellHasTheOriginalEffect [
+
+	| aGame result |
+	aLoadedDie := LoadedDie of: #( 8 4 20 50 ).
+
+	aWormholeCreator := WormholeCreator withBeginning: 7 andEnd: 10.
+	collectionOfCells := OrderedCollection new.
+
+	20 timesRepeat: [ collectionOfCells add: Cell new ].
+
+	collectionOfCells at: 5 put: BlackHoleCell new.
+	collectionOfCells at: 9 put: BlackHoleCell new.
+
+
+	aBoardCreator := BoardCreator
+		                 with: collectionOfCells
+		                 ofLaps: 3
+		                 withWormholeCreator: aWormholeCreator.
+
+	aGame := Game
+		         numberOfSpaceships: 2
+		         with: aBoardCreator
+		         playWith: aLoadedDie
+		         andGameDeck: gameDeck.
+	aGame
+		usePermanentCard: ReverseCard
+		toDoEffectFor: (collectionOfCells at: 5).
+	aGame moveSpaceship. "1 -> 9...5 "
+	aGame
+		spaceshipId: 2
+		useInstantCard: RedoCard
+		toDoEffectFor: (collectionOfCells at: 5).
+	aGame moveSpaceship. "2 -> 5...1"
+
+
+
+	result := Dictionary new.
+	result at: 1 put: (Position startGameWithCell: 5 andLap: 1).
+	result at: 2 put: (Position startGameWithCell: 1 andLap: 1).
+
+	self assert: aGame spaceships positionsOfSpaceships equals: result
+]
+
+{ #category : 'spaceshipCardHand' }
+GameCardTest >> test48WhenAReverseCardIsPlayedOnABlackHoleCellAndTheSpaceshipTwoFallsInThatCellThenWhenTheRepeatCardIsPlayedTheSpaceshipMovesForward [
+
+	| aGame result |
+	aLoadedDie := LoadedDie of: #( 8 4 20 50 ).
+
+	aWormholeCreator := WormholeCreator withBeginning: 7 andEnd: 10.
+	collectionOfCells := OrderedCollection new.
+
+	20 timesRepeat: [ collectionOfCells add: Cell new ].
+
+	collectionOfCells at: 5 put: BlackHoleCell new.
+	collectionOfCells at: 9 put: BlackHoleCell new.
+
+
+	aBoardCreator := BoardCreator
+		                 with: collectionOfCells
+		                 ofLaps: 3
+		                 withWormholeCreator: aWormholeCreator.
+
+	aGame := Game
+		         numberOfSpaceships: 2
+		         with: aBoardCreator
+		         playWith: aLoadedDie
+		         andGameDeck: gameDeck.
+	aGame
+		usePermanentCard: ReverseCard
+		toDoEffectFor: (collectionOfCells at: 5).
+	aGame moveSpaceship. "1 -> 9...5 "
+	aGame moveSpaceship. "2 -> 5...9"
+	aGame spaceshipId: 1 useInstantCard: RepeatCard toDoEffectFor: 2.
+
+
+
+	result := Dictionary new.
+	result at: 1 put: (Position startGameWithCell: 5 andLap: 1).
+	result at: 2 put: (Position startGameWithCell: 13 andLap: 1).
+
+	self assert: aGame spaceships positionsOfSpaceships equals: result
+]
