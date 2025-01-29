@@ -19,3 +19,9 @@ Cell >> initialize [
 
 	
 ]
+
+{ #category : 'cells creation' }
+Cell >> reverseCell [
+
+
+]

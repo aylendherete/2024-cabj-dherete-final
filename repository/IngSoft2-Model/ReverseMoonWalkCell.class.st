@@ -26,7 +26,7 @@ ReverseMoonWalkCell >> initializeWithValueToMove: aValue [
 	value := aValue.
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'cells creation' }
 ReverseMoonWalkCell >> reverseCell [
 
 	^ MoonWalkCell withValueToMove: value

@@ -11,7 +11,7 @@ CardDispenserCell >> applyEffectTo: aSpaceship on: aGame [
 	aGame giveOneCardTo: aSpaceship
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'cells creation' }
 CardDispenserCell >> reverseCell [ 
 ^ReverseCardDispenserCell new.
 ]

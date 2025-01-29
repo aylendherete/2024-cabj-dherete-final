@@ -11,7 +11,7 @@ ReverseBlackHoleCell >> applyEffectTo: aSpaceship on: aGame [
 	aGame move: aSpaceship a: 4
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'cells creation' }
 ReverseBlackHoleCell >> reverseCell [
 
 	^ BlackHoleCell new.

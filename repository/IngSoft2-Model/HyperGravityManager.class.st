@@ -51,7 +51,7 @@ HyperGravityManager >> handleMovementOf: aSpaceship with: throwResult and: aNumb
 	^ aNumberOfMovements .
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'action handling' }
 HyperGravityManager >> handleReverseHyperGravityOn: aSpaceship withValue: value [
 	
 	spaceships at: aSpaceship put: value.

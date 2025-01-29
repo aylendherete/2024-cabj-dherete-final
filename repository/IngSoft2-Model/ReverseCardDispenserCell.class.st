@@ -12,7 +12,7 @@ aGame takeOutOneRandomCardTo: aSpaceship
 
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'cells creation' }
 ReverseCardDispenserCell >> reverseCell [
 
 	^ CardDispenserCell new

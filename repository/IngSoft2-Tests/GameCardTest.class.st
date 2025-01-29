@@ -1526,3 +1526,39 @@ GameCardTest >> test48WhenAReverseCardIsPlayedOnABlackHoleCellAndTheSpaceshipTwo
 
 	self assert: aGame spaceships positionsOfSpaceships equals: result
 ]
+
+{ #category : 'spaceshipCardHand' }
+GameCardTest >> test49WhenAReverseCardIsPlayedOnARegularCellThenWhenASpaceshipFallsInThatCellDoesntDoAnEffect [
+
+	| aGame result |
+	aLoadedDie := LoadedDie of: #( 4 4 20 50 ).
+
+	aWormholeCreator := WormholeCreator withBeginning: 7 andEnd: 10.
+	collectionOfCells := OrderedCollection new.
+
+	20 timesRepeat: [ collectionOfCells add: Cell new ].
+
+	aBoardCreator := BoardCreator
+		                 with: collectionOfCells
+		                 ofLaps: 3
+		                 withWormholeCreator: aWormholeCreator.
+
+	aGame := Game
+		         numberOfSpaceships: 2
+		         with: aBoardCreator
+		         playWith: aLoadedDie
+		         andGameDeck: gameDeck.
+	aGame
+		usePermanentCard: ReverseCard
+		toDoEffectFor: (collectionOfCells at: 5).
+	aGame moveSpaceship. "1 -> 5...5 "
+
+
+
+
+	result := Dictionary new.
+	result at: 1 put: (Position startGameWithCell: 5 andLap: 1).
+	result at: 2 put: (Position startGameWithCell: 1 andLap: 1).
+
+	self assert: aGame spaceships positionsOfSpaceships equals: result
+]

@@ -46,7 +46,7 @@ ReverseHyperJumpCell >> nextValue [
 	currentValue := collectionOfValues at: nextIndex
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'cells creation' }
 ReverseHyperJumpCell >> reverseCell [
 
 	^ HyperJumpCell

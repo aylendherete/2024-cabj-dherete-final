@@ -10,7 +10,7 @@ ReverseAtomicBombCell >> applyEffectTo: aSpaceship on: aGame [
 
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'cells creation' }
 ReverseAtomicBombCell >> reverseCell [
 ^AtomicBombCell .
 ]

@@ -55,12 +55,6 @@ BoardCreator >> initializeWith: collectionOfCells ofLaps: numberOfLaps withWormh
 	board := collectionOfCells.
 ]
 
-{ #category : 'as yet unclassified' }
-BoardCreator >> insertCell: aCell inPosition: aPosition [
-
-	board add:aCell beforeIndex: aPosition .
-]
-
 { #category : 'set and get' }
 BoardCreator >> laps [
 

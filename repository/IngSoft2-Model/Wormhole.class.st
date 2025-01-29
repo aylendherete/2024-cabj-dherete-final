@@ -37,7 +37,7 @@ Wormhole >> initializeIn: aPosition to: anotherPosition [
 	positionToGoTo := anotherPosition
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'cells creation' }
 Wormhole >> reverseCell [
 
 	^ ReverseWormhole in: cellPosition to: positionToGoTo

@@ -34,14 +34,12 @@ Game >> activateCard: aCard [
 	aActiveDeck activate: aCard
 ]
 
-{ #category : 'as yet unclassified' }
-Game >> activateReverseEffectOn: aCellAffected inPosition: aPosition [
- 	| reverseCell |
-	reverseCell:=aCellAffected reverseCell.
-	board
-		at: (board indexOf: aCellAffected)
-		put: reverseCell .
-	^reverseCell.
+{ #category : 'action' }
+Game >> activateReverseEffectOn: aCellAffected [ 
+	| reverseCell |
+	reverseCell := aCellAffected reverseCell.
+	board at: (board indexOf: aCellAffected) put: reverseCell.
+	^ reverseCell
 ]
 
 { #category : 'action' }
@@ -103,7 +101,7 @@ Game >> checkMoveIsPossible: throwResult for: aSpaceship [
 	^ aNumberOfMovements
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'action' }
 Game >> doReverseEffectWormholeOf: aSpaceship with: aNumberOfMovements [
 	aNumberOfMovements < 0
 				ifTrue: [
@@ -253,7 +251,7 @@ Game >> stopAlly: aSpaceshipId [
 	anAllyTankManager stopAlly: spaceshipOne
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'action' }
 Game >> takeOutOneRandomCardTo:aSpaceship [
 
 	(spaceshipsCardHands at: aSpaceship id) removeACard

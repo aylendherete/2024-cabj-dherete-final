@@ -26,7 +26,7 @@ ReverseHyperGravityCell >> initializeWithValueToMove: aValue [
 	value := aValue
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'cells creation' }
 ReverseHyperGravityCell >> reverseCell [
 
 	^ HyperGravityCell withValueToMove: value
