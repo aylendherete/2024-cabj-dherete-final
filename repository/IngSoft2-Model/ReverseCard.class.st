@@ -2,7 +2,9 @@ Class {
 	#name : 'ReverseCard',
 	#superclass : 'Card',
 	#instVars : [
-		'cellAffected'
+		'cellAffected',
+		'position',
+		'game'
 	],
 	#category : 'IngSoft2-Model',
 	#package : 'IngSoft2-Model'
@@ -11,7 +13,8 @@ Class {
 { #category : 'instance creation' }
 ReverseCard class >> toDoEffectFor: aCellAffected [
 
-	^ self new initializeToDoEffectFor: aCellAffected 
+	^ self new initializeToDoEffectFor:
+		  aCellAffected 
 ]
 
 { #category : 'comparing' }
@@ -19,15 +22,16 @@ ReverseCard >> = aCard [
 
 	| compareResult |
 	compareResult := self class == aCard class.
-	compareResult ifTrue: [ ^ cellAffected = aCard cell ].
+	compareResult ifTrue: [ ^ (cellAffected = aCard cell or: cellAffected= aCard cell reverseCell)].
 	^ compareResult
 ]
 
 { #category : 'accessing' }
 ReverseCard >> activateEffectOn: aGame forSpaceship: anId [
+	"cellAffected activateReverseEffect."
 
-
-	cellAffected activateReverseEffect.
+	game := aGame.
+	cellAffected:=aGame activateReverseEffectOn: cellAffected inPosition: position.
 
 	aGame activateCard: self
 ]
@@ -40,12 +44,11 @@ ReverseCard >> cell [
 { #category : 'action' }
 ReverseCard >> deactivate [
 
-	^ cellAffected activateReverseEffect.
-	
+	^ game activateReverseEffectOn: cellAffected inPosition: nil.
 ]
 
 { #category : 'initialization' }
-ReverseCard >> initializeToDoEffectFor: aCellAffected [ 
+ReverseCard >> initializeToDoEffectFor: aCellAffected [
 
 	cellAffected := aCellAffected .
 ]

@@ -8,5 +8,10 @@ Class {
 { #category : 'action' }
 CardDispenserCell >> applyEffectTo: aSpaceship on: aGame [
 
-	applyReverse ifTrue:[aGame takeOutOneRandomCardTo: aSpaceship ] ifFalse:[aGame giveOneCardTo: aSpaceship].
+	aGame giveOneCardTo: aSpaceship
+]
+
+{ #category : 'as yet unclassified' }
+CardDispenserCell >> reverseCell [ 
+^ReverseCardDispenserCell new.
 ]

@@ -886,7 +886,9 @@ GameCardTest >> test34WhenTheSpaceshipOneFallsOnABlackHoleCellAndActivatesARever
 
 	aGame moveSpaceship.
 	aGame moveSpaceship.
-	aGame usePermanentCard: ReverseCard toDoEffectFor:( collectionOfCells at:2).
+	aGame
+		usePermanentCard: ReverseCard
+		toDoEffectFor: (collectionOfCells at: 2).
 	aGame moveSpaceship.
 
 
@@ -1280,7 +1282,9 @@ GameCardTest >> test43test42WhenASpaceshipFallsInHyperJumpCellAndActivatesTheRev
 		         andGameDeck: gameDeck.
 
 	aGame moveSpaceship. "1 -> 13...9 "
-	aGame usePermanentCard: ReverseCard toDoEffectFor: (collectionOfCells at:9). "now the HyperJump cell moves backwards the spaceship with the parsec converter"
+	aGame
+		usePermanentCard: ReverseCard
+		toDoEffectFor:( collectionOfCells at: 9) . "now the HyperJump cell moves backwards the spaceship with the parsec converter"
 	aGame moveSpaceship. "1 ->9 lap 2-> 4 lap 2"
 
 

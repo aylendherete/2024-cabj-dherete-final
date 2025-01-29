@@ -8,5 +8,12 @@ Class {
 { #category : 'action' }
 BlackHoleCell >> applyEffectTo: aSpaceship on: aGame [
 
-	applyReverse ifTrue:[ aGame move: aSpaceship a: 4] ifFalse: [ aGame move: aSpaceship a: -4 ].
+	
+	 aGame move: aSpaceship a: -4 
+]
+
+{ #category : 'as yet unclassified' }
+BlackHoleCell >> reverseCell [
+
+	^ ReverseBlackHoleCell new.
 ]

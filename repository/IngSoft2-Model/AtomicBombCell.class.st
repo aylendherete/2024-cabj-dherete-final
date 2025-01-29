@@ -7,6 +7,11 @@ Class {
 
 { #category : 'action' }
 AtomicBombCell >> applyEffectTo: aSpaceship on: aGame [
-	applyReverse ifTrue: [  ] ifFalse:[
-	aGame resetSpaceshipsToCellOne]
+
+	aGame resetSpaceshipsToCellOne 
+]
+
+{ #category : 'as yet unclassified' }
+AtomicBombCell >> reverseCell [
+^ ReverseAtomicBombCell new.
 ]

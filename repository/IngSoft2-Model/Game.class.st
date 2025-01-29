@@ -34,6 +34,16 @@ Game >> activateCard: aCard [
 	aActiveDeck activate: aCard
 ]
 
+{ #category : 'as yet unclassified' }
+Game >> activateReverseEffectOn: aCellAffected inPosition: aPosition [
+ 	| reverseCell |
+	reverseCell:=aCellAffected reverseCell.
+	board
+		at: (board indexOf: aCellAffected)
+		put: reverseCell .
+	^reverseCell.
+]
+
 { #category : 'action' }
 Game >> ally: spaceshipIdOne with: spaceshipIdTwo ofCard: anAllyCard [ 
 	| spaceshipOne spaceshipTwo|

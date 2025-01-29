@@ -17,13 +17,16 @@ HyperGravityCell class >> withValueToMove: aValue [
 { #category : 'action' }
 HyperGravityCell >> applyEffectTo: aSpaceship on: aGame [
 
-	applyReverse
-		ifTrue: [ aGame applyReverseHyperGravityOn:aSpaceship withValue:value ]
-		ifFalse: [ aGame applyHyperGravityOn: aSpaceship withValue: value ]
+		 aGame applyHyperGravityOn: aSpaceship withValue: value 
 ]
 
 { #category : 'initialization' }
 HyperGravityCell >> initializeWithValueToMove: aValue [
 
 	value := aValue
+]
+
+{ #category : 'as yet unclassified' }
+HyperGravityCell >> reverseCell [ 
+	 ^ ReverseHyperGravityCell withValueToMove: value.
 ]

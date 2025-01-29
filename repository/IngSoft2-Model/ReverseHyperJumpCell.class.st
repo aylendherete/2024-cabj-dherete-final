@@ -1,5 +1,5 @@
 Class {
-	#name : 'HyperJumpCell',
+	#name : 'ReverseHyperJumpCell',
 	#superclass : 'Cell',
 	#instVars : [
 		'collectionOfValues',
@@ -12,23 +12,24 @@ Class {
 }
 
 { #category : 'instance creation' }
-HyperJumpCell class >> withConversor: aConversor andValues: aCollection [
+ReverseHyperJumpCell class >> withConversor: aConversor andValues: aCollection [
 
 	^ self new initializeWithConversor: aConversor andValues: aCollection
 ]
 
 { #category : 'action' }
-HyperJumpCell >> applyEffectTo: aSpaceship on: aGame [
+ReverseHyperJumpCell >> applyEffectTo: aSpaceship on: aGame [
 
 	| convertionOfNextValue |
 	convertionOfNextValue := conversor convert: currentValue.
 	previousValue := currentValue.
 	self nextValue.
-	aGame move: aSpaceship a: convertionOfNextValue 
+	aGame move: aSpaceship a: convertionOfNextValue negated.
+
 ]
 
 { #category : 'initialization' }
-HyperJumpCell >> initializeWithConversor: aConversor andValues: aCollection [
+ReverseHyperJumpCell >> initializeWithConversor: aConversor andValues: aCollection [
 
 	conversor := aConversor.
 	collectionOfValues := aCollection.
@@ -36,7 +37,7 @@ HyperJumpCell >> initializeWithConversor: aConversor andValues: aCollection [
 ]
 
 { #category : 'accessing' }
-HyperJumpCell >> nextValue [
+ReverseHyperJumpCell >> nextValue [
 
 	| currentIndex nextIndex |
 	currentIndex := collectionOfValues indexOf: currentValue.
@@ -46,9 +47,9 @@ HyperJumpCell >> nextValue [
 ]
 
 { #category : 'as yet unclassified' }
-HyperJumpCell >> reverseCell [
+ReverseHyperJumpCell >> reverseCell [
 
-	^ ReverseHyperJumpCell
+	^ HyperJumpCell
 		  withConversor: conversor
 		  andValues: collectionOfValues
 ]
