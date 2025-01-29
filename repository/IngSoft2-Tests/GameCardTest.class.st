@@ -1562,3 +1562,90 @@ GameCardTest >> test49WhenAReverseCardIsPlayedOnARegularCellThenWhenASpaceshipFa
 
 	self assert: aGame spaceships positionsOfSpaceships equals: result
 ]
+
+{ #category : 'spaceshipCardHand' }
+GameCardTest >> test50WhenAReverseIsActivatedTwiceOnTheSameAtomicBombCellThenDoesntAffects [
+
+	| aGame result |
+	aLoadedDie := LoadedDie of: #( 4 4 20 50 ).
+
+	aWormholeCreator := WormholeCreator withBeginning: 7 andEnd: 10.
+	collectionOfCells := OrderedCollection new.
+
+
+	20 timesRepeat: [ collectionOfCells add: Cell new ].
+	collectionOfCells at: 5 put: AtomicBombCell new.
+	aBoardCreator := BoardCreator
+		                 with: collectionOfCells
+		                 ofLaps: 3
+		                 withWormholeCreator: aWormholeCreator.
+
+	aGame := Game
+		         numberOfSpaceships: 2
+		         with: aBoardCreator
+		         playWith: aLoadedDie
+		         andGameDeck: gameDeck.
+	aGame
+		usePermanentCard: ReverseCard
+		toDoEffectFor: (collectionOfCells at: 5).
+	aGame
+		usePermanentCard: ReverseCard
+		toDoEffectFor: (collectionOfCells at: 5).
+	aGame moveSpaceship. "1 -> 5...5 "
+
+
+
+
+	result := Dictionary new.
+	result at: 1 put: (Position startGameWithCell: 5 andLap: 1).
+	result at: 2 put: (Position startGameWithCell: 1 andLap: 1).
+
+	self assert: aGame spaceships positionsOfSpaceships equals: result
+]
+
+{ #category : 'spaceshipCardHand' }
+GameCardTest >> test51WhenAReverseIsActivatedTwiceOnTheSameCardDispenserCellThenDoesntAffects [
+
+	| aGame result |
+	aLoadedDie := LoadedDie of: #( 4 5 20 50 ).
+
+	aWormholeCreator := WormholeCreator withBeginning: 2 andEnd: 3.
+	collectionOfCells := OrderedCollection new.
+
+
+	20 timesRepeat: [ collectionOfCells add: Cell new ].
+	collectionOfCells at: 5 put: CardDispenserCell new.
+	collectionOfCells at: 10 put: BlackHoleCell new.
+	aBoardCreator := BoardCreator
+		                 with: collectionOfCells
+		                 ofLaps: 3
+		                 withWormholeCreator: aWormholeCreator.
+	gameDeck := EffectManager
+		            manage: (OrderedCollection with: ReverseCard)
+		            withProbabilitiesDistribution: #( 100 ).
+
+	aGame := Game
+		         numberOfSpaceships: 1
+		         with: aBoardCreator
+		         playWith: aLoadedDie
+		         andGameDeck: gameDeck.
+	aGame
+		usePermanentCard: ReverseCard
+		toDoEffectFor: (collectionOfCells at: 5).
+	aGame
+		usePermanentCard: ReverseCard
+		toDoEffectFor: (collectionOfCells at: 5).
+	aGame moveSpaceship. "1 -> 5... and doesnt gain a card "
+	aGame
+		usePermanentCard: ReverseCard
+		toDoEffectFor: (collectionOfCells at: 10).
+	aGame moveSpaceship.
+
+
+
+
+	result := Dictionary new.
+	result at: 1 put: (Position startGameWithCell: 14 andLap: 1).
+
+	self assert: aGame spaceships positionsOfSpaceships equals: result
+]

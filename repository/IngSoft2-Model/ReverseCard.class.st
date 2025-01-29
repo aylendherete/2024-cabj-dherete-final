@@ -28,11 +28,11 @@ ReverseCard >> = arg1 [
 ]
 
 { #category : 'accessing' }
-ReverseCard >> activateEffectOn: arg1 forSpaceship: arg2 [
+ReverseCard >> activateEffectOn: aGame forSpaceship: aSpaceship [
 
-	game := arg1.
-	cellAffected := arg1 activateReverseEffectOn: cellAffected.
-	arg1 activateCard: self
+	game := aGame.
+	cellAffected := aGame activateReverseEffectOn: cellAffected.
+	aGame activateCard: self
 ]
 
 { #category : 'accessing' }
