@@ -1747,3 +1747,91 @@ GameCardTest >> test53WhenAReverseIsActivatedTwiceOnTheSameHyperJumpCellThenDoes
 
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
+
+{ #category : 'spaceshipCardHand' }
+GameCardTest >> test54WhenAReverseIsActivatedTwiceOnTheSameMoonwalkCellThenDoesntAffects [
+
+	| aGame result |
+	aLoadedDie := LoadedDie of: #( 4 4 10 ).
+
+	aWormholeCreator := WormholeCreator withBeginning: 2 andEnd: 3.
+	collectionOfCells := OrderedCollection new.
+
+	20 timesRepeat: [ collectionOfCells add: Cell new ].
+
+	collectionOfCells at: 15 put: (MoonWalkCell withValueToMove: 4).
+
+	aBoardCreator := BoardCreator
+		                 with: collectionOfCells
+		                 ofLaps: 3
+		                 withWormholeCreator: aWormholeCreator.
+	gameDeck := EffectManager
+		            manage: (OrderedCollection with: ReverseCard)
+		            withProbabilitiesDistribution: #( 100 ).
+
+	aGame := Game
+		         numberOfSpaceships: 2
+		         with: aBoardCreator
+		         playWith: aLoadedDie
+		         andGameDeck: gameDeck.
+	aGame
+		usePermanentCard: ReverseCard
+		toDoEffectFor: (collectionOfCells at: 15).
+	aGame moveSpaceship.
+	aGame
+		usePermanentCard: ReverseCard
+		toDoEffectFor: (collectionOfCells at: 15).
+	aGame moveSpaceship.
+	aGame moveSpaceship.
+
+
+	result := Dictionary new.
+	result at: 1 put: (Position startGameWithCell: 15 andLap: 1).
+	result at: 2 put: (Position startGameWithCell: 1 andLap: 1).
+
+
+	self assert: aGame spaceships positionsOfSpaceships equals: result
+]
+
+{ #category : 'spaceshipCardHand' }
+GameCardTest >> test55WhenAReverseIsActivatedTwiceOnTheSameWormholeCellThenDoesntAffects [
+
+	| aGame result |
+	aLoadedDie := LoadedDie of: #( 4 3 10 ).
+
+	aWormholeCreator := WormholeCreator withBeginning: 8 andEnd: 10.
+	collectionOfCells := OrderedCollection new.
+
+	20 timesRepeat: [ collectionOfCells add: Cell new ].
+
+	aBoardCreator := BoardCreator
+		                 with: collectionOfCells
+		                 ofLaps: 3
+		                 withWormholeCreator: aWormholeCreator.
+	gameDeck := EffectManager
+		            manage: (OrderedCollection with: ReverseCard)
+		            withProbabilitiesDistribution: #( 100 ).
+
+	aGame := Game
+		         numberOfSpaceships: 1
+		         with: aBoardCreator
+		         playWith: aLoadedDie
+		         andGameDeck: gameDeck.
+	aGame
+		usePermanentCard: ReverseCard
+		toDoEffectFor: (collectionOfCells at: 8).
+	aGame moveSpaceship.
+	aGame
+		usePermanentCard: ReverseCard
+		toDoEffectFor: (collectionOfCells at: 8).
+	aGame moveSpaceship.
+
+
+
+	result := Dictionary new.
+	result at: 1 put: (Position startGameWithCell: 10 andLap: 1).
+
+
+
+	self assert: aGame spaceships positionsOfSpaceships equals: result
+]
