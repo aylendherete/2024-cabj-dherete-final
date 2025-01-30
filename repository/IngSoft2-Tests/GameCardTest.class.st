@@ -1868,6 +1868,9 @@ GameCardTest >> test57WhenASpaceshipTryToPlayTheTimeMachineAndHasNotCompletedTwo
 
 	| aGame |
 	aLoadedDie := LoadedDie of: #( 10 8 ).
+	gameDeck := EffectManager
+		            manage: (OrderedCollection with: TimeMachineCard )
+		            withProbabilitiesDistribution: #( 100 ).
 
 	aGame := Game
 		         numberOfSpaceships: 1
@@ -1876,8 +1879,6 @@ GameCardTest >> test57WhenASpaceshipTryToPlayTheTimeMachineAndHasNotCompletedTwo
 		         andGameDeck: gameDeck.
 
 
-	aGame moveSpaceship.
-
 	self
 		should: [
 			aGame
@@ -1885,5 +1886,6 @@ GameCardTest >> test57WhenASpaceshipTryToPlayTheTimeMachineAndHasNotCompletedTwo
 				useInstantCard: TimeMachineCard
 				toDoEffectFor: 1 ]
 		raise: Error
-		withMessage: 'The card can´t be played if the spaceship has not completed 2 turns yet'
+		withMessage:
+		'The card cant be played if the spaceship has not completed 2 turns yet'
 ]
