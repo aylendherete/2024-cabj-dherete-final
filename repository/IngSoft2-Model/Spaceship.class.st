@@ -106,3 +106,8 @@ Spaceship >> resetToOne [
 	currentCell := objectPosition cell.
 	objectPosition updateCell: 1 - currentCell
 ]
+
+{ #category : 'as yet unclassified' }
+Spaceship >> restoreFuelToSecondLast [
+	aFuelTank restoreFuelToSecondLast.
+]

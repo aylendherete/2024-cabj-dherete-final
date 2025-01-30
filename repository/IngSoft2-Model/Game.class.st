@@ -115,8 +115,7 @@ Game >> doTimeMachineEffectToSpacehip: anSpaceshipid [
 
 	| spaceshipDetected |
 	spaceshipDetected := spaceships detectSpaceshipWithId: anSpaceshipid.
-	spaceshipDetected objectFuelTank loadFuel:
-		20 - spaceshipDetected objectFuelTank loadedWith
+	spaceshipDetected restoreFuelToSecondLast.
 ]
 
 { #category : 'action' }

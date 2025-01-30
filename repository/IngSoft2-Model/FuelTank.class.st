@@ -3,7 +3,8 @@ Class {
 	#superclass : 'Object',
 	#instVars : [
 		'fuel',
-		'capacity'
+		'capacity',
+		'lastFuels'
 	],
 	#category : 'IngSoft2-Model',
 	#package : 'IngSoft2-Model'
@@ -26,6 +27,7 @@ FuelTank >> initializeFullWith: anAmountOfFuel [
 
 	fuel := anAmountOfFuel.
 	capacity := anAmountOfFuel.
+	lastFuels:=OrderedCollection new.
 ]
 
 { #category : 'asserting' }
@@ -52,8 +54,13 @@ FuelTank >> reloadToCapacity [
 	fuel := capacity
 ]
 
+{ #category : 'as yet unclassified' }
+FuelTank >> restoreFuelToSecondLast [
+	fuel:= lastFuels first.
+]
+
 { #category : 'action' }
 FuelTank >> useFuel: anAmountOfFuel [
-
-	fuel := fuel - anAmountOfFuel.
+	lastFuels add:fuel.
+	fuel := fuel - anAmountOfFuel
 ]
