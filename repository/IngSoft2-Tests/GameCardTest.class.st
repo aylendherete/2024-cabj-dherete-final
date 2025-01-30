@@ -1649,3 +1649,101 @@ GameCardTest >> test51WhenAReverseIsActivatedTwiceOnTheSameCardDispenserCellThen
 
 	self assert: aGame spaceships positionsOfSpaceships equals: result
 ]
+
+{ #category : 'spaceshipCardHand' }
+GameCardTest >> test52WhenAReverseIsActivatedTwiceOnTheSameHyperGravityCellThenDoesntAffects [
+
+	| aGame result |
+	aLoadedDie := LoadedDie of: #( 3 3 4 4 7 3 40).
+
+	aWormholeCreator := WormholeCreator withBeginning: 2 andEnd: 3.
+	collectionOfCells := OrderedCollection new.
+
+
+	20 timesRepeat: [ collectionOfCells add: Cell new ].
+	collectionOfCells at: 8 put: (HyperGravityCell withValueToMove: 6).
+
+	aBoardCreator := BoardCreator
+		                 with: collectionOfCells
+		                 ofLaps: 3
+		                 withWormholeCreator: aWormholeCreator.
+	gameDeck := EffectManager
+		            manage: (OrderedCollection with: ReverseCard)
+		            withProbabilitiesDistribution: #( 100 ).
+
+	aGame := Game
+		         numberOfSpaceships: 2
+		         with: aBoardCreator
+		         playWith: aLoadedDie
+		         andGameDeck: gameDeck.
+	aGame
+		usePermanentCard: ReverseCard
+		toDoEffectFor: (collectionOfCells at: 8).
+	aGame moveSpaceship. "1->4"
+	aGame
+		usePermanentCard: ReverseCard
+		toDoEffectFor: (collectionOfCells at: 8).
+	aGame moveSpaceship. "2->4"
+	aGame moveSpaceship. "1 -> 8 "
+	aGame moveSpaceship. "2-> 8"
+	aGame moveSpaceship. "1 -> 15"
+	aGame moveSpaceship. "2 -> 8"
+
+	result := Dictionary new.
+	result at: 1 put: 15.
+	result at: 2 put: 8.
+
+	self assert: aGame spaceships cellsOfSpaceships equals: result.
+]
+
+{ #category : 'spaceshipCardHand' }
+GameCardTest >> test53WhenAReverseIsActivatedTwiceOnTheSameHyperJumpCellThenDoesntAffects [
+
+	| aGame result aConversor values |
+	aLoadedDie := LoadedDie of: #( 4 4 20 ).
+
+	aWormholeCreator := WormholeCreator withBeginning: 2 andEnd: 3.
+	collectionOfCells := OrderedCollection new.
+
+	aConversor := Conversor totalCells: 4 convertionValue: 8.
+	values := OrderedCollection
+		          with: (Parsecs ofValue: 10)
+		          with: (LightYear ofValue: 24)
+		          with: (Parsecs ofValue: 6)
+		          with: (Parsecs ofValue: 4).
+
+	20 timesRepeat: [ collectionOfCells add: Cell new ].
+
+	collectionOfCells
+		at: 9
+		put: (HyperJumpCell withConversor: aConversor andValues: values).
+
+	aBoardCreator := BoardCreator
+		                 with: collectionOfCells
+		                 ofLaps: 3
+		                 withWormholeCreator: aWormholeCreator.
+	gameDeck := EffectManager
+		            manage: (OrderedCollection with: ReverseCard)
+		            withProbabilitiesDistribution: #( 100 ).
+
+	aGame := Game
+		         numberOfSpaceships: 1
+		         with: aBoardCreator
+		         playWith: aLoadedDie
+		         andGameDeck: gameDeck.
+	aGame
+		usePermanentCard: ReverseCard
+		toDoEffectFor: (collectionOfCells at: 9).
+	aGame moveSpaceship.
+	aGame
+		usePermanentCard: ReverseCard
+		toDoEffectFor: (collectionOfCells at: 9).
+	aGame moveSpaceship.
+
+
+	result := Dictionary new.
+	result at: 1 put: 14.
+
+
+	self assert: aGame spaceships cellsOfSpaceships equals: result
+]
