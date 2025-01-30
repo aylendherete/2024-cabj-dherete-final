@@ -110,6 +110,15 @@ Game >> doReverseEffectWormholeOf: aSpaceship with: aNumberOfMovements [
 					self move: aSpaceship a: aNumberOfMovements - board size]
 ]
 
+{ #category : 'as yet unclassified' }
+Game >> doTimeMachineEffectToSpacehip: anSpaceshipid [
+
+	| spaceshipDetected |
+	spaceshipDetected := spaceships detectSpaceshipWithId: anSpaceshipid.
+	spaceshipDetected objectFuelTank loadFuel:
+		20 - spaceshipDetected objectFuelTank loadedWith
+]
+
 { #category : 'action' }
 Game >> giveOneCardTo: aSpaceship [
 

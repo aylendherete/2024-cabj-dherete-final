@@ -36,7 +36,8 @@ GameCardTest >> setUp [
 			RedoCard.
 			RepeatCard.
 			ReverseCard.
-			CancellationCard. }.
+			CancellationCard.
+			TimeMachineCard}.
 
 	gameDeck := LoadedEffectManager manage: array
 ]
@@ -1831,6 +1832,32 @@ GameCardTest >> test55WhenAReverseIsActivatedTwiceOnTheSameWormholeCellThenDoesn
 	result := Dictionary new.
 	result at: 1 put: (Position startGameWithCell: 10 andLap: 1).
 
+
+
+	self assert: aGame spaceships positionsOfSpaceships equals: result
+]
+
+{ #category : 'redo ' }
+GameCardTest >> test56WhenASpaceshipActivatesTheTimeMachineCardReloadsTheFuelAndCanMove [
+
+	| result aGame |
+	aLoadedDie := LoadedDie of: #( 10 8 ).
+
+	aGame := Game
+		         numberOfSpaceships: 1
+		         with: aBoardCreator
+		         playWith: aLoadedDie
+		         andGameDeck: gameDeck.
+
+
+
+	aGame moveSpaceship. "1->11"
+	aGame moveSpaceship. "1->19"
+	aGame spaceshipId: 1 useInstantCard: TimeMachineCard toDoEffectFor: 1.
+	aGame moveSpaceship. "1->29 lap 2 has more fuel so it can move"
+
+	result := Dictionary new.
+	result at: 1 put: (Position startGameWithCell: 29 andLap: 1).
 
 
 	self assert: aGame spaceships positionsOfSpaceships equals: result
