@@ -241,8 +241,8 @@ Game >> spaceshipId: anId useInstantCard: aCard toDoEffectFor: anObject [
 	| spaceshipCardHand cardInitialized |
 	cardInitialized := aCard toDoEffectFor: anObject.
 	spaceshipCardHand := spaceshipsCardHands at: anId.
-	(spaceshipCardHand use: aCard) ifTrue: [
-		cardInitialized activateEffectOn: self forSpaceship: anId ]
+	cardInitialized activateEffectOn: self forSpaceship: anId.	
+	spaceshipCardHand use: aCard.
 ]
 
 { #category : 'accessing' }

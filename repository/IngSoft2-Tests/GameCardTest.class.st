@@ -1862,3 +1862,28 @@ GameCardTest >> test56WhenASpaceshipActivatesTheTimeMachineCardReloadsTheFuelAnd
 
 	self assert: aGame spaceships positionsOfSpaceships equals: result
 ]
+
+{ #category : 'redo ' }
+GameCardTest >> test57WhenASpaceshipTryToPlayTheTimeMachineAndHasNotCompletedTwoTurnsThenThrowsAnError [
+
+	| aGame |
+	aLoadedDie := LoadedDie of: #( 10 8 ).
+
+	aGame := Game
+		         numberOfSpaceships: 1
+		         with: aBoardCreator
+		         playWith: aLoadedDie
+		         andGameDeck: gameDeck.
+
+
+	aGame moveSpaceship.
+
+	self
+		should: [
+			aGame
+				spaceshipId: 1
+				useInstantCard: TimeMachineCard
+				toDoEffectFor: 1 ]
+		raise: Error
+		withMessage: 'The card can´t be played if the spaceship has not completed 2 turns yet'
+]

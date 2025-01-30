@@ -56,7 +56,10 @@ FuelTank >> reloadToCapacity [
 
 { #category : 'as yet unclassified' }
 FuelTank >> restoreFuelToSecondLast [
-	fuel:= lastFuels first.
+
+	lastFuels size < 2 ifTrue: [
+		Error signal: 'The card can´t be played if the spaceship has not completed 2 turns yet' ].
+	fuel := lastFuels first
 ]
 
 { #category : 'action' }
