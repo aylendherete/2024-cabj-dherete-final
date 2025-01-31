@@ -1,9 +1,6 @@
 Class {
 	#name : 'TimeMachineCard',
-	#superclass : 'Object',
-	#instVars : [
-		'spaceshipAffected'
-	],
+	#superclass : 'Card',
 	#category : 'IngSoft2-Model',
 	#package : 'IngSoft2-Model'
 }
