@@ -1982,3 +1982,29 @@ GameCardTest >> test60WhenSpaceshipOnePlaysTwoTurnsAndSpaceshipTwoPlaysOneTurnAn
 		withMessage:
 		'The card cant be played if the spaceship has not completed 2 turns yet'
 ]
+
+{ #category : 'redo ' }
+GameCardTest >> test61WhenASpaceshipPlaysATimeMachineCardAndAfterPlaysARedoCardThenTheRedoCardDoTheSameEffectAsTimeMachine [
+
+	| result aGame |
+	aLoadedDie := LoadedDie of: #( 10 8 7 ).
+
+	aGame := Game
+		         numberOfSpaceships: 1
+		         with: aBoardCreator
+		         playWith: aLoadedDie
+		         andGameDeck: gameDeck.
+
+	aGame moveSpaceship. "1 20-10=0 ->11"
+	aGame moveSpaceship. "1 10-8=2 ->19"
+	aGame spaceshipId: 1 useInstantCard: TimeMachineCard toDoEffectFor: 1. "reload to 20"
+	aGame moveSpaceship. "1->20-7=13-> 26 "
+	aGame spaceshipId: 1 useInstantCard: RedoCard toDoEffectFor: 1. "reload to 10"
+	aGame moveSpaceship. "1->10-10=0 -> 36 6 lap 2"
+
+	result := Dictionary new.
+	result at: 1 put: (Position startGameWithCell: 6 andLap: 2).
+
+
+	self assert: aGame spaceships positionsOfSpaceships equals: result
+]
