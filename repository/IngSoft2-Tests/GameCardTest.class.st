@@ -26,7 +26,7 @@ GameCardTest >> setUp [
 
 	aBoardCreator := BoardCreator
 		                 with: collectionOfCells
-		                 ofLaps: 1
+		                 ofLaps: 5
 		                 withWormholeCreator: aWormholeCreator.
 	array := OrderedCollection new.
 	array addAll: {
@@ -37,7 +37,7 @@ GameCardTest >> setUp [
 			RepeatCard.
 			ReverseCard.
 			CancellationCard.
-			TimeMachineCard}.
+			TimeMachineCard }.
 
 	gameDeck := LoadedEffectManager manage: array
 ]
@@ -1888,4 +1888,31 @@ GameCardTest >> test57WhenASpaceshipTryToPlayTheTimeMachineAndHasNotCompletedTwo
 		raise: Error
 		withMessage:
 		'The card cant be played if the spaceship has not completed 2 turns yet'
+]
+
+{ #category : 'redo ' }
+GameCardTest >> test58WhenASpaceshipMakesMoreThanTwoMovementsThenDoesTheTimeMachineEffectWithTheLasTwoTurnsFuel [
+
+	| result aGame |
+	aLoadedDie := LoadedDie of: #( 10 8 30 50 ).
+
+	aGame := Game
+		         numberOfSpaceships: 1
+		         with: aBoardCreator
+		         playWith: aLoadedDie
+		         andGameDeck: gameDeck.
+
+
+
+	aGame moveSpaceship. "1->11" "60-10=50 fuel"
+	aGame moveSpaceship. "1->19" "50-8=42"
+	aGame moveSpaceship. "1->49 -> 19 lap 2 42-30=12"
+	aGame spaceshipId: 1 useInstantCard: TimeMachineCard toDoEffectFor: 1. "reload 50"
+	aGame moveSpaceship. "1->69 -> 9 lap 4"
+
+	result := Dictionary new.
+	result at: 1 put: (Position startGameWithCell: 9 andLap: 4).
+
+
+	self assert: aGame spaceships positionsOfSpaceships equals: result
 ]
