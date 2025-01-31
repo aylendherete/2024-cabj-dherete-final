@@ -1951,3 +1951,34 @@ GameCardTest >> test59WhenASpaceshipAllyWithOtherAndPlaysTimeMachineCardThenRese
 
 	self assert: aGame spaceships positionsOfSpaceships equals: result
 ]
+
+{ #category : 'redo ' }
+GameCardTest >> test60WhenSpaceshipOnePlaysTwoTurnsAndSpaceshipTwoPlaysOneTurnAndSpaceshipOneWantsToPlayTimeMachineCardThenThrowsAnError [
+
+	| aGame |
+	aLoadedDie := LoadedDie of: #( 10 7 5 6 3 15 10 15 10 ).
+
+	aGame := Game
+		         numberOfSpaceships: 2
+		         with: aBoardCreator
+		         playWith: aLoadedDie
+		         andGameDeck: gameDeck.
+
+
+
+	aGame usePermanentCard: AllyCard toDoEffectFor: 2.
+	aGame moveSpaceship. "(1) 30 -10 = 20 -> 11"
+	aGame moveSpaceship. "(2) 30-7= 23 -> 8"
+	aGame moveSpaceship. "(1) 20 -5 = 15 -> 16"
+
+
+	self
+		should: [
+			aGame
+				spaceshipId: 1
+				useInstantCard: TimeMachineCard
+				toDoEffectFor: 1 ]
+		raise: Error
+		withMessage:
+		'The card cant be played if the spaceship has not completed 2 turns yet'
+]
