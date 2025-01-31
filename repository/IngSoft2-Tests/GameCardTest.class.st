@@ -1894,7 +1894,7 @@ GameCardTest >> test57WhenASpaceshipTryToPlayTheTimeMachineAndHasNotCompletedTwo
 GameCardTest >> test58WhenASpaceshipMakesMoreThanTwoMovementsThenDoesTheTimeMachineEffectWithTheLasTwoTurnsFuel [
 
 	| result aGame |
-	aLoadedDie := LoadedDie of: #( 10 8 30 50 ).
+	aLoadedDie := LoadedDie of: #( 10 8 30 25 25 ).
 
 	aGame := Game
 		         numberOfSpaceships: 1
@@ -1908,10 +1908,45 @@ GameCardTest >> test58WhenASpaceshipMakesMoreThanTwoMovementsThenDoesTheTimeMach
 	aGame moveSpaceship. "1->19" "50-8=42"
 	aGame moveSpaceship. "1->49 -> 19 lap 2 42-30=12"
 	aGame spaceshipId: 1 useInstantCard: TimeMachineCard toDoEffectFor: 1. "reload 50"
+	aGame moveSpaceship.
 	aGame moveSpaceship. "1->69 -> 9 lap 4"
 
 	result := Dictionary new.
 	result at: 1 put: (Position startGameWithCell: 9 andLap: 4).
+
+
+	self assert: aGame spaceships positionsOfSpaceships equals: result
+]
+
+{ #category : 'redo ' }
+GameCardTest >> test59WhenASpaceshipAllyWithOtherAndPlaysTimeMachineCardThenResetsTheFuelOfBothSpaceships [
+
+	| result aGame |
+	aLoadedDie := LoadedDie of: #( 10 7 5 6 3 15 10 15 10 ).
+
+	aGame := Game
+		         numberOfSpaceships: 2
+		         with: aBoardCreator
+		         playWith: aLoadedDie
+		         andGameDeck: gameDeck.
+
+
+
+	aGame usePermanentCard: AllyCard toDoEffectFor: 2.
+	aGame moveSpaceship. "(1) 30 -10 = 20 -> 11"
+	aGame moveSpaceship. "(2) 30-7= 23 -> 8"
+	aGame moveSpaceship. "(1) 20 -5 = 15 -> 16"
+	aGame moveSpaceship. "(2) 23 -6 = 17 -> 14"
+	aGame moveSpaceship. "(1) 15 -3 = 12 -> 19"
+	aGame spaceshipId: 1 useInstantCard: TimeMachineCard toDoEffectFor: 1. "reloads to (1)->20 (2)->30"
+	aGame moveSpaceship. "(2) 30 -15 = 15 -> 29"
+	aGame moveSpaceship. "(1) 20 -10 = 12 -> 29"
+	aGame moveSpaceship. "(2) 15 -15 = 0 -> 14 lap 2"
+	aGame moveSpaceship. "(1) 10 -10 = 0 -> 9 lap 2"
+
+	result := Dictionary new.
+	result at: 1 put: (Position startGameWithCell: 9 andLap: 2).
+	result at: 2 put: (Position startGameWithCell: 14 andLap: 2).
 
 
 	self assert: aGame spaceships positionsOfSpaceships equals: result

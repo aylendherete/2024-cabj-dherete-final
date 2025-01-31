@@ -115,7 +115,8 @@ Game >> doTimeMachineEffectToSpacehip: anSpaceshipid [
 
 	| spaceshipDetected |
 	spaceshipDetected := spaceships detectSpaceshipWithId: anSpaceshipid.
-	spaceshipDetected restoreFuelToSecondLast.
+	anAllyTankManager restoreFuelToSecondLastForAlly: spaceshipDetected .
+	spaceshipDetected restoreFuelToSecondLast
 ]
 
 { #category : 'action' }
