@@ -1589,16 +1589,17 @@ GameCardTest >> test50WhenAReverseIsActivatedTwiceOnTheSameAtomicBombCellThenDoe
 	aGame
 		usePermanentCard: ReverseCard
 		toDoEffectFor: (collectionOfCells at: 5).
+	aGame moveSpaceship. "1 -> 5...5 "
 	aGame
 		usePermanentCard: ReverseCard
 		toDoEffectFor: (collectionOfCells at: 5).
-	aGame moveSpaceship. "1 -> 5...5 "
+	aGame moveSpaceship. "2-> 5...1 "
 
 
 
 
 	result := Dictionary new.
-	result at: 1 put: (Position startGameWithCell: 5 andLap: 1).
+	result at: 1 put: (Position startGameWithCell: 1 andLap: 1).
 	result at: 2 put: (Position startGameWithCell: 1 andLap: 1).
 
 	self assert: aGame spaceships positionsOfSpaceships equals: result

@@ -24,7 +24,7 @@ Wormhole >> applyEffectTo: aSpaceship on: aGame [
 	aGame move: aSpaceship a: numberOfMovements 
 ]
 
-{ #category : 'accessing' }
+{ #category : 'as yet unclassified' }
 Wormhole >> cell [
 
 	^ cellPosition

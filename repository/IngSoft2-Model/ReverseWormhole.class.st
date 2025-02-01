@@ -25,12 +25,6 @@ ReverseWormhole >> applyEffectTo: aSpaceship on: aGame [
 	aGame doReverseEffectWormholeOf: aSpaceship with: numberOfMovements
 ]
 
-{ #category : 'accessing' }
-ReverseWormhole >> cell [
-
-	^ cellPosition
-]
-
 { #category : 'initialization' }
 ReverseWormhole >> initializeIn: aPosition to: anotherPosition [
 
