@@ -60,7 +60,7 @@ FuelTank >> reloadToCapacity [
 	fuel := capacity
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'action' }
 FuelTank >> restoreFuelToSecondLast [
 
 	lastFuels size < 2 ifTrue: [

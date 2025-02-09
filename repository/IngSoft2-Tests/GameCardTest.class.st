@@ -857,7 +857,7 @@ GameCardTest >> test33GamePlaysWithDeckWithProbabilisticDistributionThenSpaceshi
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
 
-{ #category : 'spaceshipCardHand' }
+{ #category : 'reverse card' }
 GameCardTest >> test34WhenTheSpaceshipOneFallsOnABlackHoleCellAndActivatesAReverseCardThenWhenTheSpaceshipTwoFallsInThatCellThenMovesFourStepsForward [
 
 	| result aGame |
@@ -900,7 +900,7 @@ GameCardTest >> test34WhenTheSpaceshipOneFallsOnABlackHoleCellAndActivatesARever
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
 
-{ #category : 'spaceshipCardHand' }
+{ #category : 'reverse card' }
 GameCardTest >> test35WhenAReverseCardIsActivatedInTheAtomicBombThenWhenASpaceshipFallsInThatCellThenDoesntResetTheCells [
 
 	| result aGame |
@@ -941,7 +941,7 @@ GameCardTest >> test35WhenAReverseCardIsActivatedInTheAtomicBombThenWhenASpacesh
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
 
-{ #category : 'spaceshipCardHand' }
+{ #category : 'reverse card' }
 GameCardTest >> test36WhenAReverseCardIsActivatedOnAMoonWalkCellAndAfterTheSpaceshipOneFallsInThatOneThemTheOtherSpaceshipsMoveForwardInsteadBackwards [
 
 	| result aGame |
@@ -982,7 +982,7 @@ GameCardTest >> test36WhenAReverseCardIsActivatedOnAMoonWalkCellAndAfterTheSpace
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
 
-{ #category : 'spaceshipCardHand' }
+{ #category : 'reverse card' }
 GameCardTest >> test37WhenAReverseCardIsActivatedOnACardDispenserCellThenItTakesOutOneCardAndTheSpaceshipCantDoTheEffectOfTheCardTaken [
 
 	| result aGame |
@@ -1034,7 +1034,7 @@ GameCardTest >> test37WhenAReverseCardIsActivatedOnACardDispenserCellThenItTakes
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
 
-{ #category : 'spaceshipCardHand' }
+{ #category : 'reverse card' }
 GameCardTest >> test38WhenASpaceshipFallsInTheEndOfTheWormholeAndActivatesTheReverseCardThenWhenFallsAgainGoesToTheBeginningOfTheWormholeOnTheNextLap [
 
 	| aGame result |
@@ -1074,7 +1074,7 @@ GameCardTest >> test38WhenASpaceshipFallsInTheEndOfTheWormholeAndActivatesTheRev
 	self assert: aGame spaceships positionsOfSpaceships equals: result
 ]
 
-{ #category : 'spaceshipCardHand' }
+{ #category : 'reverse card' }
 GameCardTest >> test39WhenASpaceshipFallsInTheBeginningOfTheWormholeAndActivatesTheReverseCardThenWhenFallsAgainGoesToTheEndOfTheWormholeOnThePreviousLap [
 
 	| aGame result |
@@ -1116,7 +1116,7 @@ GameCardTest >> test39WhenASpaceshipFallsInTheBeginningOfTheWormholeAndActivates
 	self assert: aGame spaceships positionsOfSpaceships equals: result
 ]
 
-{ #category : 'spaceshipCardHand' }
+{ #category : 'reverse card' }
 GameCardTest >> test40WhenASpaceshipFallsInTheBeginningOfTheWormholeAndActivatesTheReverseCardThenWhenFallsAgainGoesToTheStartBecauseSpaceshipWasInLapNumberOne [
 
 	| aGame result |
@@ -1159,7 +1159,7 @@ GameCardTest >> test40WhenASpaceshipFallsInTheBeginningOfTheWormholeAndActivates
 	self assert: aGame spaceships positionsOfSpaceships equals: result
 ]
 
-{ #category : 'spaceshipCardHand' }
+{ #category : 'reverse card' }
 GameCardTest >> test41WhenASpaceshipFallsInHyperGravityCellAndActivatesTheReverseCardAndThrowsAValueLessThanTheHyperGravityThenMovesBackward [
 
 	| aGame result |
@@ -1201,7 +1201,7 @@ GameCardTest >> test41WhenASpaceshipFallsInHyperGravityCellAndActivatesTheRevers
 	self assert: aGame spaceships positionsOfSpaceships equals: result
 ]
 
-{ #category : 'spaceshipCardHand' }
+{ #category : 'reverse card' }
 GameCardTest >> test42WhenASpaceshipFallsInHyperGravityCellAndActivatesTheReverseCardAndThrowsAValueGreaterThanTheHyperGravityThenMovesForward [
 
 	| aGame result |
@@ -1243,7 +1243,7 @@ GameCardTest >> test42WhenASpaceshipFallsInHyperGravityCellAndActivatesTheRevers
 	self assert: aGame spaceships positionsOfSpaceships equals: result
 ]
 
-{ #category : 'spaceshipCardHand' }
+{ #category : 'reverse card' }
 GameCardTest >> test43test42WhenASpaceshipFallsInHyperJumpCellAndActivatesTheReverseCardThenWhenFallsAgainMovesBackwardWithTheConvertedValue [
 
 	| aGame result aConversor values |
@@ -1295,7 +1295,7 @@ GameCardTest >> test43test42WhenASpaceshipFallsInHyperJumpCellAndActivatesTheRev
 	self assert: aGame spaceships positionsOfSpaceships equals: result
 ]
 
-{ #category : 'spaceshipCardHand' }
+{ #category : 'reverse card' }
 GameCardTest >> test44FirstSpaceshipActivatesReverseCardOnHyperJumpCellAndBothSpaceshipsFallsOnHyperJumpCellThenFirstMovesLessParsecsThanSecond [
 
 	| aGame result aConversor values |
@@ -1348,7 +1348,7 @@ GameCardTest >> test44FirstSpaceshipActivatesReverseCardOnHyperJumpCellAndBothSp
 	self assert: aGame spaceships positionsOfSpaceships equals: result
 ]
 
-{ #category : 'spaceshipCardHand' }
+{ #category : 'reverse card' }
 GameCardTest >> test45WhenASpaceshipCancellsTheReverseCardThenTheCellHasTheOriginalEffect [
 
 	| aGame result |
@@ -1392,7 +1392,7 @@ GameCardTest >> test45WhenASpaceshipCancellsTheReverseCardThenTheCellHasTheOrigi
 	self assert: aGame spaceships positionsOfSpaceships equals: result
 ]
 
-{ #category : 'spaceshipCardHand' }
+{ #category : 'reverse card' }
 GameCardTest >> test46WhenAReverseCardIsCancelledThenItHasToCancellTheExactlyCardOfTheExactCell [
 
 	| aGame result |
@@ -1443,7 +1443,7 @@ GameCardTest >> test46WhenAReverseCardIsCancelledThenItHasToCancellTheExactlyCar
 	self assert: aGame spaceships positionsOfSpaceships equals: result
 ]
 
-{ #category : 'spaceshipCardHand' }
+{ #category : 'reverse card' }
 GameCardTest >> test47WhenAReverseCardIsPlayedOnABlackHoleCellAndThenAARedoCardIsPlayedOnTheSameCellThenTheCellHasTheOriginalEffect [
 
 	| aGame result |
@@ -1487,7 +1487,7 @@ GameCardTest >> test47WhenAReverseCardIsPlayedOnABlackHoleCellAndThenAARedoCardI
 	self assert: aGame spaceships positionsOfSpaceships equals: result
 ]
 
-{ #category : 'spaceshipCardHand' }
+{ #category : 'reverse card' }
 GameCardTest >> test48WhenAReverseCardIsPlayedOnABlackHoleCellAndTheSpaceshipTwoFallsInThatCellThenWhenTheRepeatCardIsPlayedTheSpaceshipMovesForward [
 
 	| aGame result |
@@ -1528,7 +1528,7 @@ GameCardTest >> test48WhenAReverseCardIsPlayedOnABlackHoleCellAndTheSpaceshipTwo
 	self assert: aGame spaceships positionsOfSpaceships equals: result
 ]
 
-{ #category : 'spaceshipCardHand' }
+{ #category : 'reverse card' }
 GameCardTest >> test49WhenAReverseCardIsPlayedOnARegularCellThenWhenASpaceshipFallsInThatCellDoesntDoAnEffect [
 
 	| aGame result |
@@ -1564,7 +1564,7 @@ GameCardTest >> test49WhenAReverseCardIsPlayedOnARegularCellThenWhenASpaceshipFa
 	self assert: aGame spaceships positionsOfSpaceships equals: result
 ]
 
-{ #category : 'spaceshipCardHand' }
+{ #category : 'reverse card' }
 GameCardTest >> test50WhenAReverseIsActivatedTwiceOnTheSameAtomicBombCellThenDoesntAffects [
 
 	| aGame result |
@@ -1605,7 +1605,7 @@ GameCardTest >> test50WhenAReverseIsActivatedTwiceOnTheSameAtomicBombCellThenDoe
 	self assert: aGame spaceships positionsOfSpaceships equals: result
 ]
 
-{ #category : 'spaceshipCardHand' }
+{ #category : 'reverse card' }
 GameCardTest >> test51WhenAReverseIsActivatedTwiceOnTheSameCardDispenserCellThenDoesntAffects [
 
 	| aGame result |
@@ -1652,7 +1652,7 @@ GameCardTest >> test51WhenAReverseIsActivatedTwiceOnTheSameCardDispenserCellThen
 	self assert: aGame spaceships positionsOfSpaceships equals: result
 ]
 
-{ #category : 'spaceshipCardHand' }
+{ #category : 'reverse card' }
 GameCardTest >> test52WhenAReverseIsActivatedTwiceOnTheSameHyperGravityCellThenDoesntAffects [
 
 	| aGame result |
@@ -1698,7 +1698,7 @@ GameCardTest >> test52WhenAReverseIsActivatedTwiceOnTheSameHyperGravityCellThenD
 	self assert: aGame spaceships cellsOfSpaceships equals: result.
 ]
 
-{ #category : 'spaceshipCardHand' }
+{ #category : 'reverse card' }
 GameCardTest >> test53WhenAReverseIsActivatedTwiceOnTheSameHyperJumpCellThenDoesntAffects [
 
 	| aGame result aConversor values |
@@ -1750,7 +1750,7 @@ GameCardTest >> test53WhenAReverseIsActivatedTwiceOnTheSameHyperJumpCellThenDoes
 	self assert: aGame spaceships cellsOfSpaceships equals: result
 ]
 
-{ #category : 'spaceshipCardHand' }
+{ #category : 'reverse card' }
 GameCardTest >> test54WhenAReverseIsActivatedTwiceOnTheSameMoonwalkCellThenDoesntAffects [
 
 	| aGame result |
@@ -1795,7 +1795,7 @@ GameCardTest >> test54WhenAReverseIsActivatedTwiceOnTheSameMoonwalkCellThenDoesn
 	self assert: aGame spaceships positionsOfSpaceships equals: result
 ]
 
-{ #category : 'spaceshipCardHand' }
+{ #category : 'reverse card' }
 GameCardTest >> test55WhenAReverseIsActivatedTwiceOnTheSameWormholeCellThenDoesntAffects [
 
 	| aGame result |
@@ -1838,7 +1838,7 @@ GameCardTest >> test55WhenAReverseIsActivatedTwiceOnTheSameWormholeCellThenDoesn
 	self assert: aGame spaceships positionsOfSpaceships equals: result
 ]
 
-{ #category : 'redo ' }
+{ #category : 'time machine card' }
 GameCardTest >> test56WhenASpaceshipActivatesTheTimeMachineCardReloadsTheFuelAndCanMove [
 
 	| result aGame |
@@ -1864,7 +1864,7 @@ GameCardTest >> test56WhenASpaceshipActivatesTheTimeMachineCardReloadsTheFuelAnd
 	self assert: aGame spaceships positionsOfSpaceships equals: result
 ]
 
-{ #category : 'redo ' }
+{ #category : 'time machine card' }
 GameCardTest >> test57WhenASpaceshipTryToPlayTheTimeMachineAndHasNotCompletedTwoTurnsThenThrowsAnError [
 
 	| aGame |
@@ -1891,7 +1891,7 @@ GameCardTest >> test57WhenASpaceshipTryToPlayTheTimeMachineAndHasNotCompletedTwo
 		'The card cant be played if the spaceship has not completed 2 turns yet'
 ]
 
-{ #category : 'redo ' }
+{ #category : 'time machine card' }
 GameCardTest >> test58WhenASpaceshipMakesMoreThanTwoMovementsThenDoesTheTimeMachineEffectWithTheLasTwoTurnsFuel [
 
 	| result aGame |
@@ -1919,7 +1919,7 @@ GameCardTest >> test58WhenASpaceshipMakesMoreThanTwoMovementsThenDoesTheTimeMach
 	self assert: aGame spaceships positionsOfSpaceships equals: result
 ]
 
-{ #category : 'redo ' }
+{ #category : 'time machine card' }
 GameCardTest >> test59WhenASpaceshipAllyWithOtherAndPlaysTimeMachineCardThenResetsTheFuelOfBothSpaceships [
 
 	| result aGame |
@@ -1950,7 +1950,7 @@ GameCardTest >> test59WhenASpaceshipAllyWithOtherAndPlaysTimeMachineCardThenRese
 	self assert: aGame spaceships positionsOfSpaceships equals: result
 ]
 
-{ #category : 'redo ' }
+{ #category : 'time machine card' }
 GameCardTest >> test60WhenSpaceshipOnePlaysTwoTurnsAndSpaceshipTwoPlaysOneTurnAndSpaceshipOneWantsToPlayTimeMachineCardThenThrowsAnError [
 
 	| aGame |
@@ -1981,7 +1981,7 @@ GameCardTest >> test60WhenSpaceshipOnePlaysTwoTurnsAndSpaceshipTwoPlaysOneTurnAn
 		'The card cant be played if the spaceship has not completed 2 turns yet'
 ]
 
-{ #category : 'redo ' }
+{ #category : 'time machine card' }
 GameCardTest >> test61WhenASpaceshipPlaysATimeMachineCardAndAfterPlaysARedoCardThenTheRedoCardDoTheSameEffectAsTimeMachine [
 
 	| result aGame |

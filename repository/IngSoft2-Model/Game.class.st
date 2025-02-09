@@ -110,7 +110,7 @@ Game >> doReverseEffectWormholeOf: aSpaceship with: aNumberOfMovements [
 					self move: aSpaceship a: aNumberOfMovements - board size]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'action' }
 Game >> doTimeMachineEffectToSpacehip: anSpaceshipid [
 
 	| spaceshipDetected |
