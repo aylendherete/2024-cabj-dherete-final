@@ -18,12 +18,6 @@ TimeMachineCard >> activateEffectOn: aGame forSpaceship: anId [
 
 ]
 
-{ #category : 'effect' }
-TimeMachineCard >> applyEffectOn: throwResult for: spaceshipId [
-
-	^ throwResult
-]
-
 { #category : 'initialization' }
 TimeMachineCard >> initializeToDoEffectFor: aSpaceshipId [
 

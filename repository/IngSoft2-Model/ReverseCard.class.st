@@ -17,14 +17,13 @@ ReverseCard class >> toDoEffectFor: aCellAffected [
 ]
 
 { #category : 'comparing' }
-ReverseCard >> = arg1 [
+ReverseCard >> = aCard [
 
-	| tmp1 |
-	tmp1 := self class == arg1 class.
-	tmp1 ifTrue: [
-		^ cellAffected = arg1 cell or: cellAffected = arg1 cell reverseCell ].
-	nil.
-	^ tmp1
+	| compareResult |
+	compareResult := self class == aCard class.
+	compareResult ifTrue: [
+		^ cellAffected = aCard cell or: cellAffected = aCard cell reverseCell ].
+	^ compareResult
 ]
 
 { #category : 'accessing' }

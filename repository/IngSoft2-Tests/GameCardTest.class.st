@@ -1895,7 +1895,7 @@ GameCardTest >> test57WhenASpaceshipTryToPlayTheTimeMachineAndHasNotCompletedTwo
 GameCardTest >> test58WhenASpaceshipMakesMoreThanTwoMovementsThenDoesTheTimeMachineEffectWithTheLasTwoTurnsFuel [
 
 	| result aGame |
-	aLoadedDie := LoadedDie of: #( 10 3 3 11).
+	aLoadedDie := LoadedDie of: #( 10 3 3 5 6 12).
 
 	aGame := Game
 		         numberOfSpaceships: 1
@@ -1909,6 +1909,7 @@ GameCardTest >> test58WhenASpaceshipMakesMoreThanTwoMovementsThenDoesTheTimeMach
 	aGame moveSpaceship. "1->14" "12-3=9"
 	aGame moveSpaceship. "1->17" "9-3=6"
 	aGame spaceshipId: 1 useInstantCard: TimeMachineCard toDoEffectFor: 1. "reload 12"
+	aGame moveSpaceship.
 	aGame moveSpaceship. "1->28"
 
 	result := Dictionary new.
