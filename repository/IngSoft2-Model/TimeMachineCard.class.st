@@ -13,8 +13,9 @@ TimeMachineCard class >> toDoEffectFor: aSpaceshipId [
 
 { #category : 'accessing' }
 TimeMachineCard >> activateEffectOn: aGame forSpaceship: anId [
+	aGame activateCard: self.
 	aGame doTimeMachineEffectToSpacehip: anId.
-	aGame activateCard: self
+
 ]
 
 { #category : 'effect' }

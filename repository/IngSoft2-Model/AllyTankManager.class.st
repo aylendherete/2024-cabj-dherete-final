@@ -37,14 +37,14 @@ AllyTankManager >> initializeManage: aCollectionOfSpaceships [
 	dictionaryOfAllys := Dictionary new
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'action' }
 AllyTankManager >> restoreFuelToSecondLastForAlly: aSpaceship [
 
 	| tankAllySpaceship |
 	(dictionaryOfAllys includesKey: aSpaceship) ifTrue: [
 		tankAllySpaceship := (fuelTanks at:
-			                     (dictionaryOfAllys at: aSpaceship) id)
-				                     restoreFuelToSecondLast ]
+			                      ((dictionaryOfAllys at: aSpaceship) id))
+			                     restoreFuelToSecondLast ]
 ]
 
 { #category : 'action' }

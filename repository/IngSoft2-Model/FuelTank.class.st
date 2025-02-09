@@ -22,12 +22,18 @@ FuelTank >> changeCapacity: aNumber [
 	capacity := capacity + aNumber
 ]
 
+{ #category : 'action' }
+FuelTank >> consumeFuelAsReward [
+
+	fuel := fuel - 1.
+]
+
 { #category : 'initialization' }
 FuelTank >> initializeFullWith: anAmountOfFuel [
 
 	fuel := anAmountOfFuel.
 	capacity := anAmountOfFuel.
-	lastFuels:=OrderedCollection new.
+	lastFuels := OrderedCollection new.
 ]
 
 { #category : 'asserting' }
@@ -60,11 +66,13 @@ FuelTank >> restoreFuelToSecondLast [
 	lastFuels size < 2 ifTrue: [
 		Error signal:
 			'The card cant be played if the spaceship has not completed 2 turns yet' ].
-	fuel := lastFuels first
+	fuel := lastFuels at: (lastFuels size - 1)
 ]
 
 { #category : 'action' }
 FuelTank >> useFuel: anAmountOfFuel [
-	lastFuels add:fuel.
-	fuel := fuel - anAmountOfFuel
+
+	lastFuels add: fuel.
+	fuel := fuel - anAmountOfFuel.
+
 ]

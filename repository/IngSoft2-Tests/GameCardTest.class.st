@@ -1895,7 +1895,7 @@ GameCardTest >> test57WhenASpaceshipTryToPlayTheTimeMachineAndHasNotCompletedTwo
 GameCardTest >> test58WhenASpaceshipMakesMoreThanTwoMovementsThenDoesTheTimeMachineEffectWithTheLasTwoTurnsFuel [
 
 	| result aGame |
-	aLoadedDie := LoadedDie of: #( 10 8 30 25 25 ).
+	aLoadedDie := LoadedDie of: #( 10 3 3 11).
 
 	aGame := Game
 		         numberOfSpaceships: 1
@@ -1905,15 +1905,14 @@ GameCardTest >> test58WhenASpaceshipMakesMoreThanTwoMovementsThenDoesTheTimeMach
 
 
 
-	aGame moveSpaceship. "1->11" "60-10=50 fuel"
-	aGame moveSpaceship. "1->19" "50-8=42"
-	aGame moveSpaceship. "1->49 -> 19 lap 2 42-30=12"
-	aGame spaceshipId: 1 useInstantCard: TimeMachineCard toDoEffectFor: 1. "reload 50"
-	aGame moveSpaceship.
-	aGame moveSpaceship. "1->69 -> 9 lap 4"
+	aGame moveSpaceship. "1->11" "22-10=12 fuel"
+	aGame moveSpaceship. "1->14" "12-3=9"
+	aGame moveSpaceship. "1->17" "9-3=6"
+	aGame spaceshipId: 1 useInstantCard: TimeMachineCard toDoEffectFor: 1. "reload 12"
+	aGame moveSpaceship. "1->28"
 
 	result := Dictionary new.
-	result at: 1 put: (Position startGameWithCell: 9 andLap: 4).
+	result at: 1 put: (Position startGameWithCell: 28 andLap: 1).
 
 
 	self assert: aGame spaceships positionsOfSpaceships equals: result
@@ -1923,15 +1922,13 @@ GameCardTest >> test58WhenASpaceshipMakesMoreThanTwoMovementsThenDoesTheTimeMach
 GameCardTest >> test59WhenASpaceshipAllyWithOtherAndPlaysTimeMachineCardThenResetsTheFuelOfBothSpaceships [
 
 	| result aGame |
-	aLoadedDie := LoadedDie of: #( 10 7 5 6 3 15 10 15 10 ).
+	aLoadedDie := LoadedDie of: #( 10 7 5 6 3 15 10 14 9 ).
 
 	aGame := Game
 		         numberOfSpaceships: 2
 		         with: aBoardCreator
 		         playWith: aLoadedDie
 		         andGameDeck: gameDeck.
-
-
 
 	aGame usePermanentCard: AllyCard toDoEffectFor: 2.
 	aGame moveSpaceship. "(1) 30 -10 = 20 -> 11"
@@ -1942,13 +1939,12 @@ GameCardTest >> test59WhenASpaceshipAllyWithOtherAndPlaysTimeMachineCardThenRese
 	aGame spaceshipId: 1 useInstantCard: TimeMachineCard toDoEffectFor: 1. "reloads to (1)->20 (2)->30"
 	aGame moveSpaceship. "(2) 30 -15 = 15 -> 29"
 	aGame moveSpaceship. "(1) 20 -10 = 12 -> 29"
-	aGame moveSpaceship. "(2) 15 -15 = 0 -> 14 lap 2"
-	aGame moveSpaceship. "(1) 10 -10 = 0 -> 9 lap 2"
+	aGame moveSpaceship. "(2) 15 -14 = 1 -> 13 lap 2"
+	aGame moveSpaceship. "(1) 10 -0 = 1 -> 8 lap 2"
 
 	result := Dictionary new.
-	result at: 1 put: (Position startGameWithCell: 9 andLap: 2).
-	result at: 2 put: (Position startGameWithCell: 14 andLap: 2).
-
+	result at: 1 put: (Position startGameWithCell: 8 andLap: 2).
+	result at: 2 put: (Position startGameWithCell: 13 andLap: 2).
 
 	self assert: aGame spaceships positionsOfSpaceships equals: result
 ]
@@ -1988,7 +1984,7 @@ GameCardTest >> test60WhenSpaceshipOnePlaysTwoTurnsAndSpaceshipTwoPlaysOneTurnAn
 GameCardTest >> test61WhenASpaceshipPlaysATimeMachineCardAndAfterPlaysARedoCardThenTheRedoCardDoTheSameEffectAsTimeMachine [
 
 	| result aGame |
-	aLoadedDie := LoadedDie of: #( 10 8 7 ).
+	aLoadedDie := LoadedDie of: #( 9 9 7 10 10 15 ).
 
 	aGame := Game
 		         numberOfSpaceships: 1
@@ -1996,15 +1992,16 @@ GameCardTest >> test61WhenASpaceshipPlaysATimeMachineCardAndAfterPlaysARedoCardT
 		         playWith: aLoadedDie
 		         andGameDeck: gameDeck.
 
-	aGame moveSpaceship. "1 20-10=0 ->11"
-	aGame moveSpaceship. "1 10-8=2 ->19"
-	aGame spaceshipId: 1 useInstantCard: TimeMachineCard toDoEffectFor: 1. "reload to 20"
-	aGame moveSpaceship. "1->20-7=13-> 26 "
-	aGame spaceshipId: 1 useInstantCard: RedoCard toDoEffectFor: 1. "reload to 10"
-	aGame moveSpaceship. "1->10-10=0 -> 36 6 lap 2"
+	aGame moveSpaceship. "1 30-9=21 ->10"
+	aGame moveSpaceship. "1 21-9=12 ->19"
+	aGame spaceshipId: 1 useInstantCard: TimeMachineCard toDoEffectFor: 1. "reload to 30"
+	aGame moveSpaceship. "1->30-7=23-> 26 "
+	aGame spaceshipId: 1 useInstantCard: RedoCard toDoEffectFor: 1. "reload to 21"
+	aGame moveSpaceship. "1->21-10=11 -> 6 lap 2"
+	aGame moveSpaceship. "1-> 11-10=1 -> 16 lap 2"
 
 	result := Dictionary new.
-	result at: 1 put: (Position startGameWithCell: 6 andLap: 2).
+	result at: 1 put: (Position startGameWithCell: 16 andLap: 2).
 
 
 	self assert: aGame spaceships positionsOfSpaceships equals: result

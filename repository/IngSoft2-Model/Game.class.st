@@ -115,8 +115,8 @@ Game >> doTimeMachineEffectToSpacehip: anSpaceshipid [
 
 	| spaceshipDetected |
 	spaceshipDetected := spaceships detectSpaceshipWithId: anSpaceshipid.
-	anAllyTankManager restoreFuelToSecondLastForAlly: spaceshipDetected .
-	spaceshipDetected restoreFuelToSecondLast
+	anAllyTankManager restoreFuelToSecondLastForAlly: spaceshipDetected.
+	spaceshipDetected restoreFuelToSecondLast.
 ]
 
 { #category : 'action' }
@@ -282,7 +282,7 @@ Game >> throwDiceAndCheckEffects [
 	throwResult = maxThrow ifTrue: [
 		randomValue < 0.8
 			ifTrue: [ currentSpaceship changeCapacity: 1 ]
-			ifFalse: [ currentSpaceship objectFuelTank useFuel: 1 ] ].
+			ifFalse: [ currentSpaceship objectFuelTank consumeFuelAsReward ] ].
 	^ throwResult
 ]
 

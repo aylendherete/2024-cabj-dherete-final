@@ -36,8 +36,9 @@ ReverseCard >> activateEffectOn: aGame forSpaceship: aSpaceship [
 ]
 
 { #category : 'accessing' }
-ReverseCard >> cell [ 
-^cellAffected 
+ReverseCard >> cell [
+
+^cellAffected .
 ]
 
 { #category : 'action' }
