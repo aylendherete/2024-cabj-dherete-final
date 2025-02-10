@@ -1,20 +1,21 @@
 Class {
-	#name : #TurnManager,
-	#superclass : #Object,
+	#name : 'TurnManager',
+	#superclass : 'Object',
 	#instVars : [
 		'spaceships',
 		'currentSpaceship',
 		'turnsToSkip'
 	],
-	#category : #'IngSoft2-Model'
+	#category : 'IngSoft2-Model',
+	#package : 'IngSoft2-Model'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 TurnManager class >> manage: collectionOfSpaceships [ 
 	^(self new) initializeManage: collectionOfSpaceships .
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 TurnManager >> decrementTurnsOfSpaceship [
 
 	turnsToSkip
@@ -22,7 +23,7 @@ TurnManager >> decrementTurnsOfSpaceship [
 		put: (turnsToSkip at: currentSpaceship id) - 1
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 TurnManager >> initializeManage: collectionOfSpaceships [
 
 	spaceships := collectionOfSpaceships collect: [ :spaceship |
@@ -34,14 +35,14 @@ TurnManager >> initializeManage: collectionOfSpaceships [
 		turnsToSkip at: spaceship id put: 0 ]
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 TurnManager >> lostTurns: anAmountOfTurns by: aSpaceshipId [
 
 	(turnsToSkip at: aSpaceshipId) = 0 ifTrue: [
 		turnsToSkip at: aSpaceshipId put: anAmountOfTurns ]
 ]
 
-{ #category : #auxiliar }
+{ #category : 'auxiliar' }
 TurnManager >> nextSpaceship [
 
 	| currentIndex nextIndex |
@@ -51,7 +52,7 @@ TurnManager >> nextSpaceship [
 	currentSpaceship := spaceships at: nextIndex
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 TurnManager >> nextTurn [
 
 	self nextSpaceship.
@@ -60,7 +61,7 @@ TurnManager >> nextTurn [
 		self nextSpaceship ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TurnManager >> spaceshipPlaying [
 
 	^ currentSpaceship

@@ -1,20 +1,21 @@
 Class {
-	#name : #AllyTankManager,
-	#superclass : #Object,
+	#name : 'AllyTankManager',
+	#superclass : 'Object',
 	#instVars : [
 		'fuelTanks',
 		'dictionaryOfAllys'
 	],
-	#category : #'IngSoft2-Model'
+	#category : 'IngSoft2-Model',
+	#package : 'IngSoft2-Model'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 AllyTankManager class >> manage: aCollectionOfSpaceships [
 
 	^ (self new) initializeManage: aCollectionOfSpaceships
 ]
 
-{ #category : #'set and get' }
+{ #category : 'set and get' }
 AllyTankManager >> ally: aSpaceship with: aSpaceshipTwo [
 
 	(dictionaryOfAllys includesKey: aSpaceship) ifTrue: [
@@ -27,7 +28,7 @@ AllyTankManager >> ally: aSpaceship with: aSpaceshipTwo [
 	dictionaryOfAllys at: aSpaceshipTwo put: aSpaceship
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AllyTankManager >> initializeManage: aCollectionOfSpaceships [
 
 	fuelTanks := aCollectionOfSpaceships collect: [ :spaceship |
@@ -36,7 +37,17 @@ AllyTankManager >> initializeManage: aCollectionOfSpaceships [
 	dictionaryOfAllys := Dictionary new
 ]
 
-{ #category : #action }
+{ #category : 'action' }
+AllyTankManager >> restoreFuelToSecondLastForAlly: aSpaceship [
+
+	| tankAllySpaceship |
+	(dictionaryOfAllys includesKey: aSpaceship) ifTrue: [
+		tankAllySpaceship := (fuelTanks at:
+			                      ((dictionaryOfAllys at: aSpaceship) id))
+			                     restoreFuelToSecondLast ]
+]
+
+{ #category : 'action' }
 AllyTankManager >> spaceship: aSpaceship wantsToUse: anAmountOfFuel [
 
 	| tankSpaceshipToMove tankAllySpaceship fuelToShare |
@@ -52,7 +63,7 @@ AllyTankManager >> spaceship: aSpaceship wantsToUse: anAmountOfFuel [
 	tankSpaceshipToMove loadFuel: fuelToShare
 ]
 
-{ #category : #'set and get' }
+{ #category : 'set and get' }
 AllyTankManager >> spaceshipsWithEmptyFuelTank: aSpaceship [
 
 	| spaceshipsWithoutFuel spaceshipSharing |
@@ -72,7 +83,7 @@ AllyTankManager >> spaceshipsWithEmptyFuelTank: aSpaceship [
 	^ spaceshipsWithoutFuel
 ]
 
-{ #category : #'set and get' }
+{ #category : 'set and get' }
 AllyTankManager >> stopAlly: aSpaceship [
 
 	| ally |

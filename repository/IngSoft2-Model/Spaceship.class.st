@@ -1,6 +1,6 @@
 Class {
-	#name : #Spaceship,
-	#superclass : #Object,
+	#name : 'Spaceship',
+	#superclass : 'Object',
 	#instVars : [
 		'id',
 		'aFuelTank',
@@ -9,22 +9,23 @@ Class {
 	#classInstVars : [
 		'counterId'
 	],
-	#category : #'IngSoft2-Model'
+	#category : 'IngSoft2-Model',
+	#package : 'IngSoft2-Model'
 }
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 Spaceship class >> initialize [
 
 	counterId := 0
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 Spaceship class >> launchWithFuel: anAmountOfFuel [
 	counterId := counterId + 1.
 	^ self new initializeLaunch: counterId withFuel: anAmountOfFuel .
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 Spaceship >> > aSpaceship [
 
 	| completedLaps aSpaceshipCompletedLaps cellPosition aSpaceshipCellPosition |
@@ -41,25 +42,25 @@ Spaceship >> > aSpaceship [
 				  ifFalse: [ false ] ]
 ]
 
-{ #category : #'set and get' }
+{ #category : 'set and get' }
 Spaceship >> amountOfFuel [
 
 	^ aFuelTank loadedWith
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 Spaceship >> changeCapacity: aNumber [
 
 	aFuelTank changeCapacity: aNumber
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Spaceship >> id [
 
 	^ id
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 Spaceship >> initializeLaunch: counterId withFuel: anAmountOfFuel [
 
 	objectPosition := Position startGame.
@@ -67,13 +68,13 @@ Spaceship >> initializeLaunch: counterId withFuel: anAmountOfFuel [
 	id := counterId.
 ]
 
-{ #category : #setter }
+{ #category : 'setter' }
 Spaceship >> loadFuel [
 
 	aFuelTank reloadToCapacity
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 Spaceship >> move: aNumberOfMovements [
 
 	| aux |
@@ -86,22 +87,27 @@ Spaceship >> move: aNumberOfMovements [
 	aFuelTank useFuel: aux abs
 ]
 
-{ #category : #'set and get' }
+{ #category : 'set and get' }
 Spaceship >> objectFuelTank [
 
 	^ aFuelTank
 ]
 
-{ #category : #'set and get' }
+{ #category : 'set and get' }
 Spaceship >> position [
 
 	^ objectPosition
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 Spaceship >> resetToOne [
 
 	| currentCell |
 	currentCell := objectPosition cell.
 	objectPosition updateCell: 1 - currentCell
+]
+
+{ #category : 'action' }
+Spaceship >> restoreFuelToSecondLast [
+	aFuelTank restoreFuelToSecondLast.
 ]

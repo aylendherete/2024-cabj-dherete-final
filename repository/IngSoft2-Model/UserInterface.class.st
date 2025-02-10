@@ -1,14 +1,15 @@
 Class {
-	#name : #UserInterface,
-	#superclass : #Object,
+	#name : 'UserInterface',
+	#superclass : 'Object',
 	#instVars : [
 		'spaceships',
 		'aGame'
 	],
-	#category : #'IngSoft2-Model'
+	#category : 'IngSoft2-Model',
+	#package : 'IngSoft2-Model'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 UserInterface class >> numberOfSpaceships: anAmount with: aBoardCreator playWith: aCollectionOfDice andGameDeck: anEffectManager [
 
 	^ self new
@@ -18,25 +19,25 @@ UserInterface class >> numberOfSpaceships: anAmount with: aBoardCreator playWith
 		  andGameDeck: anEffectManager
 ]
 
-{ #category : #results }
+{ #category : 'results' }
 UserInterface >> finalLapsOfSpaceships [
 
 	^ spaceships lapsOfSpaceships
 ]
 
-{ #category : #results }
+{ #category : 'results' }
 UserInterface >> finalPositionOfSpaceships [
 
 	^ spaceships cellsOfSpaceships
 ]
 
-{ #category : #results }
+{ #category : 'results' }
 UserInterface >> finalResultsOfSpaceships [
 
 	^ spaceships positionsOfSpaceships
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 UserInterface >> initializeNumberOfSpaceships: anAmount with: aBoardCreator playWith: aCollectionOfDice andGameDeck: anEffectManager [
 
 	aGame := Game
@@ -48,13 +49,13 @@ UserInterface >> initializeNumberOfSpaceships: anAmount with: aBoardCreator play
 	spaceships := aGame spaceships
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 UserInterface >> moveSpaceship [
 
 	^aGame moveSpaceship
 ]
 
-{ #category : #results }
+{ #category : 'results' }
 UserInterface >> rankingOfSpaceships [
 
 	| sortedSpaceships numberOfSpaceshipsToTake |
@@ -64,25 +65,25 @@ UserInterface >> rankingOfSpaceships [
 	^ sortedSpaceships first: numberOfSpaceshipsToTake
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 UserInterface >> reloadSpaceship [
 
 	aGame reloadSpaceship
 ]
 
-{ #category : #activation }
+{ #category : 'activation' }
 UserInterface >> spaceshipId: anId useInstantCard: aCard toDoEffectFor: anObject [
 
 	aGame spaceshipId: anId useInstantCard: aCard toDoEffectFor: anObject
 ]
 
-{ #category : #activation }
+{ #category : 'activation' }
 UserInterface >> usePermanentCard: aCard toDoEffectFor: anId [
 
 	aGame usePermanentCard: aCard toDoEffectFor: anId
 ]
 
-{ #category : #results }
+{ #category : 'results' }
 UserInterface >> winner [
 
 	^ aGame winner

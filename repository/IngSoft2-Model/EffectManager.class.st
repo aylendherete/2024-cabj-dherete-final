@@ -1,15 +1,16 @@
 Class {
-	#name : #EffectManager,
-	#superclass : #Object,
+	#name : 'EffectManager',
+	#superclass : 'Object',
 	#instVars : [
 		'probabilities',
 		'objects',
 		'probabilisticDistributionOfObjects'
 	],
-	#category : #'IngSoft2-Model'
+	#category : 'IngSoft2-Model',
+	#package : 'IngSoft2-Model'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 EffectManager class >> manage: aCollectionOfObjects withProbabilitiesDistribution: collectionOfProbabilities [
 	
 	collectionOfProbabilities sum = 100 ifFalse: [ Error signal: 'Sum of probabilities must be equal to one hundred'].
@@ -20,7 +21,7 @@ EffectManager class >> manage: aCollectionOfObjects withProbabilitiesDistributio
 		  withProbabilitiesDistribution: collectionOfProbabilities
 ]
 
-{ #category : #creating }
+{ #category : 'creating' }
 EffectManager >> createCollectionSize: aNumber [
 
 	| collectionOfObjects |
@@ -30,7 +31,7 @@ EffectManager >> createCollectionSize: aNumber [
 	^ collectionOfObjects
 ]
 
-{ #category : #creating }
+{ #category : 'creating' }
 EffectManager >> giveOneObject [
 
 	| objectToGive |
@@ -38,7 +39,7 @@ EffectManager >> giveOneObject [
 	^ objectToGive
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 EffectManager >> initializeManage: aCollectionOfObjects withProbabilitiesDistribution: collectionOfProbabilities [
 
 	| totalCount |

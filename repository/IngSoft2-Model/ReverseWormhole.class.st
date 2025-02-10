@@ -1,5 +1,5 @@
 Class {
-	#name : 'Wormhole',
+	#name : 'ReverseWormhole',
 	#superclass : 'Cell',
 	#instVars : [
 		'cellPosition',
@@ -10,35 +10,30 @@ Class {
 }
 
 { #category : 'evaluating' }
-Wormhole class >> in: aPosition to: anotherPosition [
+ReverseWormhole class >> in: aPosition to: anotherPosition [
 
 	^ self new initializeIn: aPosition to: anotherPosition
 ]
 
 { #category : 'action' }
-Wormhole >> applyEffectTo: aSpaceship on: aGame [
+ReverseWormhole >> applyEffectTo: aSpaceship on: aGame [
 
 	| numberOfMovements cellOfSpaceship |
 	cellOfSpaceship := aSpaceship position cell.
 	numberOfMovements := positionToGoTo - cellOfSpaceship.
-	aGame move: aSpaceship a: numberOfMovements 
-]
-
-{ #category : 'as yet unclassified' }
-Wormhole >> cell [
-
-	^ cellPosition
+	
+	aGame doReverseEffectWormholeOf: aSpaceship with: numberOfMovements
 ]
 
 { #category : 'initialization' }
-Wormhole >> initializeIn: aPosition to: anotherPosition [
+ReverseWormhole >> initializeIn: aPosition to: anotherPosition [
 
 	cellPosition := aPosition.
 	positionToGoTo := anotherPosition
 ]
 
 { #category : 'cells creation' }
-Wormhole >> reverseCell [
+ReverseWormhole >> reverseCell [
 
-	^ ReverseWormhole in: cellPosition to: positionToGoTo
+	^ Wormhole in: cellPosition to: positionToGoTo
 ]
