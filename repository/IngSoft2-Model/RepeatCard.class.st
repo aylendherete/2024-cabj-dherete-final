@@ -16,6 +16,7 @@ RepeatCard >> activateEffectOn: aGame forSpaceship: anId [
 
 	| spaceshipToApplyEffect cellToEnter cellOfSpaceship |
 	aGame activateCard: self.
+	
 	spaceshipToApplyEffect := aGame spaceships detectSpaceshipWithId: spaceshipAffected.
 
 	cellToEnter := aGame lastCellEffect.
